@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ssb-datadoc-model"
-version = "0.1.0"
+version = "0.1.1"
 description = "Data Model for use in Statistics Norway's Metadata system"
 authors = ["Statistics Norway <mmw@ssb.no>"]
 license = "Apache-2.0"
