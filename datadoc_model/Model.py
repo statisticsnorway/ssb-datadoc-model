@@ -1,30 +1,20 @@
-from __future__ import annotations
 from datetime import date, datetime
-from typing import List, Optional
-from pydantic import BaseModel, constr, conint
+from typing import List, Optional, Dict
+from pydantic import constr, conint, root_validator
+from pydantic.fields import ModelField
+import logging
 
 from datadoc_model import Enums
+from datadoc_model.BaseModel import DataDocBaseModel
+from datadoc_model.LanguageStrings import LanguageStrings
+from datadoc_model.LanguageStringsEnum import LanguageStringsEnum
 
 MODEL_VERSION = "0.1.0"
 
 ALPHANUMERIC_HYPHEN_UNDERSCORE = "[-A-Za-z0-9_.*/]"
 URL_FORMAT = "(https?:\/\/)?(www\.)?[a-zA-Z0-9]+([-a-zA-Z0-9.]{1,254}[A-Za-z0-9])?\.[a-zA-Z0-9()]{1,6}([\/][-a-zA-Z0-9_]+)*[\/]?"  # noqa: W605
 
-
-class DataDocBaseModel(BaseModel):
-    """Defines configuration which applies to all Models in this application"""
-
-    class Config:
-        # Runs validation when a field value is assigned, not just in the constructor
-        validate_assignment = True
-        # Write only the values of enums during serialization
-        use_enum_values = True
-
-
-class LanguageStrings(DataDocBaseModel):
-    en: str = ""
-    nn: str = ""
-    nb: str = ""
+logger = logging.getLogger(__name__)
 
 
 class DataDocDataSet(DataDocBaseModel):
@@ -52,6 +42,36 @@ class DataDocDataSet(DataDocBaseModel):
     created_by: Optional[str]
     last_updated_date: Optional[datetime]
     last_updated_by: Optional[str]
+
+    @root_validator(pre=True)
+    def cast_string_to_enum(cls, values: Dict):
+        """Metadata files store the name of the enum value. This doesn't
+        natively deserialise into the Enum type for the pydantic Model
+        field. This validator handles that case.
+
+        Example json file field:
+        ...
+        "dataset_state": "INPUT_DATA",
+        ...
+
+        Should be deserialised into the Model as DatasetState.INPUT_DATA
+        """
+        field: ModelField
+        for key in values.keys():
+            field = cls.__fields__[key]
+            if (
+                values[key] is not None
+                and issubclass(field.type_, LanguageStringsEnum)
+                and not isinstance(values[key], LanguageStringsEnum)
+            ):
+                logger.debug(f"Casting {values[field.name] = } to {field.type_}")
+                try:
+                    values[key] = field.type_[values[key]]
+                except KeyError as e:
+                    raise ValueError(
+                        f"Provided value {values[key]} is not a valid member of {field.type_}. Valid members: {field.type_._member_names_}",
+                    ) from e
+        return values
 
 
 class DataDocVariable(DataDocBaseModel):

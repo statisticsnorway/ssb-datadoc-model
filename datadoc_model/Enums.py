@@ -1,4 +1,13 @@
 from enum import Enum
+from datadoc_model.LanguageStrings import LanguageStrings
+from datadoc_model.LanguageStringsEnum import LanguageStringsEnum
+
+
+class SupportedLanguages(str, Enum):
+    "Reference: https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry"
+    NORSK_BOKMÅL = "nb"
+    NORSK_NYNORSK = "nn"
+    ENGLISH = "en"
 
 
 class Assessment(str, Enum):
@@ -8,26 +17,20 @@ class Assessment(str, Enum):
     OPEN = "OPEN"
 
 
-class DatasetState(str, Enum):
-    SOURCE_DATA = "SOURCE_DATA"
-    INPUT_DATA = "INPUT_DATA"
-    PROCESSED_DATA = "PROCESSED_DATA"
-    STATISTIC = "STATISTIC"
-    OUTPUT_DATA = "OUTPUT_DATA"
+class DatasetState(LanguageStringsEnum):
+    SOURCE_DATA = LanguageStrings(en="SOURCE DATA", nn="KILDEDATA", nb="KILDEDATA")
+    INPUT_DATA = LanguageStrings(en="INPUT DATA", nn="INNDATA", nb="INNDATA")
+    PROCESSED_DATA = LanguageStrings(
+        en="PROCESSED DATA", nn="KLARGJORTE DATA", nb="KLARGJORTE DATA"
+    )
+    STATISTIC = LanguageStrings(en="STATISTIC", nn="STATISTIKK", nb="STATISTIKK")
+    OUTPUT_DATA = LanguageStrings(en="OUTPUT DATA", nn="UTDATA", nb="UTDATA")
 
 
 class DatasetStatus(str, Enum):
     DRAFT = "DRAFT"
     INTERNAL = "INTERNAL"
     EXTERNAL = "EXTERNAL"
-    DEPRECATED = "DEPRECATED"
-
-
-class AdministrativeStatus(str, Enum):
-    # TODO: The definition of this property is not complete (may change)?
-    DRAFT = "DRAFT"
-    INTERNAL = "INTERNAL"
-    OPEN = "OPEN"
     DEPRECATED = "DEPRECATED"
 
 
