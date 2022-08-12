@@ -10,11 +10,18 @@ class SupportedLanguages(str, Enum):
     ENGLISH = "en"
 
 
-class Assessment(str, Enum):
+class Assessment(LanguageStringsEnum):
     # TODO: May have some kind of relation to DataSetState (SSB decision not made yet)? E.g. if "PROCSESSED_DATA" then "PROTECTED"?
-    SENSITIVE = "SENSITIVE"
-    PROTECTED = "PROTECTED"
-    OPEN = "OPEN"
+    SENSITIVE = LanguageStrings(en="SENSITIVE", nn="SENSITIV", nb="SENSITIV")
+    PROTECTED = LanguageStrings(en="PROTECTED", nn="BESKYTTET", nb="BESKYTTET")
+    OPEN = LanguageStrings(en="OPEN", nn="ÅPEN", nb="ÅPEN")
+
+
+class DatasetStatus(LanguageStringsEnum):
+    DRAFT = LanguageStrings(en="DRAFT", nn="UTKAST", nb="UTKAST")
+    INTERNAL = LanguageStrings(en="INTERNAL", nn="INTERN", nb="INTERN")
+    EXTERNAL = LanguageStrings(en="EXTERNAL", nn="EKSTERN", nb="EKSTERN")
+    DEPRECATED = LanguageStrings(en="DEPRECATED", nn="UTGÅTT", nb="UTGÅTT")
 
 
 class DatasetState(LanguageStringsEnum):
@@ -27,44 +34,44 @@ class DatasetState(LanguageStringsEnum):
     OUTPUT_DATA = LanguageStrings(en="OUTPUT DATA", nn="UTDATA", nb="UTDATA")
 
 
-class DatasetStatus(str, Enum):
-    DRAFT = "DRAFT"
-    INTERNAL = "INTERNAL"
-    EXTERNAL = "EXTERNAL"
-    DEPRECATED = "DEPRECATED"
+class UnitType(LanguageStringsEnum):
+    """See list of SSB unit types https://www.ssb.no/metadata/definisjoner-av-statistiske-enheter"""
+
+    ARBEIDSULYKKE = LanguageStrings(
+        en="WORK ACCIDENT", nn="ARBEIDSULYKKE", nb="ARBEIDSULYKKE"
+    )
+    BOLIG = LanguageStrings(en="HOUSING", nn="BOLIG", nb="BOLIG")
+    BYGNING = LanguageStrings(en="BUILDING", nn="BYGNING", nb="BYGNING")
+    EIENDOM = LanguageStrings(en="PROPERTY", nn="EIENDOM", nb="EIENDOM")
+    FAMILIE = LanguageStrings(en="FAMILY", nn="FAMILIE", nb="FAMILIE")
+    FORETAK = LanguageStrings(en="COMPANY", nn="FORETAK", nb="FORETAK")
+    FYLKE = LanguageStrings(en="REGION", nn="FYLKE", nb="FYLKE")
+    HAVNEANLOEP = LanguageStrings(en="PORT CALL", nn="HAVNEANLOEP", nb="HAVNEANLOEP")
+    HUSHOLDNING = LanguageStrings(en="HOUSEHOLD", nn="HUSHOLDNING", nb="HUSHOLDNING")
+    KJOERETOEY = LanguageStrings(en="VEHICLE", nn="KJOERETOEY", nb="KJOERETOEY")
+    KOMMUNE = LanguageStrings(en="COUNTY", nn="KOMMUNE", nb="KOMMUNE")
+    KURS = LanguageStrings(en="COURSE", nn="KURS", nb="KURS")
+    LOVBRUDD = LanguageStrings(en="CRIME", nn="LOVBRUDD", nb="LOVBRUDD")
+    PERSON = LanguageStrings(en="PERSON", nn="PERSON", nb="PERSON")
+    STAT = LanguageStrings(en="STATE", nn="STAT", nb="STAT")
+    STORFE = LanguageStrings(en="CATTLE", nn="STORFE", nb="STORFE")
+    TRAFIKKULYKKE = LanguageStrings(
+        en="TRAFFIC ACCIDENT", nn="TRAFIKKULYKKE", nb="TRAFIKKULYKKE"
+    )
+    TRANSAKSJON = LanguageStrings(en="TRANSACTION", nn="TRANSAKSJON", nb="TRANSAKSJON")
+    VARE_TJENESTE = LanguageStrings(
+        en="GOOD/SERVICE", nn="VARE/TJENESTE", nb="VARE/TJENESTE"
+    )
+    VERDIPAPIR = LanguageStrings(en="SERVICE", nn="VERDIPAPIR", nb="VERDIPAPIR")
+    VIRKSOMHET = LanguageStrings(en="BUSINESS", nn="VIRKSOMHET", nb="VIRKSOMHET")
 
 
-class UnitType(str, Enum):
-    # TODO: May change in the nearest future? See list of SSB unit types https://www.ssb.no/metadata/definisjoner-av-statistiske-enheter
-    ARBEIDSULYKKE = "ARBEIDSULYKKE"
-    BOLIG = "BOLIG"
-    BYGNING = "BYGNING"
-    EIENDOM = "EIENDOM"
-    FAMILIE = "FAMILIE"
-    FORETAK = "FORETAK"
-    FYLKE = "FYLKE"
-    HAVNEANLOEP = "HAVNEANLOEP"
-    HUSHOLDNING = "HUSHOLDNING"
-    KJOERETOEY = "KJOERETOEY"
-    KOMMUNE = "KOMMUNE"
-    KURS = "KURS"
-    LOVBRUDD = "LOVBRUDD"
-    PERSON = "PERSON"
-    STAT = "STAT"
-    STORFE = "STORFE"
-    TRAFIKKULYKKE = "TRAFIKKULYKKE"
-    TRANSAKSJON = "TRANSAKSJON"
-    VARE_TJENESTE = "VARE_TJENESTE"
-    VERDIPAPIR = "VERDIPAPIR"
-    VIRKSOMHET = "VIRKSOMHET"
-
-
-class TemporalityType(str, Enum):
+class TemporalityType(LanguageStringsEnum):
     # More information about temporality type: https://statistics-norway.atlassian.net/l/c/HV12q90R
-    FIXED = "FIXED"
-    STATUS = "STATUS"
-    ACCUMULATED = "ACCUMULATED"
-    EVENT = "EVENT"
+    FIXED = LanguageStrings(en="FIXED", nn="FAST", nb="FAST")
+    STATUS = LanguageStrings(en="STATUS", nn="TVERRSNITT", nb="TVERRSNITT")
+    ACCUMULATED = LanguageStrings(en="ACCUMULATED", nn="AKKUMULERT", nb="AKKUMULERT")
+    EVENT = LanguageStrings(en="EVENT", nn="HENDELSE", nb="HENDELSE")
 
 
 class Datatype(str, Enum):

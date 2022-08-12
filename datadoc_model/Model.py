@@ -23,7 +23,7 @@ class DataDocDataSet(DataDocBaseModel):
     short_name: Optional[
         constr(min_length=1, max_length=63, regex=ALPHANUMERIC_HYPHEN_UNDERSCORE)
     ]
-    assessment: Optional[Enums.Assessment]
+    assessment: Optional[Enums.Assessment] = Enums.Assessment.SENSITIVE
     dataset_status: Optional[Enums.DatasetStatus] = Enums.DatasetStatus.DRAFT
     dataset_state: Optional[Enums.DatasetState]
     name: Optional[LanguageStrings]
@@ -42,36 +42,6 @@ class DataDocDataSet(DataDocBaseModel):
     created_by: Optional[str]
     last_updated_date: Optional[datetime]
     last_updated_by: Optional[str]
-
-    @root_validator(pre=True)
-    def cast_string_to_enum(cls, values: Dict):
-        """Metadata files store the name of the enum value. This doesn't
-        natively deserialise into the Enum type for the pydantic Model
-        field. This validator handles that case.
-
-        Example json file field:
-        ...
-        "dataset_state": "INPUT_DATA",
-        ...
-
-        Should be deserialised into the Model as DatasetState.INPUT_DATA
-        """
-        field: ModelField
-        for key in values.keys():
-            field = cls.__fields__[key]
-            if (
-                values[key] is not None
-                and issubclass(field.type_, LanguageStringsEnum)
-                and not isinstance(values[key], LanguageStringsEnum)
-            ):
-                logger.debug(f"Casting {values[field.name] = } to {field.type_}")
-                try:
-                    values[key] = field.type_[values[key]]
-                except KeyError as e:
-                    raise ValueError(
-                        f"Provided value {values[key]} is not a valid member of {field.type_}. Valid members: {field.type_._member_names_}",
-                    ) from e
-        return values
 
 
 class DataDocVariable(DataDocBaseModel):
