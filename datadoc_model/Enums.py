@@ -74,17 +74,19 @@ class TemporalityType(LanguageStringsEnum):
     EVENT = LanguageStrings(en="EVENT", nn="HENDELSE", nb="HENDELSE")
 
 
-class Datatype(str, Enum):
-    STRING = "STRING"
-    INTEGER = "INTEGER"
-    FLOAT = "FLOAT"
-    DATETIME = "DATETIME"
-    BOOLEAN = "BOOLEAN"
+class Datatype(LanguageStringsEnum):
+    STRING = LanguageStrings(en="STRING", nn="TEKST", nb="TEKST")
+    INTEGER = LanguageStrings(en="INTEGER", nn="HELTALL", nb="HELTALL")
+    FLOAT = LanguageStrings(en="FLOAT", nn="DESIMALTALL", nb="DESIMALTALL")
+    DATETIME = LanguageStrings(en="DATETIME", nn="DATOTID", nb="DATOTID")
+    BOOLEAN = LanguageStrings(en="BOOLEAN", nn="BOOLSK", nb="BOOLSK")
 
 
-class VariableRole(str, Enum):
-    IDENTIFIER = "IDENTIFIER"
-    MEASURE = "MEASURE"
-    START_TIME = "START_TIME"
-    STOP_TIME = "STOP_TIME"
-    ATTRIBUTE = "ATTRIBUTE"
+class VariableRole(LanguageStringsEnum):
+    IDENTIFIER = LanguageStrings(
+        en="IDENTIFIER", nn="IDENTIFIKATOR", nb="IDENTIFIKATOR"
+    )
+    MEASURE = LanguageStrings(en="MEASURE", nn="MÅLEVARIABEL", nb="MÅLEVARIABEL")
+    START_TIME = LanguageStrings(en="START_TIME", nn="STARTTID", nb="STARTTID")
+    STOP_TIME = LanguageStrings(en="STOP_TIME", nn="STOPPTID", nb="STOPPTID")
+    ATTRIBUTE = LanguageStrings(en="ATTRIBUTE", nn="ATTRIBUTT", nb="ATTRIBUTT")
