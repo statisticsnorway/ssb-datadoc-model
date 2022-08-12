@@ -1,30 +1,19 @@
-from __future__ import annotations
 from datetime import date, datetime
 from typing import List, Optional
-from pydantic import BaseModel, constr, conint
+from pydantic import constr, conint
+import logging
 
 from datadoc_model import Enums
+from datadoc_model.BaseModel import DataDocBaseModel
+from datadoc_model.LanguageStrings import LanguageStrings
+from datadoc_model.LanguageStringsEnum import LanguageStringsEnum
 
-MODEL_VERSION = "0.1.0"
+MODEL_VERSION = "0.1.1"
 
 ALPHANUMERIC_HYPHEN_UNDERSCORE = "[-A-Za-z0-9_.*/]"
 URL_FORMAT = "(https?:\/\/)?(www\.)?[a-zA-Z0-9]+([-a-zA-Z0-9.]{1,254}[A-Za-z0-9])?\.[a-zA-Z0-9()]{1,6}([\/][-a-zA-Z0-9_]+)*[\/]?"  # noqa: W605
 
-
-class DataDocBaseModel(BaseModel):
-    """Defines configuration which applies to all Models in this application"""
-
-    class Config:
-        # Runs validation when a field value is assigned, not just in the constructor
-        validate_assignment = True
-        # Write only the values of enums during serialization
-        use_enum_values = True
-
-
-class LanguageStrings(DataDocBaseModel):
-    en: str = ""
-    nn: str = ""
-    nb: str = ""
+logger = logging.getLogger(__name__)
 
 
 class DataDocDataSet(DataDocBaseModel):
@@ -33,7 +22,7 @@ class DataDocDataSet(DataDocBaseModel):
     short_name: Optional[
         constr(min_length=1, max_length=63, regex=ALPHANUMERIC_HYPHEN_UNDERSCORE)
     ]
-    assessment: Optional[Enums.Assessment]
+    assessment: Optional[Enums.Assessment] = Enums.Assessment.SENSITIVE
     dataset_status: Optional[Enums.DatasetStatus] = Enums.DatasetStatus.DRAFT
     dataset_state: Optional[Enums.DatasetState]
     name: Optional[LanguageStrings]
