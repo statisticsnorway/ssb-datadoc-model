@@ -23,7 +23,13 @@ class LanguageStringsEnum(Enum):
     @classmethod
     def _missing_(cls, value):
         """Support constructing an enum member from a supplied name string"""
-        return cls._member_map_[value]
+        try:
+            member = cls._member_map_[value]
+        except KeyError:
+            # Raise the expected exception with a useful explanation
+            raise ValueError(f"{value} is not a valid {cls.__qualname__}")
+        else:
+            return member
 
     def get_value_for_language(self, language: "SupportedLanguages") -> str:
         """Retrieve the string for the relevant language"""
