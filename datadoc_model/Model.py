@@ -2,6 +2,7 @@ from datetime import date, datetime
 from typing import List, Optional
 from pydantic import constr, conint
 import logging
+from uuid import UUID
 
 from datadoc_model import Enums
 from datadoc_model.BaseModel import DataDocBaseModel
@@ -34,7 +35,7 @@ class DataDocDataSet(DataDocBaseModel):
     description: Optional[LanguageStrings]
     subject_field: Optional[LanguageStrings]
     spatial_coverage_description: Optional[LanguageStrings]
-    id: Optional[constr(regex=URL_FORMAT)]
+    id: Optional[UUID]
     owner: Optional[LanguageStrings]
     data_source_path: Optional[str]
     created_date: Optional[datetime]
