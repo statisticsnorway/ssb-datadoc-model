@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ssb-datadoc-model"
-version = "1.0.0"
+version = "2.0.0"
 description = "Data Model for use in Statistics Norway's Metadata system"
 authors = ["Statistics Norway <mmw@ssb.no>"]
 license = "Apache-2.0"
@@ -12,12 +12,13 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-pydantic = "^1.9.1"
+python = ">=3.8"
+pydantic = ">=1.9.1"
 
 [tool.poetry.dev-dependencies]
-black = "^22.6.0"
-ipython = "^8.4.0"
+black = "*"
+ipython = "*"
+bump2version = "*"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
