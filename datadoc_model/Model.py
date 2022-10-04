@@ -9,7 +9,7 @@ from datadoc_model.BaseModel import DataDocBaseModel
 from datadoc_model.LanguageStrings import LanguageStrings
 from datadoc_model.LanguageStringsEnum import LanguageStringsEnum
 
-MODEL_VERSION = "0.1.1"
+MODEL_VERSION = "1.0.0"
 
 ALPHANUMERIC_HYPHEN_UNDERSCORE = "[-A-Za-z0-9_.*/]"
 URL_FORMAT = "(https?:\/\/)?(www\.)?[a-zA-Z0-9]+([-a-zA-Z0-9.]{1,254}[A-Za-z0-9])?\.[a-zA-Z0-9()]{1,6}([\/][-a-zA-Z0-9_]+)*[\/]?"  # noqa: W605
@@ -23,25 +23,29 @@ class DataDocDataSet(DataDocBaseModel):
     short_name: Optional[
         constr(min_length=1, max_length=63, regex=ALPHANUMERIC_HYPHEN_UNDERSCORE)
     ]
-    assessment: Optional[Enums.Assessment] = Enums.Assessment.SENSITIVE
+    assessment: Optional[Enums.Assessment]
     dataset_status: Optional[Enums.DatasetStatus] = Enums.DatasetStatus.DRAFT
     dataset_state: Optional[Enums.DatasetState]
     name: Optional[LanguageStrings]
     data_source: Optional[LanguageStrings]
     population_description: Optional[LanguageStrings]
     version: Optional[str]
+    version_description: Optional[str]
     unit_type: Optional[Enums.UnitType]
     temporality_type: Optional[Enums.TemporalityType]
     description: Optional[LanguageStrings]
     subject_field: Optional[LanguageStrings]
+    keyword: Optional[List[str]]
     spatial_coverage_description: Optional[LanguageStrings]
     id: Optional[UUID]
     owner: Optional[LanguageStrings]
     data_source_path: Optional[str]
-    created_date: Optional[datetime]
-    created_by: Optional[str]
-    last_updated_date: Optional[datetime]
-    last_updated_by: Optional[str]
+    metadata_created_date: Optional[datetime]
+    metadata_created_by: Optional[str]
+    metadata_last_updated_date: Optional[datetime]
+    metadata_last_updated_by: Optional[str]
+    contains_data_from: Optional[date]
+    contains_data_until: Optional[date]
 
 
 class DataDocVariable(DataDocBaseModel):
