@@ -1,0 +1,376 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "languageStringType": {
+            "$comment": "Reusable langugage string type",
+            "type": "object",
+            "properties": {
+                "en": {
+                    "type": "string"
+                },
+                "nn": {
+                    "type": "string"
+                },
+                "nb": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "nb"
+            ]
+        },
+        "temporalityTypeType": {
+            "$comment": "Reusable temporalitytype type",
+            "type": "string",
+            "enum": [
+                "FIXED",
+                "STATUS",
+                "ACCUMULATED",
+                "EVENT"
+            ]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "percentage_complete": {
+            "$comment": "Used by the DataDoc app (internal information)",
+            "type": "integer"
+        },
+        "document_version": {
+            "$comment": "DataDoc model version of this Json Schema",
+            "const": "1.0.0"
+        },
+        "dataset": {
+            "type": "object",
+            "properties": {
+                "short_name": {
+                    "title": "Short name",
+                    "description": "Name of (physical) data file, data table or dataset",
+                    "$comment": " Alphanumeric limited to a-z, A-Z, 0-9, - (hyphen) and _ (underscore)",
+                    "type": "string"
+                },
+                "assessment": {
+                    "title": "Assessment",
+                    "description": "Value assessment (sensitivity classification) for the data set",
+                    "type": "string",
+                    "enum": [
+                        "SENSITIVE",
+                        "PROTECTED",
+                        "OPEN"
+                    ]
+                },
+                "dataset_status": {
+                    "title": "Data set status",
+                    "description": "Life cycle for data set",
+                    "type": "string",
+                    "enum": [
+                        "DRAFT",
+                        "INTERNAL",
+                        "EXTERNAL",
+                        "DEPRECATED"
+                    ]
+                },
+                "dataset_state": {
+                    "title": "Data set state",
+                    "description": "Steady state of data",
+                    "type": "string",
+                    "enum": [
+                        "SOURCE_DATA",
+                        "INPUT_DATA",
+                        "PROCESSED_DATA",
+                        "STATISTICS",
+                        "OUTPUT DATA"
+                    ]
+                },
+                "name": {
+                    "title": "Name",
+                    "description": "Name of data set",
+                    "$ref": "#/definitions/languageStringType"
+                },
+                "description": {
+                    "title": "Description",
+                    "description": "Free text description of the data set",
+                    "$ref": "#/definitions/languageStringType"
+                },
+                "data_source": {
+                    "title": "Data source",
+                    "description": "Data source. Set either for the data set or instance variable.",
+                    "$ref": "#/definitions/languageStringType"
+                },
+                "register_uri": {
+                    "title": "Register",
+                    "description": "Link to register",
+                    "$ref": "#/definitions/languageStringType"
+                },
+                "population_description": {
+                    "title": "Description of population",
+                    "description": "Description of the population covered in the data set. Includes unit type, spatial coverage and period of time.",
+                    "$ref": "#/definitions/languageStringType"
+                },
+                "version": {
+                    "title": "Version",
+                    "description": "Version of data set",
+                    "type": "string"
+                },
+                "version_description": {
+                    "title": "Version description",
+                    "description": "Dataset version information in the form of descriptive text",
+                    "$ref": "#/definitions/languageStringType"
+                },
+                "unit_type": {
+                    "title": "Unit type",
+                    "description": "Unit Type for data file, table or data set. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter",
+                    "type": "string",
+                    "enum": [
+                        "ARBEIDSULYKKE",
+                        "BOLIG",
+                        "BYGNING",
+                        "EIENDOM",
+                        "FAMILIE",
+                        "FORETAK",
+                        "FYLKE",
+                        "HAVNEANLOEP",
+                        "HUSHOLDNING",
+                        "KJOERETOEY",
+                        "KOMMUNE",
+                        "KURS",
+                        "LOVBRUDD",
+                        "PERSON",
+                        "STAT",
+                        "STORFE",
+                        "TRAFIKKULYKKE",
+                        "TRANSAKSJON",
+                        "VARE_TJENESTE",
+                        "VERDIPAPIR",
+                        "VIRKSOMHET"
+                    ]
+                },
+                "temporality_type": {
+                    "title": "Temporality type",
+                    "description": "Temporality type. Either for the instance variable or the data set",
+                    "$ref": "#/definitions/temporalityTypeType"
+                },
+                "subject_field": {
+                    "title": "Subject field",
+                    "description": "Primary area of statistics in which the data set is included",
+                    "$ref": "#/definitions/languageStringType"
+                },
+                "keyWord": {
+                    "title": "Keyword(s)",
+                    "description": "A list of searchable keywords that can contribute to the development of effective filtering and search services.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "spatial_coverage_description": {
+                    "title": "Spatial coverage description",
+                    "description": "Description of the data set's spatial coverage",
+                    "$ref": "#/definitions/languageStringType"
+                },
+                "id": {
+                    "title": "Identifier",
+                    "description": "Unique SSB identifier for the data set",
+                    "$comment": "UUID specified by RFC4122",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "owner": {
+                    "title": "Owner",
+                    "description": "Owner of the data set (responsible division in Statistics Norway). See also Classification of organisational units https://www.ssb.no/en/klass/klassifikasjoner/83",
+                    "$ref": "#/definitions/languageStringType"
+                },
+                "file_path": {
+                    "title": "File path",
+                    "description": "The file path contains the data set's name and the path to where it is stored",
+                    "type": "string"
+                },
+                "metadata_created_date": {
+                    "title": "Metadata created date",
+                    "description": "Created date for metadata about the data set",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "metadata_created_by": {
+                    "title": "Metadata created by",
+                    "description": "Created by identifiable person. Only for use in SSB",
+                    "type": "string"
+                },
+                "metadata_last_updated_date": {
+                    "title": "Metadata last updated date",
+                    "description": "Last updated date for metadata about the dataset",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "metadata_last_updated_by": {
+                    "title": "Metadata last updated by",
+                    "description": "Last change made by identifiable person. Only for use in SSB",
+                    "type": "string"
+                },
+                "contains_data_from": {
+                    "title": "Contains data from",
+                    "description": "The data set contains data from date/time",
+                    "type": "string"
+                },
+                "contains_data_until": {
+                    "title": "Contains data up until",
+                    "description": "The data set contains data up until date/time",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "short_name",
+                "assessment",
+                "dataset_status",
+                "dataset_state",
+                "name",
+                "population_description",
+                "version",
+                "unit_type",
+                "description",
+                "subject_field",
+                "id",
+                "owner",
+                "file_path",
+                "metadata_created_date",
+                "metadata_created_by",
+                "metadata_last_updated_date",
+                "metadata_last_updated_by"
+            ]
+        },
+        "variables": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "short_name": {
+                            "type": "string",
+                            "title": "Short name",
+                            "description": "Physical name of the variable in the dataset. Should match the recommended short name."
+                        },
+                        "name": {
+                            "title": "Name",
+                            "description": "Variable names can be inherited from VarDef, but can also be documented/changed here",
+                            "$ref": "#/definitions/languageStringType"
+                        },
+                        "data_type": {
+                            "title": "Data type",
+                            "description": "Data type",
+                            "type": "string",
+                            "enum": [
+                                "STRING",
+                                "INTEGER",
+                                "DATETIME",
+                                "BOOLEAN"
+                            ]
+                        },
+                        "variable_role": {
+                            "title": "Variable role",
+                            "description": "Role of the instance variable in the data set",
+                            "type": "string",
+                            "enum": [
+                                "IDENTIFIER",
+                                "MEASURE",
+                                "START_TIME",
+                                "STOP_TIME",
+                                "ATTRIBUTE"
+                            ]
+                        },
+                        "definition_uri": {
+                            "title": "Definition URI",
+                            "description": "A link (URI) to the variable's definition in Vardok/VarDef",
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "direct_person_identifying": {
+                            "title": "Direct Person identifying Information (DPI)",
+                            "description": "Direct Person identifying Information (DPI). Some of the values ​​in an instance variable kan be DPI, others not. In this case, DPI is set equal to true. For example, the variable exporter where some of the values ​​can be organization number, others social security numbers (sole proprietorships).",
+                            "type": "boolean"
+                        },
+                        "data_source": {
+                            "title": "Data source",
+                            "description": "Data source. Set at data set level, but can be overwritten at variable instance level.",
+                            "$ref": "#/definitions/languageStringType"
+                        },
+                        "population_description": {
+                            "title": "Population description",
+                            "description": "The population the variable describes can be specified in more detail here. Set at dataset level, but can be overwritten at instance variable level.",
+                            "$ref": "#/definitions/languageStringType"
+                        },
+                        "comment": {
+                            "title": "Comment",
+                            "description": "Further clarification of the variables definition",
+                            "$ref": "#/definitions/languageStringType"
+                        },
+                        "temporality_type": {
+                            "title": "Temporality type",
+                            "description": "Temporality type. Set either for variable instance or dataset.",
+                            "$ref": "#/definitions/temporalityTypeType"
+                        },
+                        "measurement_unit": {
+                            "title": "Measurement unit",
+                            "description": "Measurement unit",
+                            "$comment": "TODO: measurement_unit implemented as string. In the future this should be implemente as enum? See https://www.ssb.no/klass/klassifikasjoner/303/koder",
+                            "type": "string"
+                        },
+                        "format": {
+                            "title": "Format",
+                            "description": "The format of the values ​​(physical format or regular expression) in machine-readable form for validation. This can be used as a further specification of the data type (dataType) in those cases where this is relevant.",
+                            "type": "string"
+                        },
+                        "classification_uri": {
+                            "title": "Classification or codelist URI",
+                            "description": "Link (URI) to valid classification or code list",
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "sentinel_value_uri": {
+                            "title": "Sentinel value URI",
+                            "description": "A link (URI) to an overview of sentinel values included in the variable. Proposals for the standardization of sentinel values ​​have been drafted, but this has not yet been processed by the Standards Committee in Statistics Norway:  01 - In total, 02 - Sum, 03 - Subtotal, 04 - Other, 05 - Rest, 06 - Invalid value, 07 - Unspecified, 08 - Not relevant",
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "invalid_value_description": {
+                            "title": "Invalid value(s) description",
+                            "description": "Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.",
+                            "$ref": "#/definitions/languageStringType"
+                        },
+                        "id": {
+                            "title": "Identifier",
+                            "description": "Unique SSB identifier for the instance variable in the data set",
+                            "$comment": "UUID specified by RFC4122",
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "contains_data_from": {
+                            "title": "Contains data from",
+                            "description": "The instance variable in the data set contains data from and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some variables only contain data for the most recent periods/years, e.g. if the entire data set contains data from 1970 to 2020, while some instance variables only contain data from 1998 onwards.",
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "contains_data_until": {
+                            "title": "Contains data up until",
+                            "description": "The instance variable in the data set contains data up to and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some of the instance variables in the data set are terminated (no longer updated) after a given point in time.",
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    "required": [
+                        "short_name",
+                        "name",
+                        "data_type",
+                        "variable_role",
+                        "direct_person_identifying",
+                        "id"
+                    ]
+                }
+            ]
+        }
+    },
+    "required": [
+        "document_version",
+        "dataset",
+        "variables"
+    ]
+}
