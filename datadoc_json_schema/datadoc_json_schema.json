@@ -155,7 +155,7 @@
                     "description": "Primary area of statistics in which the data set is included",
                     "$ref": "#/definitions/languageStringType"
                 },
-                "keyWord": {
+                "keyword": {
                     "title": "Keyword(s)",
                     "description": "A list of searchable keywords that can contribute to the development of effective filtering and search services.",
                     "type": "array",
