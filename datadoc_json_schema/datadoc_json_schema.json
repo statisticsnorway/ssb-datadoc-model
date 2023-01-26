@@ -38,7 +38,7 @@
         },
         "document_version": {
             "$comment": "DataDoc model version of this Json Schema",
-            "const": "1.0.0"
+            "const": "2.0.0"
         },
         "dataset": {
             "type": "object",
