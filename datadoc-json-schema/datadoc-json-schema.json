@@ -56,27 +56,27 @@
                 "name": {
                     "title": "Name",
                     "description": "Name of data set",
-                    "$ref": "./no/languageStringType.json#/languageStringType"
+                    "$ref": "./type/languageStringType.json#/languageStringType"
                 },
                 "description": {
                     "title": "Description",
                     "description": "Free text description of the data set",
-                    "$ref": "./no/languageStringType.json#/languageStringType"
+                    "$ref": "./type/languageStringType.json#/languageStringType"
                 },
                 "data_source": {
                     "title": "Data source",
                     "description": "Data source. Set either for the data set or instance variable.",
-                    "$ref": "./no/languageStringType.json#/languageStringType"
+                    "$ref": "./type/languageStringType.json#/languageStringType"
                 },
                 "register_uri": {
                     "title": "Register",
                     "description": "Link to register",
-                    "$ref": "./no/languageStringType.json#/languageStringType"
+                    "$ref": "./type/languageStringType.json#/languageStringType"
                 },
                 "population_description": {
                     "title": "Description of population",
                     "description": "Description of the population covered in the data set. Includes unit type, spatial coverage and period of time.",
-                    "$ref": "./no/languageStringType.json#/languageStringType"
+                    "$ref": "./type/languageStringType.json#/languageStringType"
                 },
                 "version": {
                     "title": "Version",
@@ -86,7 +86,7 @@
                 "version_description": {
                     "title": "Version description",
                     "description": "Dataset version information in the form of descriptive text",
-                    "$ref": "./no/languageStringType.json#/languageStringType"
+                    "$ref": "./type/languageStringType.json#/languageStringType"
                 },
                 "unit_type": {
                     "title": "Unit type",
@@ -102,7 +102,7 @@
                 "subject_field": {
                     "title": "Subject field",
                     "description": "Primary area of statistics in which the data set is included",
-                    "$ref": "./no/languageStringType.json#/languageStringType"
+                    "$ref": "./type/languageStringType.json#/languageStringType"
                 },
                 "keyword": {
                     "title": "Keyword(s)",
@@ -115,7 +115,7 @@
                 "spatial_coverage_description": {
                     "title": "Spatial coverage description",
                     "description": "Description of the data set's spatial coverage",
-                    "$ref": "./no/languageStringType.json#/languageStringType"
+                    "$ref": "./type/languageStringType.json#/languageStringType"
                 },
                 "id": {
                     "title": "Identifier",
@@ -127,7 +127,7 @@
                 "owner": {
                     "title": "Owner",
                     "description": "Owner of the data set (responsible division in Statistics Norway). See also Classification of organisational units https://www.ssb.no/en/klass/klassifikasjoner/83",
-                    "$ref": "./no/languageStringType.json#/languageStringType"
+                    "$ref": "./type/languageStringType.json#/languageStringType"
                 },
                 "file_path": {
                     "title": "File path",
@@ -206,7 +206,7 @@
                         "name": {
                             "title": "Name",
                             "description": "Variable names can be inherited from VarDef, but can also be documented/changed here",
-                            "$ref": "./no/languageStringType.json#/languageStringType"
+                            "$ref": "./type/languageStringType.json#/languageStringType"
                         },
                         "data_type": {
                             "title": "Data type",
@@ -247,17 +247,17 @@
                         "data_source": {
                             "title": "Data source",
                             "description": "Data source. Set at data set level, but can be overwritten at variable instance level.",
-                            "$ref": "./no/languageStringType.json#/languageStringType"
+                            "$ref": "./type/languageStringType.json#/languageStringType"
                         },
                         "population_description": {
                             "title": "Population description",
                             "description": "The population the variable describes can be specified in more detail here. Set at dataset level, but can be overwritten at instance variable level.",
-                            "$ref": "./no/languageStringType.json#/languageStringType"
+                            "$ref": "./type/languageStringType.json#/languageStringType"
                         },
                         "comment": {
                             "title": "Comment",
                             "description": "Further clarification of the variables definition",
-                            "$ref": "./no/languageStringType.json#/languageStringType"
+                            "$ref": "./type/languageStringType.json#/languageStringType"
                         },
                         "temporality_type": {
                             "title": "Temporality type",
@@ -290,7 +290,7 @@
                         "invalid_value_description": {
                             "title": "Invalid value(s) description",
                             "description": "Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.",
-                            "$ref": "./no/languageStringType.json#/languageStringType"
+                            "$ref": "./type/languageStringType.json#/languageStringType"
                         },
                         "id": {
                             "title": "Identifier",
