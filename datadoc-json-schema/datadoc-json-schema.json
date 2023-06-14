@@ -210,8 +210,10 @@
                             "enum": [
                                 "STRING",
                                 "INTEGER",
+                                "FLOAT",
                                 "DATETIME",
-                                "BOOLEAN"
+                                "BOOLEAN",
+                                "ARRAY"
                             ]
                         },
                         "variable_role": {
