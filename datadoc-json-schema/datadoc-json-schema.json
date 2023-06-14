@@ -1,35 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "definitions": {
-        "languageStringType": {
-            "$comment": "Reusable langugage string type",
-            "type": "object",
-            "properties": {
-                "en": {
-                    "type": "string"
-                },
-                "nn": {
-                    "type": "string"
-                },
-                "nb": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "nb"
-            ]
-        },
-        "temporalityTypeType": {
-            "$comment": "Reusable temporalitytype type",
-            "type": "string",
-            "enum": [
-                "FIXED",
-                "STATUS",
-                "ACCUMULATED",
-                "EVENT"
-            ]
-        }
-    },
+   
     "type": "object",
     "properties": {
         "percentage_complete": {
@@ -85,27 +56,27 @@
                 "name": {
                     "title": "Name",
                     "description": "Name of data set",
-                    "$ref": "#/definitions/languageStringType"
+                    "$ref": "./no/languageStringType.json#/languageStringType"
                 },
                 "description": {
                     "title": "Description",
                     "description": "Free text description of the data set",
-                    "$ref": "#/definitions/languageStringType"
+                    "$ref": "./no/languageStringType.json#/languageStringType"
                 },
                 "data_source": {
                     "title": "Data source",
                     "description": "Data source. Set either for the data set or instance variable.",
-                    "$ref": "#/definitions/languageStringType"
+                    "$ref": "./no/languageStringType.json#/languageStringType"
                 },
                 "register_uri": {
                     "title": "Register",
                     "description": "Link to register",
-                    "$ref": "#/definitions/languageStringType"
+                    "$ref": "./no/languageStringType.json#/languageStringType"
                 },
                 "population_description": {
                     "title": "Description of population",
                     "description": "Description of the population covered in the data set. Includes unit type, spatial coverage and period of time.",
-                    "$ref": "#/definitions/languageStringType"
+                    "$ref": "./no/languageStringType.json#/languageStringType"
                 },
                 "version": {
                     "title": "Version",
@@ -115,45 +86,23 @@
                 "version_description": {
                     "title": "Version description",
                     "description": "Dataset version information in the form of descriptive text",
-                    "$ref": "#/definitions/languageStringType"
+                    "$ref": "./no/languageStringType.json#/languageStringType"
                 },
                 "unit_type": {
                     "title": "Unit type",
                     "description": "Unit Type for data file, table or data set. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter",
                     "type": "string",
-                    "enum": [
-                        "ARBEIDSULYKKE",
-                        "BOLIG",
-                        "BYGNING",
-                        "EIENDOM",
-                        "FAMILIE",
-                        "FORETAK",
-                        "FYLKE",
-                        "HAVNEANLOEP",
-                        "HUSHOLDNING",
-                        "KJOERETOEY",
-                        "KOMMUNE",
-                        "KURS",
-                        "LOVBRUDD",
-                        "PERSON",
-                        "STAT",
-                        "STORFE",
-                        "TRAFIKKULYKKE",
-                        "TRANSAKSJON",
-                        "VARE_TJENESTE",
-                        "VERDIPAPIR",
-                        "VIRKSOMHET"
-                    ]
+                    "$ref": "./no/unitType.json#/unitType"
                 },
                 "temporality_type": {
                     "title": "Temporality type",
                     "description": "Temporality type. Either for the instance variable or the data set",
-                    "$ref": "#/definitions/temporalityTypeType"
+                    "$ref": "./no/temporalityTypeType.json#/temporalityTypeType"
                 },
                 "subject_field": {
                     "title": "Subject field",
                     "description": "Primary area of statistics in which the data set is included",
-                    "$ref": "#/definitions/languageStringType"
+                    "$ref": "./no/languageStringType.json#/languageStringType"
                 },
                 "keyword": {
                     "title": "Keyword(s)",
@@ -166,11 +115,11 @@
                 "spatial_coverage_description": {
                     "title": "Spatial coverage description",
                     "description": "Description of the data set's spatial coverage",
-                    "$ref": "#/definitions/languageStringType"
+                    "$ref": "./no/languageStringType.json#/languageStringType"
                 },
                 "id": {
                     "title": "Identifier",
-                    "description": "Unique SSB identifier for the data set",
+                    "description": "Unique identifier for the data set",
                     "$comment": "UUID specified by RFC4122",
                     "type": "string",
                     "format": "uuid"
@@ -178,7 +127,7 @@
                 "owner": {
                     "title": "Owner",
                     "description": "Owner of the data set (responsible division in Statistics Norway). See also Classification of organisational units https://www.ssb.no/en/klass/klassifikasjoner/83",
-                    "$ref": "#/definitions/languageStringType"
+                    "$ref": "./no/languageStringType.json#/languageStringType"
                 },
                 "file_path": {
                     "title": "File path",
@@ -193,7 +142,7 @@
                 },
                 "metadata_created_by": {
                     "title": "Metadata created by",
-                    "description": "Created by identifiable person. Only for use in SSB",
+                    "description": "Created by identifiable person.",
                     "type": "string"
                 },
                 "metadata_last_updated_date": {
@@ -204,7 +153,7 @@
                 },
                 "metadata_last_updated_by": {
                     "title": "Metadata last updated by",
-                    "description": "Last change made by identifiable person. Only for use in SSB",
+                    "description": "Last change made by identifiable person. ",
                     "type": "string"
                 },
                 "contains_data_from": {
@@ -252,7 +201,7 @@
                         "name": {
                             "title": "Name",
                             "description": "Variable names can be inherited from VarDef, but can also be documented/changed here",
-                            "$ref": "#/definitions/languageStringType"
+                            "$ref": "./no/languageStringType.json#/languageStringType"
                         },
                         "data_type": {
                             "title": "Data type",
@@ -291,22 +240,22 @@
                         "data_source": {
                             "title": "Data source",
                             "description": "Data source. Set at data set level, but can be overwritten at variable instance level.",
-                            "$ref": "#/definitions/languageStringType"
+                            "$ref": "./no/languageStringType.json#/languageStringType"
                         },
                         "population_description": {
                             "title": "Population description",
                             "description": "The population the variable describes can be specified in more detail here. Set at dataset level, but can be overwritten at instance variable level.",
-                            "$ref": "#/definitions/languageStringType"
+                            "$ref": "./no/languageStringType.json#/languageStringType"
                         },
                         "comment": {
                             "title": "Comment",
                             "description": "Further clarification of the variables definition",
-                            "$ref": "#/definitions/languageStringType"
+                            "$ref": "./no/languageStringType.json#/languageStringType"
                         },
                         "temporality_type": {
                             "title": "Temporality type",
                             "description": "Temporality type. Set either for variable instance or dataset.",
-                            "$ref": "#/definitions/temporalityTypeType"
+                            "$ref": "./no/temporalityTypeType.json#/temporalityTypeType"
                         },
                         "measurement_unit": {
                             "title": "Measurement unit",
@@ -334,7 +283,7 @@
                         "invalid_value_description": {
                             "title": "Invalid value(s) description",
                             "description": "Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.",
-                            "$ref": "#/definitions/languageStringType"
+                            "$ref": "./no/languageStringType.json#/languageStringType"
                         },
                         "id": {
                             "title": "Identifier",

@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    
+    "languageStringType": {
+        "$comment": "Reusable langugage string type",
+        "type": "object",
+        "properties": {
+            "en": {
+                "type": "string"
+            },
+            "nn": {
+                "type": "string"
+            },
+            "nb": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "nb"
+        ]
+    }
+}
