@@ -165,6 +165,11 @@
                     "title": "Contains data up until",
                     "description": "The data set contains data up until date/time",
                     "type": "string"
+                },
+                "tag": {
+                    "title": "Custom dataset metadata tags",
+                    "description": "Custom dataset metadata tags (key-value pairs) to extend DataDoc dataset model with own metadata attributes",
+                    "$ref": "./type/tagType.json#/tagType"
                 }
             },
             "required": [
@@ -305,6 +310,11 @@
                             "description": "The instance variable in the data set contains data up to and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some of the instance variables in the data set are terminated (no longer updated) after a given point in time.",
                             "type": "string",
                             "format": "date-time"
+                        },
+                        "tag": {
+                            "title": "Custom instance variable metadata tags",
+                            "description": "Custom instance variable metadata tags (key-value pairs) to extend DataDoc variable model with own metadata attributes",
+                            "$ref": "./type/tagType.json#/tagType"
                         }
                     },
                     "required": [
