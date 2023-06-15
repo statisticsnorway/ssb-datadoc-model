@@ -13,10 +13,21 @@
                         "description": "Custom dataset tag-key, e.g. DatasetFileSize or DataCollectionDate",
                         "type": "string"
                     },
-                    "value": {
-                        "title": "Custom Value",
-                        "description": "Custom dataset tag-value, e.g. 99MB or 2023-06-14",
-                        "type": "string"
+                    "value": 
+                    {
+                        "title": "Custom Value(s)",
+                        "description": "Custom dataset tag-value(s), e.g. 99MB or 2023-06-15",
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            }, 
+                            {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        ]
                     }
                 },
                 "required": [
