@@ -1,0 +1,210 @@
+{
+    "document_version": "2.0.0",
+    "dataset": {
+        "short_name": "person_data_example",
+        "assessment": "PROTECTED",
+        "dataset_status": "INTERNAL",
+        "dataset_state": "PROCESSED_DATA",
+        "name": [
+            {
+                "languageCode": "en",
+                "languageText": "Person test dataset example"
+            }
+        ],
+        "population_description": [
+            {
+                "languageCode": "en",
+                "languageText": "All residents of Norway on 1st of January 2023"
+            }
+        ],
+        "version": "1",
+        "unit_type": "PERSON",
+        "description": [
+            {
+                "languageCode": "en",
+                "languageText": "This is an example of how you can document a dataset with DataDoc."
+            }
+        ],
+        "subject_field": [
+            {
+                "languageCode": "en",
+                "languageText": "Population and housing"
+            }
+        ],
+        "id": "747d848b-d132-42ca-9aca-d7a25a017f30",
+        "owner": [
+            {
+                "languageCode": "en",
+                "languageText": "Division for population statistics"
+            }
+        ],
+        "file_path": "/team-bucket/person-statistics/processed-data/person-data-example_p2023-01-01_v1.parquet",
+        "metadata_created_date": "2023-01-03",
+        "metadata_created_by": "Mickey",
+        "metadata_last_updated_date": "2023-04-12",
+        "metadata_last_updated_by": "Minnie",
+        "data_source": [
+            {
+                "languageCode": "en",
+                "languageText": "The national population register"
+            }
+        ],
+        "register_uri": [
+            {
+                "languageCode": "en",
+                "languageText": "https://www.skatteetaten.no/en/person/national-registry/about/this-is-the-national-registry/"
+            }
+        ],
+        "version_description": [
+            {
+                "languageCode": "en",
+                "languageText": "First version of the dataset"
+            }
+        ],
+        "temporality_type": "STATUS",
+        "keyword": [
+            "population",
+            "person",
+            "income"
+        ],
+        "spatial_coverage_description": [
+            {
+                "languageCode": "en",
+                "languageText": "Norway"
+            }
+        ],
+        "contains_data_from": "2023-01-01",
+        "contains_data_until": "2023-01-01",
+        "tag": [
+            {
+                "key": "num_of_rows",
+                "value": "5504329"
+            },
+            {
+                "key": "data_collection_date",
+                "value": "2023-01-01"
+            },
+            {
+                "key": "manual_data_editing_by",
+                "value": [
+                    "Minnie",
+                    "Mickey",
+                    "Lisa",
+                    "Carl"
+                ]
+            }
+        ]
+    },
+    "variables": [
+        {
+            "short_name": "person_id",
+            "name": [
+                {
+                    "languageCode": "en",
+                    "languageText": "National identity number person"
+                }
+            ],
+            "data_type": "STRING",
+            "variable_role": "IDENTIFIER",
+            "direct_person_identifying": true,
+            "id": "d7fc3886-5cb0-47c6-8bdf-fa7ad45c1989",
+            "definition_uri": "https://www.ssb.no/a/metadata/conceptvariable/vardok/26/en",
+            "data_source": [],
+            "population_description": [],
+            "comment": [],
+            "temporality_type": null,
+            "measurement_unit": null,
+            "format": null,
+            "classification_uri": null,
+            "sentinel_value_uri": null,
+            "invalid_value_description": [],
+            "contains_data_from": null,
+            "contains_data_until": null,
+            "tag": []
+        },
+        {
+            "short_name": "gender",
+            "name": [
+                {
+                    "languageCode": "en",
+                    "languageText": "Gender"
+                }
+            ],
+            "data_type": "STRING",
+            "variable_role": "MEASURE",
+            "direct_person_identifying": false,
+            "id": "3ee1cf2d-cac6-4d3d-82bc-b81dd4e32dc2",
+            "definition_uri": "https://www.ssb.no/a/metadata/conceptvariable/vardok/112/en",
+            "data_source": [],
+            "population_description": [],
+            "comment": [],
+            "temporality_type": null,
+            "measurement_unit": null,
+            "format": null,
+            "classification_uri": "https://www.ssb.no/en/klass/klassifikasjoner/2/",
+            "sentinel_value_uri": null,
+            "invalid_value_description": [],
+            "contains_data_from": null,
+            "contains_data_until": null,
+            "tag": [
+                {
+                    "key": "pandas_datatype",
+                    "value": "category"
+                }
+            ]
+        },
+        {
+            "short_name": "income",
+            "name": [
+                {
+                    "languageCode": "en",
+                    "languageText": "Assessable income"
+                }
+            ],
+            "data_type": "INTEGER",
+            "variable_role": "MEASURE",
+            "direct_person_identifying": false,
+            "id": "384990dd-f538-4db5-83e3-ad6b1c89f0f3",
+            "definition_uri": "https://www.ssb.no/a/metadata/conceptvariable/vardok/1452/en",
+            "data_source": [],
+            "population_description": [],
+            "comment": [],
+            "temporality_type": "ACCUMULATED",
+            "measurement_unit": "EUR",
+            "format": null,
+            "classification_uri": null,
+            "sentinel_value_uri": null,
+            "invalid_value_description": [],
+            "contains_data_from": null,
+            "contains_data_until": null,
+            "tag": []
+        },
+        {
+            "short_name": "measure_date",
+            "name": [
+                {
+                    "languageCode": "en",
+                    "languageText": "Measurement date"
+                }
+            ],
+            "data_type": "DATETIME",
+            "variable_role": "START_TIME",
+            "direct_person_identifying": false,
+            "id": "a0baeb96-f21c-464f-9588-d2514a7493e2",
+            "definition_uri": null,
+            "data_source": [],
+            "population_description": [],
+            "comment": [],
+            "temporality_type": null,
+            "measurement_unit": null,
+            "format": "yyyy-mm-dd",
+            "classification_uri": null,
+            "sentinel_value_uri": null,
+            "invalid_value_description": [],
+            "contains_data_from": null,
+            "contains_data_until": null,
+            "tag": []
+        }
+    ],
+    "percentage_complete": 100
+}
