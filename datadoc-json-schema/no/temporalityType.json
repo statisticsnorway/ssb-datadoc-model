@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+
+    "temporalityType": {
+        "title": "Temporality type",
+        "description": "Temporality type",
+        "anyOf": [
+            {
+                "type": "string",
+                "enum": [
+                    "FIXED",
+                    "STATUS",
+                    "ACCUMULATED",
+                    "EVENT"
+                ]
+            },
+            {
+                "type": "null"
+            }
+        ]
+    }
+}
