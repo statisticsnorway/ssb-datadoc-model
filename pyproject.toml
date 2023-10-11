@@ -13,7 +13,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = ">=3.8"
-pydantic = ">=1.9.1"
+pydantic = ">=2.4.0"
 
 [tool.poetry.dev-dependencies]
 black = "*"
