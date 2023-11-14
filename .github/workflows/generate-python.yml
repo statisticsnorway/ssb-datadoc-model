@@ -1,0 +1,11 @@
+
+on:
+  pull_request:
+
+jobs:
+  generate-python:
+    runs-on: ubuntu-latest
+    container: docker.io/koxudaxi/datamodel-code-generator:0.23.0
+    steps:
+      - run: |
+            datamodel-codegen --help
