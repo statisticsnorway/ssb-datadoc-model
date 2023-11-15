@@ -5,7 +5,6 @@ on:
 jobs:
   generate-python:
     runs-on: ubuntu-latest
-    container: docker.io/koxudaxi/datamodel-code-generator:0.23.0
     steps:
       - name: Generate token
         id: generate_token
@@ -13,9 +12,6 @@ jobs:
         with:
           app-id: ${{ secrets.DAPLA_BOT_APP_ID }}
           private-key: ${{ secrets.DAPLA_BOT_PRIVATE_KEY }}
-
-      - name: Install Git
-        run: sudo apk update && sudo apk add git
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -27,6 +23,13 @@ jobs:
         run: |
           git config user.name "dapla-bot[bot]"
           git config user.email "143391972+dapla-bot[bot]@users.noreply.github.com"
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+
+      - name: Install datamodel-codegen
+        run: pip install datamodel-code-generator==0.23.0
 
       - name: Generate Python
         run: >
