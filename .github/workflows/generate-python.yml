@@ -14,6 +14,9 @@ jobs:
           app-id: ${{ secrets.DAPLA_BOT_APP_ID }}
           private-key: ${{ secrets.DAPLA_BOT_PRIVATE_KEY }}
 
+      - name: Install Git
+        run: sudo apk update && sudo apk add git
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
