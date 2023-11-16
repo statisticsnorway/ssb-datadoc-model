@@ -34,7 +34,7 @@ jobs:
             python -m pipx ensurepath
 
       - name: Install datamodel-codegen
-        run: python -m pipx install datamodel-code-generator==0.23.0
+        run: python -m pipx install datamodel-code-generator==0.24.0
 
       - name: Generate Python
         run: >
