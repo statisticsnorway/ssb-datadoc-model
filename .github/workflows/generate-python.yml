@@ -34,7 +34,10 @@ jobs:
             python -m pipx ensurepath
 
       - name: Install datamodel-codegen
-        run: python -m pipx install datamodel-code-generator==0.24.0
+        # We must manually install pyyaml as a workaround for https://github.com/koxudaxi/datamodel-code-generator/issues/1697
+        run: |
+            python -m pipx install datamodel-code-generator==0.24.0
+            python -m pipx inject datamodel-code-generator pyyaml
 
       - name: Generate Python
         run: >
