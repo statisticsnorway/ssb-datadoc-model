@@ -8,7 +8,7 @@
             "$comment": "Version of this Json Schema",
             "const": "0.0.1"
         },
-        "dataset": {
+        "pseudo_dataset": {
             "properties": {
                 "dataset_pseudo_time": {
                     "title": "Dataset pseudo time",
@@ -26,7 +26,7 @@
                 "dataset_pseudo_time"
             ]
         },
-        "variables": {
+        "pseudo_variables": {
             "type": "array",
             "items": [
                 {
@@ -101,7 +101,7 @@
     },
     "required": [
         "document_version",
-        "dataset",
-        "variables"
+        "pseudo_dataset",
+        "pseudo_variables"
     ]
 }
