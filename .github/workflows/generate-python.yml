@@ -67,4 +67,4 @@ jobs:
         uses: ad-m/github-push-action@v0.8.0
         with:
             github_token: ${{ steps.generate_token.outputs.token }}
-            branch: ${{ github.head_ref }}
+            branch: ${{ github.ref }}
