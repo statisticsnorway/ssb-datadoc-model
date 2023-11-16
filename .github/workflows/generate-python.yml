@@ -1,9 +1,12 @@
 
 on:
-  pull_request:
+  push:
+    branches:
+    - "**"
+    - "!main"
     paths:
-        - "src/**"
-        - ".github/workflows/generate-python.yml"
+    - "src/**"
+    - ".github/workflows/generate-python.yml"
 
 jobs:
   generate-python:
