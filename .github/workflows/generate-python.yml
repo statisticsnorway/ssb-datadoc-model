@@ -1,6 +1,9 @@
 
 on:
   pull_request:
+    paths:
+        - "src/"
+        - ".github/workflows/generate-python.yml"
 
 jobs:
   generate-python:
