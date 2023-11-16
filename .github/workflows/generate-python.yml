@@ -51,7 +51,7 @@ jobs:
 
       - name: Check for modified files
         id: git-check
-        run: echo ::set-output name=modified::$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)
+        run: echo modified=$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)  >> $GITHUB_OUTPUT
 
       - name: Commit
         if: steps.git-check.outputs.modified == 'true'
@@ -63,4 +63,4 @@ jobs:
         uses: ad-m/github-push-action@v0.8.0
         with:
             github_token: ${{ steps.generate_token.outputs.token }}
-            branch: ${{ github.ref }}
+            branch: ${{ github.head_ref }}
