@@ -2,6 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "http://ssb.no/schemas/dapla/metadata/pseudonymization",
     "type": "object",
+    "title": "Pseudonymization metadata",
     "properties": {
         "document_version": {
             "$comment": "Version of this Json Schema",
