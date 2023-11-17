@@ -42,8 +42,8 @@
                         "data_element_path": {
                             "type": "string",
                             "title": "Data element path",
-                            "description": "Path to a data element in the dataset.",
-                            "$comment": "Only for use in heirarchical datasets. Use dot-notation to specify the path."
+                            "description": "Path to one or multiple data element(s) in the dataset.",
+                            "$comment": "Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path."
                         },
                         "stable_identifier_type": {
                             "type": "string",
