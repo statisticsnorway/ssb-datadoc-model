@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://ssb.no/schemas/dapla/metadata",
+    "type": "object",
+    "title": "Metadata container",
+    "properties": {
+        "document_version": {
+            "$comment": "Version of this model",
+            "const": "0.0.1"
+        },
+        "datadoc": {
+            "$ref": "./datadoc/datadoc-json-schema.json"
+        },
+        "pseudonymization": {
+            "$ref": "./pseudonymization/pseudonymization-json-schema.json"
+        }
+    }
+}

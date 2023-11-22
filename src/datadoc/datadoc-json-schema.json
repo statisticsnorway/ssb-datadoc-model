@@ -1,14 +1,15 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://ssb.no/schemas/dapla/metadata/datadoc",
     "type": "object",
+    "title": "Datadoc metadata",
     "properties": {
         "percentage_complete": {
-            "$comment": "Used by the DataDoc app (internal information)",
             "description": "Percentage of obligatory metadata fields populated.",
             "type": "integer"
         },
         "document_version": {
-            "$comment": "DataDoc model version of this Json Schema",
+            "description": "Version of this model",
             "const": "2.0.0"
         },
         "dataset": {
