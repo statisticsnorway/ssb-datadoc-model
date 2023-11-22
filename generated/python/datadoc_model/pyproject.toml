@@ -10,7 +10,7 @@ repository = "https://github.com/statisticsnorway/ssb-datadoc-model"
 packages = [{ include = "datadoc_model" }]
 
 [tool.poetry.dependencies]
-python = ">=3.8"
+python = ">=3.10"
 pydantic = ">=2.4.0"
 
 [tool.poetry.dev-dependencies]
