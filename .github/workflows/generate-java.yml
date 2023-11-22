@@ -9,7 +9,7 @@ on:
     - ".github/workflows/generate-java.yml"
 
 jobs:
-  generate-python:
+  generate-java:
     runs-on: ubuntu-latest
     steps:
       - name: Generate token
@@ -31,8 +31,10 @@ jobs:
           git config user.email "143391972+dapla-bot[bot]@users.noreply.github.com"
 
       - name: Generate Java
-        run: >
+        run: |
+            pushd generated/java/datadoc-model
             ./mvnw jsonschema2pojo:generate
+            popd
 
       - name: Check for modified files
         id: git-check
