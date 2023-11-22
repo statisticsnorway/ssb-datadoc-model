@@ -39,6 +39,9 @@
             <configuration>
                 <sourceDirectory>${basedir}../../../../src/datadoc-json-schema</sourceDirectory>
                 <targetPackage>no.ssb.dapla.metadata</targetPackage>
+                <serializable>true</serializable>
+                <includeConstructors>true</includeConstructors>
+                <includeJsr303Annotations>true</includeJsr303Annotations>
             </configuration>
             <executions>
                 <execution>
