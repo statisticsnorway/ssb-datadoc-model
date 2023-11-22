@@ -6,6 +6,7 @@ on:
     - "!main"
     paths:
     - "src/**/*.json"
+    - "generated/java/datadoc-model/pom.xml"
     - ".github/workflows/generate-python.yml"
 
 jobs:
