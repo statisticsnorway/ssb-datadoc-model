@@ -190,132 +190,130 @@
         },
         "variables": {
             "type": "array",
-            "items": [
-                {
-                    "type": "object",
-                    "properties": {
-                        "short_name": {
-                            "type": "string",
-                            "title": "Short name",
-                            "description": "Physical name of the variable in the dataset. Should match the recommended short name."
-                        },
-                        "name": {
-                            "title": "Name",
-                            "description": "Variable names can be inherited from VarDef, but can also be documented/changed here",
-                            "$ref": "./no/languageStringType.json#/languageStringType"
-                        },
-                        "data_type": {
-                            "title": "Data type",
-                            "description": "Data type",
-                            "type": "string",
-                            "enum": [
-                                "STRING",
-                                "INTEGER",
-                                "DATETIME",
-                                "BOOLEAN"
-                            ]
-                        },
-                        "variable_role": {
-                            "title": "Variable role",
-                            "description": "Role of the instance variable in the data set",
-                            "type": "string",
-                            "enum": [
-                                "IDENTIFIER",
-                                "MEASURE",
-                                "START_TIME",
-                                "STOP_TIME",
-                                "ATTRIBUTE"
-                            ]
-                        },
-                        "definition_uri": {
-                            "title": "Definition URI",
-                            "description": "A link (URI) to the variable's definition in Vardok/VarDef",
-                            "type": "string",
-                            "format": "uri"
-                        },
-                        "direct_person_identifying": {
-                            "title": "Direct Person identifying Information (DPI)",
-                            "description": "Direct Person identifying Information (DPI). Some of the values ​​in an instance variable kan be DPI, others not. In this case, DPI is set equal to true. For example, the variable exporter where some of the values ​​can be organization number, others social security numbers (sole proprietorships).",
-                            "type": "boolean"
-                        },
-                        "data_source": {
-                            "title": "Data source",
-                            "description": "Data source. Set at data set level, but can be overwritten at variable instance level.",
-                            "$ref": "./no/languageStringType.json#/languageStringType"
-                        },
-                        "population_description": {
-                            "title": "Population description",
-                            "description": "The population the variable describes can be specified in more detail here. Set at dataset level, but can be overwritten at instance variable level.",
-                            "$ref": "./no/languageStringType.json#/languageStringType"
-                        },
-                        "comment": {
-                            "title": "Comment",
-                            "description": "Further clarification of the variables definition",
-                            "$ref": "./no/languageStringType.json#/languageStringType"
-                        },
-                        "temporality_type": {
-                            "title": "Temporality type",
-                            "description": "Temporality type. Set either for variable instance or dataset.",
-                            "$ref": "./no/temporalityTypeType.json#/temporalityTypeType"
-                        },
-                        "measurement_unit": {
-                            "title": "Measurement unit",
-                            "description": "Measurement unit",
-                            "$comment": "TODO: measurement_unit implemented as string. In the future this should be implemente as enum? See https://www.ssb.no/klass/klassifikasjoner/303/koder",
-                            "type": "string"
-                        },
-                        "format": {
-                            "title": "Format",
-                            "description": "The format of the values ​​(physical format or regular expression) in machine-readable form for validation. This can be used as a further specification of the data type (dataType) in those cases where this is relevant.",
-                            "type": "string"
-                        },
-                        "classification_uri": {
-                            "title": "Classification or codelist URI",
-                            "description": "Link (URI) to valid classification or code list",
-                            "type": "string",
-                            "format": "uri"
-                        },
-                        "sentinel_value_uri": {
-                            "title": "Sentinel value URI",
-                            "description": "A link (URI) to an overview of sentinel values included in the variable. Proposals for the standardization of sentinel values ​​have been drafted, but this has not yet been processed by the Standards Committee in Statistics Norway:  01 - In total, 02 - Sum, 03 - Subtotal, 04 - Other, 05 - Rest, 06 - Invalid value, 07 - Unspecified, 08 - Not relevant",
-                            "type": "string",
-                            "format": "uri"
-                        },
-                        "invalid_value_description": {
-                            "title": "Invalid value(s) description",
-                            "description": "Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.",
-                            "$ref": "./no/languageStringType.json#/languageStringType"
-                        },
-                        "id": {
-                            "title": "Identifier",
-                            "description": "Unique SSB identifier for the instance variable in the data set",
-                            "$comment": "UUID specified by RFC4122",
-                            "type": "string",
-                            "format": "uuid"
-                        },
-                        "contains_data_from": {
-                            "title": "Contains data from",
-                            "description": "The instance variable in the data set contains data from and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some variables only contain data for the most recent periods/years, e.g. if the entire data set contains data from 1970 to 2020, while some instance variables only contain data from 1998 onwards.",
-                            "type": "string",
-                            "format": "date-time"
-                        },
-                        "contains_data_until": {
-                            "title": "Contains data up until",
-                            "description": "The instance variable in the data set contains data up to and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some of the instance variables in the data set are terminated (no longer updated) after a given point in time.",
-                            "type": "string",
-                            "format": "date-time"
-                        }
+            "items": {
+                "type": "object",
+                "properties": {
+                    "short_name": {
+                        "type": "string",
+                        "title": "Short name",
+                        "description": "Physical name of the variable in the dataset. Should match the recommended short name."
                     },
-                    "required": [
-                        "short_name",
-                        "name",
-                        "data_type",
-                        "variable_role",
-                        "direct_person_identifying",
-                        "id"
-                    ]
-                }
-            ]
+                    "name": {
+                        "title": "Name",
+                        "description": "Variable names can be inherited from VarDef, but can also be documented/changed here",
+                        "$ref": "./no/languageStringType.json#/languageStringType"
+                    },
+                    "data_type": {
+                        "title": "Data type",
+                        "description": "Data type",
+                        "type": "string",
+                        "enum": [
+                            "STRING",
+                            "INTEGER",
+                            "DATETIME",
+                            "BOOLEAN"
+                        ]
+                    },
+                    "variable_role": {
+                        "title": "Variable role",
+                        "description": "Role of the instance variable in the data set",
+                        "type": "string",
+                        "enum": [
+                            "IDENTIFIER",
+                            "MEASURE",
+                            "START_TIME",
+                            "STOP_TIME",
+                            "ATTRIBUTE"
+                        ]
+                    },
+                    "definition_uri": {
+                        "title": "Definition URI",
+                        "description": "A link (URI) to the variable's definition in Vardok/VarDef",
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "direct_person_identifying": {
+                        "title": "Direct Person identifying Information (DPI)",
+                        "description": "Direct Person identifying Information (DPI). Some of the values ​​in an instance variable kan be DPI, others not. In this case, DPI is set equal to true. For example, the variable exporter where some of the values ​​can be organization number, others social security numbers (sole proprietorships).",
+                        "type": "boolean"
+                    },
+                    "data_source": {
+                        "title": "Data source",
+                        "description": "Data source. Set at data set level, but can be overwritten at variable instance level.",
+                        "$ref": "./no/languageStringType.json#/languageStringType"
+                    },
+                    "population_description": {
+                        "title": "Population description",
+                        "description": "The population the variable describes can be specified in more detail here. Set at dataset level, but can be overwritten at instance variable level.",
+                        "$ref": "./no/languageStringType.json#/languageStringType"
+                    },
+                    "comment": {
+                        "title": "Comment",
+                        "description": "Further clarification of the variables definition",
+                        "$ref": "./no/languageStringType.json#/languageStringType"
+                    },
+                    "temporality_type": {
+                        "title": "Temporality type",
+                        "description": "Temporality type. Set either for variable instance or dataset.",
+                        "$ref": "./no/temporalityTypeType.json#/temporalityTypeType"
+                    },
+                    "measurement_unit": {
+                        "title": "Measurement unit",
+                        "description": "Measurement unit",
+                        "$comment": "TODO: measurement_unit implemented as string. In the future this should be implemente as enum? See https://www.ssb.no/klass/klassifikasjoner/303/koder",
+                        "type": "string"
+                    },
+                    "format": {
+                        "title": "Format",
+                        "description": "The format of the values ​​(physical format or regular expression) in machine-readable form for validation. This can be used as a further specification of the data type (dataType) in those cases where this is relevant.",
+                        "type": "string"
+                    },
+                    "classification_uri": {
+                        "title": "Classification or codelist URI",
+                        "description": "Link (URI) to valid classification or code list",
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "sentinel_value_uri": {
+                        "title": "Sentinel value URI",
+                        "description": "A link (URI) to an overview of sentinel values included in the variable. Proposals for the standardization of sentinel values ​​have been drafted, but this has not yet been processed by the Standards Committee in Statistics Norway:  01 - In total, 02 - Sum, 03 - Subtotal, 04 - Other, 05 - Rest, 06 - Invalid value, 07 - Unspecified, 08 - Not relevant",
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "invalid_value_description": {
+                        "title": "Invalid value(s) description",
+                        "description": "Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.",
+                        "$ref": "./no/languageStringType.json#/languageStringType"
+                    },
+                    "id": {
+                        "title": "Identifier",
+                        "description": "Unique SSB identifier for the instance variable in the data set",
+                        "$comment": "UUID specified by RFC4122",
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "contains_data_from": {
+                        "title": "Contains data from",
+                        "description": "The instance variable in the data set contains data from and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some variables only contain data for the most recent periods/years, e.g. if the entire data set contains data from 1970 to 2020, while some instance variables only contain data from 1998 onwards.",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "contains_data_until": {
+                        "title": "Contains data up until",
+                        "description": "The instance variable in the data set contains data up to and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some of the instance variables in the data set are terminated (no longer updated) after a given point in time.",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "short_name",
+                    "name",
+                    "data_type",
+                    "variable_role",
+                    "direct_person_identifying",
+                    "id"
+                ]
+            }
         }
     },
     "required": [

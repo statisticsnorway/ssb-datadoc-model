@@ -28,78 +28,76 @@
         },
         "pseudo_variables": {
             "type": "array",
-            "items": [
-                {
-                    "type": "object",
-                    "description": "A pseudonymized variable in the dataset.",
-                    "properties": {
-                        "short_name": {
-                            "type": "string",
-                            "title": "Short name",
-                            "description": "Physical name of the variable in the dataset. Should match the recommended short name.",
-                            "$comment": " Alphanumeric. Limited to a-z, A-Z, 0-9, - (hyphen) and _ (underscore)"
-                        },
-                        "data_element_path": {
-                            "type": "string",
-                            "title": "Data element path",
-                            "description": "Path to one or multiple data element(s) in the dataset.",
-                            "$comment": "Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path."
-                        },
-                        "stable_identifier_type": {
-                            "type": "string",
-                            "title": "Stable identifier type",
-                            "description": "Type of stable identifier the variable was mapped to prior to pseudonymization.",
-                            "$comment": "Only relevant when the variable is mapped to a stable identifier."
-                        },
-                        "stable_identifier_version": {
-                            "type": "string",
-                            "title": "Stable identifier version",
-                            "description": "Version of stable identifier the variable was mapped to prior to pseudonymization.",
-                            "$comment": "Only relevant when the variable is mapped to a stable identifier."
-                        },
-                        "encryption_algorithm": {
-                            "type": "string",
-                            "title": "Encryption algorithm",
-                            "description": "The encryption algorithm used to pseudonymize the variable."
-                        },
-                        "encryption_key_reference": {
-                            "type": "string",
-                            "title": "Encryption key reference",
-                            "description": "Name of or reference to the encryption key used to pseudonymize the variable."
-                        },
-                        "encryption_algorithm_parameters": {
-                            "type": "array",
-                            "items": {
-                                "type": "object"
-                            },
-                            "title": "Encryption algorithm parameters",
-                            "description": "Parameters supplied to the encryption algorithm."
-                        },
-                        "source_variable": {
-                            "type": "string",
-                            "title": "Source variable",
-                            "description": "Short name of the source variable",
-                            "$comment": "Only relevant when this differs from the short name of the variable."
-                        },
-                        "source_variable_datatype": {
-                            "type": "string",
-                            "enum": [
-                                "STRING",
-                                "INTEGER",
-                                "FLOAT",
-                                "DATETIME"
-                            ],
-                            "title": "Source variable data type",
-                            "description": "Data type of the variable prior to pseudonymization."
-                        }
+            "items": {
+                "type": "object",
+                "description": "A pseudonymized variable in the dataset.",
+                "properties": {
+                    "short_name": {
+                        "type": "string",
+                        "title": "Short name",
+                        "description": "Physical name of the variable in the dataset. Should match the recommended short name.",
+                        "$comment": " Alphanumeric. Limited to a-z, A-Z, 0-9, - (hyphen) and _ (underscore)"
                     },
-                    "required": [
-                        "short_name",
-                        "encryption_algorithm",
-                        "encryption_key_reference"
-                    ]
-                }
-            ]
+                    "data_element_path": {
+                        "type": "string",
+                        "title": "Data element path",
+                        "description": "Path to one or multiple data element(s) in the dataset.",
+                        "$comment": "Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path."
+                    },
+                    "stable_identifier_type": {
+                        "type": "string",
+                        "title": "Stable identifier type",
+                        "description": "Type of stable identifier the variable was mapped to prior to pseudonymization.",
+                        "$comment": "Only relevant when the variable is mapped to a stable identifier."
+                    },
+                    "stable_identifier_version": {
+                        "type": "string",
+                        "title": "Stable identifier version",
+                        "description": "Version of stable identifier the variable was mapped to prior to pseudonymization.",
+                        "$comment": "Only relevant when the variable is mapped to a stable identifier."
+                    },
+                    "encryption_algorithm": {
+                        "type": "string",
+                        "title": "Encryption algorithm",
+                        "description": "The encryption algorithm used to pseudonymize the variable."
+                    },
+                    "encryption_key_reference": {
+                        "type": "string",
+                        "title": "Encryption key reference",
+                        "description": "Name of or reference to the encryption key used to pseudonymize the variable."
+                    },
+                    "encryption_algorithm_parameters": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        },
+                        "title": "Encryption algorithm parameters",
+                        "description": "Parameters supplied to the encryption algorithm."
+                    },
+                    "source_variable": {
+                        "type": "string",
+                        "title": "Source variable",
+                        "description": "Short name of the source variable",
+                        "$comment": "Only relevant when this differs from the short name of the variable."
+                    },
+                    "source_variable_datatype": {
+                        "type": "string",
+                        "enum": [
+                            "STRING",
+                            "INTEGER",
+                            "FLOAT",
+                            "DATETIME"
+                        ],
+                        "title": "Source variable data type",
+                        "description": "Data type of the variable prior to pseudonymization."
+                    }
+                },
+                "required": [
+                    "short_name",
+                    "encryption_algorithm",
+                    "encryption_key_reference"
+                ]
+            }
         }
     },
     "required": [
