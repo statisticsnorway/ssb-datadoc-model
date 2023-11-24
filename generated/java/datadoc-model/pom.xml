@@ -37,53 +37,55 @@
     <dependency>
         <groupId>commons-lang</groupId>
         <artifactId>commons-lang</artifactId>
-        <version>@{commons-lang.version}</version>
+        <version>${commons-lang.version}</version>
     </dependency>
     <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
-        <version>@{jackson-databind.version}</version>
+        <version>${jackson-databind.version}</version>
     </dependency>
   </dependencies>
 
   <build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-release-plugin</artifactId>
-            <version>${maven-release-plugin.version}</version>
-            <configuration>
-            <tagNameFormat>java-@{project.version}</tagNameFormat>
-            </configuration>
-        </plugin>
-        <plugin>
-            <groupId>org.jsonschema2pojo</groupId>
-            <artifactId>jsonschema2pojo-maven-plugin</artifactId>
-            <version>@{jsonschema2pojo-maven-plugin.version}</version>
-            <configuration>
-                <sourceDirectory>${basedir}../../../../src</sourceDirectory>
-                <targetPackage>no.ssb.dapla.metadata</targetPackage>
-                <serializable>true</serializable>
-                <includeConstructors>true</includeConstructors>
-                <includeJsr303Annotations>true</includeJsr303Annotations>
-            </configuration>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>generate</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-                <source>${jdk.version}</source>
-                <target>${jdk.version}</target>
-            </configuration>
-        </plugin>
-    </plugins>
+    <pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
+                <configuration>
+                <tagNameFormat>java-${project.version}</tagNameFormat>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>${jsonschema2pojo-maven-plugin.version}</version>
+                <configuration>
+                    <sourceDirectory>${basedir}../../../../src</sourceDirectory>
+                    <targetPackage>no.ssb.dapla.metadata</targetPackage>
+                    <serializable>true</serializable>
+                    <includeConstructors>true</includeConstructors>
+                    <includeJsr303Annotations>true</includeJsr303Annotations>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </pluginManagement>
 
     <extensions>
       <extension>
