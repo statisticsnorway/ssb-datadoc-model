@@ -40,5 +40,7 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Build with Maven and deploy to Artifact Registry
-        run: mvn --batch-mode -P ssb deploy
+        run: |
+            pushd generated/java/datadoc-model
+            ./mvnw --batch-mode -P ssb deploy
 
