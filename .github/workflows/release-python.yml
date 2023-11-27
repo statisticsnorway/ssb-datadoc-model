@@ -45,7 +45,7 @@ jobs:
         if: steps.check-parent-commit.outputs.sha
         uses: salsify/action-detect-and-tag-new-version@v2.0.3
         with:
-          tag-template: "python-{VERSION}"
+          tag-template: "python-v{VERSION}"
           version-command: |
             pushd generated/python/datadoc_model
             bash -o pipefail -c "poetry version | cut -f 2 -d' '"
