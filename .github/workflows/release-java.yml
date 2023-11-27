@@ -1,9 +1,9 @@
-name: Release
+name: Release Java
 
 on:
   push:
     branches:
-      - release
+      - release-java*
 
 jobs:
   release:
