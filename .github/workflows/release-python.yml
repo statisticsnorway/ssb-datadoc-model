@@ -14,6 +14,9 @@ jobs:
       id-token: write
       contents: write
       pull-requests: read
+    defaults:
+      run:
+        working-directory: ./generated/python/datadoc_model
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
@@ -47,20 +50,17 @@ jobs:
         with:
           tag-template: "python-v{VERSION}"
           version-command: |
-            pushd generated/python/datadoc_model
             bash -o pipefail -c "poetry version | cut -f 2 -d' '"
 
       - name: Bump version for developmental release
         if: "! steps.check-version.outputs.tag"
         run: |
-          pushd generated/python/datadoc_model
           poetry version patch &&
           version=$(poetry version | awk '{ print $2 }') &&
           poetry version $version.dev.$(date +%s)
 
       - name: Build package
         run: |
-          pushd generated/python/datadoc_model
           poetry build --ansi
 
       - name: Publish package on PyPI
