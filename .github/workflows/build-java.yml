@@ -4,9 +4,15 @@ on:
   push:
     branches:
       - main
+    paths:
+    - "generated/java/**"
+    - ".github/workflows/build-java.yml"
   pull_request:
     branches:
       - main
+    paths:
+    - "generated/java/**"
+    - ".github/workflows/build-java.yml"
 
 jobs:
   build:
