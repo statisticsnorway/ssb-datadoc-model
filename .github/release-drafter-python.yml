@@ -34,8 +34,10 @@ categories:
 
 autolabeler:
   - label: 'documentation'
-    branch:
-      - '/docs{0,1}\/.+/'
+    files:
+      - 'README.md'
+      - 'generated/java/datadoc-model/README.md'
+      - 'generated/python/datadoc_model/README.md'
   - label: 'bug'
     branch:
       - '/fix\/.+/'
