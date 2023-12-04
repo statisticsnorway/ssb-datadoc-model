@@ -51,7 +51,7 @@ jobs:
         with:
           tag-template: "python-v{VERSION}"
           version-command: |
-            pushd generated/python/datadoc_model &&
+            cd generated/python/datadoc_model &&
             poetry version | cut -f 2 -d' '
 
       - name: Bump version for developmental release
