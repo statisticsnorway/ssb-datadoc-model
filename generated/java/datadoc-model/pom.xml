@@ -53,7 +53,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>${maven-release-plugin.version}</version>
                 <configuration>
-                <tagNameFormat>java-v${project.version}</tagNameFormat>
+                <tagNameFormat>java-v@{project.version}</tagNameFormat>
                 </configuration>
             </plugin>
             <plugin>
