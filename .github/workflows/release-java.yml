@@ -80,6 +80,7 @@ jobs:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         with:
           tag: ${{ steps.release_jar.outputs.tag }}
+          config-name: release-drafter-java.yml
 
       - name: Upload assets to GitHub release draft
         env:
