@@ -11,12 +11,6 @@ This package contains pydantic models defining the fields and data types used in
 - Support versioning of the metadata format
 - Enforce consistency across multiple tools
 
-## Single Source of Truth
+## Release
 
-Fields and data types defined in models in this package are specified on internal Statistics Norway wiki pages:
-
-- <https://statistics-norway.atlassian.net/l/cp/kQ9rpshS>
-
-## Code generation
-
-The models are defined as [JSON Schema](https://json-schema.org/) documents. These reside within the `src/` directory in this repo. Code for a range of languages is generated from the JSON Schema and will live inside the `generated/` directory, with a subdirectory for each language.
+To release this package, create a branch and run `poetry version [patch | minor | major]` depending on your change. Once the branch is merged, a GitHub Actions workflow handles the rest.
