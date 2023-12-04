@@ -1,4 +1,12 @@
+name-template: 'python-v$RESOLVED_VERSION'
+tag-template: 'python-v$RESOLVED_VERSION'
+tag-prefix: 'python-v'
+
 categories:
+  - title: ":notebook: Model"
+    label: "json-schema"
+  - title: ":snake: Python"
+    label: "python"
   - title: ":boom: Breaking Changes"
     label: "breaking"
   - title: ":rocket: Features"
@@ -58,11 +66,20 @@ autolabeler:
   - label: 'python'
     files:
       - 'generated/python/*'
-  - label: 'java'
-    files:
-      - 'generated/java/*'
 
 template: |
   ## Changes
 
   $CHANGES
+
+version-resolver:
+  major:
+    labels:
+      - 'major'
+  minor:
+    labels:
+      - 'minor'
+  patch:
+    labels:
+      - 'patch'
+  default: patch
