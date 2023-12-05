@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @JsonPropertyOrder({
     "short_name",
     "data_element_path",
+    "data_element_pattern",
     "stable_identifier_type",
     "stable_identifier_version",
     "encryption_algorithm",
@@ -55,12 +56,21 @@ public class PseudoVariable implements Serializable
     /**
      * Data element path
      * <p>
-     * Path to one or multiple data element(s) in the dataset.Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path.
+     * Path to a single, concrete data element in the dataset.Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path.
      * 
      */
     @JsonProperty("data_element_path")
-    @JsonPropertyDescription("Path to one or multiple data element(s) in the dataset.")
+    @JsonPropertyDescription("Path to a single, concrete data element in the dataset.")
     private String dataElementPath;
+    /**
+     * Data element pattern
+     * <p>
+     * Pattern which matched this variable (if a pattern was used).Typically a glob pattern.
+     * 
+     */
+    @JsonProperty("data_element_pattern")
+    @JsonPropertyDescription("Pattern which matched this variable (if a pattern was used).")
+    private String dataElementPattern;
     /**
      * Stable identifier type
      * <p>
@@ -132,7 +142,7 @@ public class PseudoVariable implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -6450199571654355576L;
+    private final static long serialVersionUID = -1415496424825597852L;
 
     /**
      * No args constructor for use in serialization
@@ -148,13 +158,15 @@ public class PseudoVariable implements Serializable
      * @param encryptionKeyReference
      *     Encryption key reference. Name of or reference to the encryption key used to pseudonymize the variable.
      * @param dataElementPath
-     *     Data element path. Path to one or multiple data element(s) in the dataset.
+     *     Data element path. Path to a single, concrete data element in the dataset.
      * @param sourceVariable
      *     Source variable. Short name of the source variable.
      * @param sourceVariableDatatype
      *     Source variable data type. Data type of the variable prior to pseudonymization.
      * @param encryptionAlgorithmParameters
      *     Encryption algorithm parameters. Parameters supplied to the encryption algorithm.
+     * @param dataElementPattern
+     *     Data element pattern. Pattern which matched this variable (if a pattern was used).
      * @param stableIdentifierVersion
      *     Stable identifier version. Version of stable identifier the variable was mapped to prior to pseudonymization.
      * @param shortName
@@ -162,10 +174,11 @@ public class PseudoVariable implements Serializable
      * @param encryptionAlgorithm
      *     Encryption algorithm. The encryption algorithm used to pseudonymize the variable.
      */
-    public PseudoVariable(String shortName, String dataElementPath, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDatatype sourceVariableDatatype) {
+    public PseudoVariable(String shortName, String dataElementPath, String dataElementPattern, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDatatype sourceVariableDatatype) {
         super();
         this.shortName = shortName;
         this.dataElementPath = dataElementPath;
+        this.dataElementPattern = dataElementPattern;
         this.stableIdentifierType = stableIdentifierType;
         this.stableIdentifierVersion = stableIdentifierVersion;
         this.encryptionAlgorithm = encryptionAlgorithm;
@@ -202,7 +215,7 @@ public class PseudoVariable implements Serializable
     /**
      * Data element path
      * <p>
-     * Path to one or multiple data element(s) in the dataset.Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path.
+     * Path to a single, concrete data element in the dataset.Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path.
      * 
      */
     @JsonProperty("data_element_path")
@@ -213,12 +226,34 @@ public class PseudoVariable implements Serializable
     /**
      * Data element path
      * <p>
-     * Path to one or multiple data element(s) in the dataset.Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path.
+     * Path to a single, concrete data element in the dataset.Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path.
      * 
      */
     @JsonProperty("data_element_path")
     public void setDataElementPath(String dataElementPath) {
         this.dataElementPath = dataElementPath;
+    }
+
+    /**
+     * Data element pattern
+     * <p>
+     * Pattern which matched this variable (if a pattern was used).Typically a glob pattern.
+     * 
+     */
+    @JsonProperty("data_element_pattern")
+    public String getDataElementPattern() {
+        return dataElementPattern;
+    }
+
+    /**
+     * Data element pattern
+     * <p>
+     * Pattern which matched this variable (if a pattern was used).Typically a glob pattern.
+     * 
+     */
+    @JsonProperty("data_element_pattern")
+    public void setDataElementPattern(String dataElementPattern) {
+        this.dataElementPattern = dataElementPattern;
     }
 
     /**
@@ -401,6 +436,10 @@ public class PseudoVariable implements Serializable
         sb.append('=');
         sb.append(((this.dataElementPath == null)?"<null>":this.dataElementPath));
         sb.append(',');
+        sb.append("dataElementPattern");
+        sb.append('=');
+        sb.append(((this.dataElementPattern == null)?"<null>":this.dataElementPattern));
+        sb.append(',');
         sb.append("stableIdentifierType");
         sb.append('=');
         sb.append(((this.stableIdentifierType == null)?"<null>":this.stableIdentifierType));
@@ -450,6 +489,7 @@ public class PseudoVariable implements Serializable
         result = ((result* 31)+((this.sourceVariable == null)? 0 :this.sourceVariable.hashCode()));
         result = ((result* 31)+((this.sourceVariableDatatype == null)? 0 :this.sourceVariableDatatype.hashCode()));
         result = ((result* 31)+((this.encryptionAlgorithmParameters == null)? 0 :this.encryptionAlgorithmParameters.hashCode()));
+        result = ((result* 31)+((this.dataElementPattern == null)? 0 :this.dataElementPattern.hashCode()));
         result = ((result* 31)+((this.stableIdentifierVersion == null)? 0 :this.stableIdentifierVersion.hashCode()));
         result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
         result = ((result* 31)+((this.shortName == null)? 0 :this.shortName.hashCode()));
@@ -466,7 +506,7 @@ public class PseudoVariable implements Serializable
             return false;
         }
         PseudoVariable rhs = ((PseudoVariable) other);
-        return (((((((((((this.stableIdentifierType == rhs.stableIdentifierType)||((this.stableIdentifierType!= null)&&this.stableIdentifierType.equals(rhs.stableIdentifierType)))&&((this.encryptionKeyReference == rhs.encryptionKeyReference)||((this.encryptionKeyReference!= null)&&this.encryptionKeyReference.equals(rhs.encryptionKeyReference))))&&((this.dataElementPath == rhs.dataElementPath)||((this.dataElementPath!= null)&&this.dataElementPath.equals(rhs.dataElementPath))))&&((this.sourceVariable == rhs.sourceVariable)||((this.sourceVariable!= null)&&this.sourceVariable.equals(rhs.sourceVariable))))&&((this.sourceVariableDatatype == rhs.sourceVariableDatatype)||((this.sourceVariableDatatype!= null)&&this.sourceVariableDatatype.equals(rhs.sourceVariableDatatype))))&&((this.encryptionAlgorithmParameters == rhs.encryptionAlgorithmParameters)||((this.encryptionAlgorithmParameters!= null)&&this.encryptionAlgorithmParameters.equals(rhs.encryptionAlgorithmParameters))))&&((this.stableIdentifierVersion == rhs.stableIdentifierVersion)||((this.stableIdentifierVersion!= null)&&this.stableIdentifierVersion.equals(rhs.stableIdentifierVersion))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))))&&((this.encryptionAlgorithm == rhs.encryptionAlgorithm)||((this.encryptionAlgorithm!= null)&&this.encryptionAlgorithm.equals(rhs.encryptionAlgorithm))));
+        return ((((((((((((this.stableIdentifierType == rhs.stableIdentifierType)||((this.stableIdentifierType!= null)&&this.stableIdentifierType.equals(rhs.stableIdentifierType)))&&((this.encryptionKeyReference == rhs.encryptionKeyReference)||((this.encryptionKeyReference!= null)&&this.encryptionKeyReference.equals(rhs.encryptionKeyReference))))&&((this.dataElementPath == rhs.dataElementPath)||((this.dataElementPath!= null)&&this.dataElementPath.equals(rhs.dataElementPath))))&&((this.sourceVariable == rhs.sourceVariable)||((this.sourceVariable!= null)&&this.sourceVariable.equals(rhs.sourceVariable))))&&((this.sourceVariableDatatype == rhs.sourceVariableDatatype)||((this.sourceVariableDatatype!= null)&&this.sourceVariableDatatype.equals(rhs.sourceVariableDatatype))))&&((this.encryptionAlgorithmParameters == rhs.encryptionAlgorithmParameters)||((this.encryptionAlgorithmParameters!= null)&&this.encryptionAlgorithmParameters.equals(rhs.encryptionAlgorithmParameters))))&&((this.dataElementPattern == rhs.dataElementPattern)||((this.dataElementPattern!= null)&&this.dataElementPattern.equals(rhs.dataElementPattern))))&&((this.stableIdentifierVersion == rhs.stableIdentifierVersion)||((this.stableIdentifierVersion!= null)&&this.stableIdentifierVersion.equals(rhs.stableIdentifierVersion))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))))&&((this.encryptionAlgorithm == rhs.encryptionAlgorithm)||((this.encryptionAlgorithm!= null)&&this.encryptionAlgorithm.equals(rhs.encryptionAlgorithm))));
     }
 
 
