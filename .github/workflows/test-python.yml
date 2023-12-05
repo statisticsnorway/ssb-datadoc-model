@@ -6,7 +6,7 @@ name: Python tests
 on:
   push:
     paths:
-      - "generated/python/datadoc_model"
+      - "generated/python/datadoc_model/**"
       - ".github/workflows/test-python.yml"
 
 permissions:
