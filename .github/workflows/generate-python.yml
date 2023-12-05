@@ -53,7 +53,9 @@ jobs:
             --input-file-type jsonschema
             --input src/metadata-container-json-schema.json
             --output-model-type pydantic_v2.BaseModel
+            --force-optional
             --use-default
+            --use-title-as-name
             --use-one-literal-as-default
             --use-subclass-enum
             --use-standard-collections
