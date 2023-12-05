@@ -15,7 +15,7 @@
         "dataset": {
             "type": "object",
             "properties": {
-                "short_name": {
+                "very_short_name": {
                     "title": "Short name",
                     "description": "Name of (physical) data file, data table or dataset",
                     "$comment": " Alphanumeric limited to a-z, A-Z, 0-9, - (hyphen) and _ (underscore)",
