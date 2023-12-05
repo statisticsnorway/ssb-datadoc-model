@@ -8,6 +8,10 @@ on:
     - "src/**/*.json"
     - ".github/workflows/generate-python.yml"
 
+# Allow only one generate workflow to run at a time. This avoids race conditions when
+# pushing to the same branch.
+concurrency: "generate"
+
 jobs:
   generate-python:
     runs-on: ubuntu-latest
@@ -67,7 +71,7 @@ jobs:
             git commit -m '[GENERATE] Pydantic models from JSON Schema'
 
       - name: Push
-        uses: ad-m/github-push-action@v0.8.0
-        with:
-            github_token: ${{ steps.generate_token.outputs.token }}
-            branch: ${{ github.ref }}
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+            git pull --rebase origin "${GITHUB_REF}"
+            git push origin "${GITHUB_REF}"
