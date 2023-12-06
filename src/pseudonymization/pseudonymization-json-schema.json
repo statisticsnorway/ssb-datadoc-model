@@ -6,7 +6,7 @@
     "properties": {
         "document_version": {
             "$comment": "Version of this Json Schema",
-            "const": "0.0.1"
+            "const": "0.1.0"
         },
         "pseudo_dataset": {
             "properties": {
@@ -41,8 +41,14 @@
                     "data_element_path": {
                         "type": "string",
                         "title": "Data element path",
-                        "description": "Path to one or multiple data element(s) in the dataset.",
+                        "description": "Path to a single, concrete data element in the dataset.",
                         "$comment": "Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path."
+                    },
+                    "data_element_pattern": {
+                        "type": "string",
+                        "title": "Data element pattern",
+                        "description": "Pattern which matched this variable (if a pattern was used).",
+                        "$comment": "Typically a glob pattern."
                     },
                     "stable_identifier_type": {
                         "type": "string",
