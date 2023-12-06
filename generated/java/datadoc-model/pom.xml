@@ -62,6 +62,7 @@
                 <version>${jsonschema2pojo-maven-plugin.version}</version>
                 <configuration>
                     <sourceDirectory>${basedir}../../../../src</sourceDirectory>
+                    <outputDirectory>${basedir}/src</outputDirectory>
                     <targetPackage>no.ssb.dapla.metadata</targetPackage>
                     <serializable>true</serializable>
                     <includeConstructors>true</includeConstructors>
