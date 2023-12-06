@@ -3,7 +3,7 @@
   <groupId>no.ssb.dapla.metadata</groupId>
   <artifactId>datadoc-model</artifactId>
   <packaging>jar</packaging>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.1</version>
   <name>datadoc-model</name>
   <url>http://maven.apache.org</url>
 
@@ -30,7 +30,7 @@
   <scm>
     <developerConnection>scm:git:https://github.com/${github.repository}.git</developerConnection>
     <url>https://github.com/${github.repository}</url>
-    <tag>HEAD</tag>
+    <tag>java-v1.1</tag>
   </scm>
 
   <dependencies>
