@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import javax.annotation.processing.Generated;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -21,6 +19,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonValue;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -86,7 +86,7 @@ public class Dataset implements Serializable
     @JsonProperty("dataset_status")
     @JsonPropertyDescription("Life cycle for data set")
     @NotNull
-    private Dataset.DatasetStatus datasetStatus;
+    private Dataset.DataSetStatus datasetStatus;
     /**
      * Data set state
      * <p>
@@ -97,7 +97,7 @@ public class Dataset implements Serializable
     @JsonProperty("dataset_state")
     @JsonPropertyDescription("Steady state of data")
     @NotNull
-    private Dataset.DatasetState datasetState;
+    private Dataset.DataSetState datasetState;
     /**
      * Reusable langugage string type
      * (Required)
@@ -296,7 +296,7 @@ public class Dataset implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -847907615474067461L;
+    private final static long serialVersionUID = 121622643225564639L;
 
     /**
      * No args constructor for use in serialization
@@ -358,7 +358,7 @@ public class Dataset implements Serializable
      * @param dataSource
      *     Data source. Data source. Set either for the data set or instance variable.
      */
-    public Dataset(String shortName, Dataset.Assessment assessment, Dataset.DatasetStatus datasetStatus, Dataset.DatasetState datasetState, LanguageStringType name, LanguageStringType description, LanguageStringType dataSource, LanguageStringType registerUri, LanguageStringType populationDescription, String version, LanguageStringType versionDescription, Dataset.UnitType unitType, Dataset.TemporalityTypeType temporalityType, LanguageStringType subjectField, List<String> keyword, LanguageStringType spatialCoverageDescription, UUID id, LanguageStringType owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
+    public Dataset(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, LanguageStringType name, LanguageStringType description, LanguageStringType dataSource, LanguageStringType registerUri, LanguageStringType populationDescription, String version, LanguageStringType versionDescription, Dataset.UnitType unitType, Dataset.TemporalityTypeType temporalityType, LanguageStringType subjectField, List<String> keyword, LanguageStringType spatialCoverageDescription, UUID id, LanguageStringType owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
         super();
         this.shortName = shortName;
         this.assessment = assessment;
@@ -443,7 +443,7 @@ public class Dataset implements Serializable
      * 
      */
     @JsonProperty("dataset_status")
-    public Dataset.DatasetStatus getDatasetStatus() {
+    public Dataset.DataSetStatus getDatasetStatus() {
         return datasetStatus;
     }
 
@@ -455,7 +455,7 @@ public class Dataset implements Serializable
      * 
      */
     @JsonProperty("dataset_status")
-    public void setDatasetStatus(Dataset.DatasetStatus datasetStatus) {
+    public void setDatasetStatus(Dataset.DataSetStatus datasetStatus) {
         this.datasetStatus = datasetStatus;
     }
 
@@ -467,7 +467,7 @@ public class Dataset implements Serializable
      * 
      */
     @JsonProperty("dataset_state")
-    public Dataset.DatasetState getDatasetState() {
+    public Dataset.DataSetState getDatasetState() {
         return datasetState;
     }
 
@@ -479,7 +479,7 @@ public class Dataset implements Serializable
      * 
      */
     @JsonProperty("dataset_state")
-    public void setDatasetState(Dataset.DatasetState datasetState) {
+    public void setDatasetState(Dataset.DataSetState datasetState) {
         this.datasetState = datasetState;
     }
 
@@ -1157,7 +1157,7 @@ public class Dataset implements Serializable
      * 
      */
     @Generated("jsonschema2pojo")
-    public enum DatasetState {
+    public enum DataSetState {
 
         SOURCE_DATA("SOURCE_DATA"),
         INPUT_DATA("INPUT_DATA"),
@@ -1165,15 +1165,15 @@ public class Dataset implements Serializable
         STATISTICS("STATISTICS"),
         OUTPUT_DATA("OUTPUT_DATA");
         private final String value;
-        private final static Map<String, Dataset.DatasetState> CONSTANTS = new HashMap<String, Dataset.DatasetState>();
+        private final static Map<String, Dataset.DataSetState> CONSTANTS = new HashMap<String, Dataset.DataSetState>();
 
         static {
-            for (Dataset.DatasetState c: values()) {
+            for (Dataset.DataSetState c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        DatasetState(String value) {
+        DataSetState(String value) {
             this.value = value;
         }
 
@@ -1188,8 +1188,8 @@ public class Dataset implements Serializable
         }
 
         @JsonCreator
-        public static Dataset.DatasetState fromValue(String value) {
-            Dataset.DatasetState constant = CONSTANTS.get(value);
+        public static Dataset.DataSetState fromValue(String value) {
+            Dataset.DataSetState constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {
@@ -1207,22 +1207,22 @@ public class Dataset implements Serializable
      * 
      */
     @Generated("jsonschema2pojo")
-    public enum DatasetStatus {
+    public enum DataSetStatus {
 
         DRAFT("DRAFT"),
         INTERNAL("INTERNAL"),
         EXTERNAL("EXTERNAL"),
         DEPRECATED("DEPRECATED");
         private final String value;
-        private final static Map<String, Dataset.DatasetStatus> CONSTANTS = new HashMap<String, Dataset.DatasetStatus>();
+        private final static Map<String, Dataset.DataSetStatus> CONSTANTS = new HashMap<String, Dataset.DataSetStatus>();
 
         static {
-            for (Dataset.DatasetStatus c: values()) {
+            for (Dataset.DataSetStatus c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        DatasetStatus(String value) {
+        DataSetStatus(String value) {
             this.value = value;
         }
 
@@ -1237,8 +1237,8 @@ public class Dataset implements Serializable
         }
 
         @JsonCreator
-        public static Dataset.DatasetStatus fromValue(String value) {
-            Dataset.DatasetStatus constant = CONSTANTS.get(value);
+        public static Dataset.DataSetStatus fromValue(String value) {
+            Dataset.DataSetStatus constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {

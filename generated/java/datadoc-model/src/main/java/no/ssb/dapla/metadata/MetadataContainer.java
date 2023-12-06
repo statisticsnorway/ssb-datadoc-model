@@ -2,23 +2,21 @@
 package no.ssb.dapla.metadata;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import javax.annotation.processing.Generated;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.Valid;
+import no.ssb.dapla.metadata.datadoc.DatadocMetadata;
 
 
 /**
- * Pseudonymization metadata
+ * Metadata container
  * <p>
  * 
  * 
@@ -26,60 +24,58 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "document_version",
-    "pseudo_dataset",
-    "pseudo_variables"
+    "datadoc",
+    "pseudonymization"
 })
 @Generated("jsonschema2pojo")
-public class PseudonymizationJsonSchema implements Serializable
+public class MetadataContainer implements Serializable
 {
 
     /**
-     * Version of this Json Schema
-     * (Required)
+     * Version of this model
      * 
      */
     @JsonProperty("document_version")
-    @NotNull
     private Object documentVersion;
     /**
+     * Datadoc metadata
+     * <p>
      * 
-     * (Required)
-     * 
-     */
-    @JsonProperty("pseudo_dataset")
-    @NotNull
-    private PseudoDataset pseudoDataset;
-    /**
-     * 
-     * (Required)
      * 
      */
-    @JsonProperty("pseudo_variables")
+    @JsonProperty("datadoc")
     @Valid
-    @NotNull
-    private List<PseudoVariable> pseudoVariables = new ArrayList<PseudoVariable>();
+    private DatadocMetadata datadoc;
+    /**
+     * Pseudonymization metadata
+     * <p>
+     * 
+     * 
+     */
+    @JsonProperty("pseudonymization")
+    @Valid
+    private PseudonymizationMetadata pseudonymization;
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 4491182946050709357L;
+    private final static long serialVersionUID = 4303907007177379069L;
 
     /**
      * No args constructor for use in serialization
      * 
      */
-    public PseudonymizationJsonSchema() {
+    public MetadataContainer() {
     }
 
-    public PseudonymizationJsonSchema(Object documentVersion, PseudoDataset pseudoDataset, List<PseudoVariable> pseudoVariables) {
+    public MetadataContainer(Object documentVersion, DatadocMetadata datadoc, PseudonymizationMetadata pseudonymization) {
         super();
         this.documentVersion = documentVersion;
-        this.pseudoDataset = pseudoDataset;
-        this.pseudoVariables = pseudoVariables;
+        this.datadoc = datadoc;
+        this.pseudonymization = pseudonymization;
     }
 
     /**
-     * Version of this Json Schema
-     * (Required)
+     * Version of this model
      * 
      */
     @JsonProperty("document_version")
@@ -88,8 +84,7 @@ public class PseudonymizationJsonSchema implements Serializable
     }
 
     /**
-     * Version of this Json Schema
-     * (Required)
+     * Version of this model
      * 
      */
     @JsonProperty("document_version")
@@ -98,43 +93,47 @@ public class PseudonymizationJsonSchema implements Serializable
     }
 
     /**
+     * Datadoc metadata
+     * <p>
      * 
-     * (Required)
      * 
      */
-    @JsonProperty("pseudo_dataset")
-    public PseudoDataset getPseudoDataset() {
-        return pseudoDataset;
+    @JsonProperty("datadoc")
+    public DatadocMetadata getDatadoc() {
+        return datadoc;
     }
 
     /**
+     * Datadoc metadata
+     * <p>
      * 
-     * (Required)
      * 
      */
-    @JsonProperty("pseudo_dataset")
-    public void setPseudoDataset(PseudoDataset pseudoDataset) {
-        this.pseudoDataset = pseudoDataset;
+    @JsonProperty("datadoc")
+    public void setDatadoc(DatadocMetadata datadoc) {
+        this.datadoc = datadoc;
     }
 
     /**
+     * Pseudonymization metadata
+     * <p>
      * 
-     * (Required)
      * 
      */
-    @JsonProperty("pseudo_variables")
-    public List<PseudoVariable> getPseudoVariables() {
-        return pseudoVariables;
+    @JsonProperty("pseudonymization")
+    public PseudonymizationMetadata getPseudonymization() {
+        return pseudonymization;
     }
 
     /**
+     * Pseudonymization metadata
+     * <p>
      * 
-     * (Required)
      * 
      */
-    @JsonProperty("pseudo_variables")
-    public void setPseudoVariables(List<PseudoVariable> pseudoVariables) {
-        this.pseudoVariables = pseudoVariables;
+    @JsonProperty("pseudonymization")
+    public void setPseudonymization(PseudonymizationMetadata pseudonymization) {
+        this.pseudonymization = pseudonymization;
     }
 
     @JsonAnyGetter
@@ -150,18 +149,18 @@ public class PseudonymizationJsonSchema implements Serializable
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(PseudonymizationJsonSchema.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(MetadataContainer.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("documentVersion");
         sb.append('=');
         sb.append(((this.documentVersion == null)?"<null>":this.documentVersion));
         sb.append(',');
-        sb.append("pseudoDataset");
+        sb.append("datadoc");
         sb.append('=');
-        sb.append(((this.pseudoDataset == null)?"<null>":this.pseudoDataset));
+        sb.append(((this.datadoc == null)?"<null>":this.datadoc));
         sb.append(',');
-        sb.append("pseudoVariables");
+        sb.append("pseudonymization");
         sb.append('=');
-        sb.append(((this.pseudoVariables == null)?"<null>":this.pseudoVariables));
+        sb.append(((this.pseudonymization == null)?"<null>":this.pseudonymization));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
@@ -178,10 +177,10 @@ public class PseudonymizationJsonSchema implements Serializable
     @Override
     public int hashCode() {
         int result = 1;
+        result = ((result* 31)+((this.datadoc == null)? 0 :this.datadoc.hashCode()));
         result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
-        result = ((result* 31)+((this.pseudoDataset == null)? 0 :this.pseudoDataset.hashCode()));
+        result = ((result* 31)+((this.pseudonymization == null)? 0 :this.pseudonymization.hashCode()));
         result = ((result* 31)+((this.documentVersion == null)? 0 :this.documentVersion.hashCode()));
-        result = ((result* 31)+((this.pseudoVariables == null)? 0 :this.pseudoVariables.hashCode()));
         return result;
     }
 
@@ -190,11 +189,11 @@ public class PseudonymizationJsonSchema implements Serializable
         if (other == this) {
             return true;
         }
-        if ((other instanceof PseudonymizationJsonSchema) == false) {
+        if ((other instanceof MetadataContainer) == false) {
             return false;
         }
-        PseudonymizationJsonSchema rhs = ((PseudonymizationJsonSchema) other);
-        return (((((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties)))&&((this.pseudoDataset == rhs.pseudoDataset)||((this.pseudoDataset!= null)&&this.pseudoDataset.equals(rhs.pseudoDataset))))&&((this.documentVersion == rhs.documentVersion)||((this.documentVersion!= null)&&this.documentVersion.equals(rhs.documentVersion))))&&((this.pseudoVariables == rhs.pseudoVariables)||((this.pseudoVariables!= null)&&this.pseudoVariables.equals(rhs.pseudoVariables))));
+        MetadataContainer rhs = ((MetadataContainer) other);
+        return (((((this.datadoc == rhs.datadoc)||((this.datadoc!= null)&&this.datadoc.equals(rhs.datadoc)))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.pseudonymization == rhs.pseudonymization)||((this.pseudonymization!= null)&&this.pseudonymization.equals(rhs.pseudonymization))))&&((this.documentVersion == rhs.documentVersion)||((this.documentVersion!= null)&&this.documentVersion.equals(rhs.documentVersion))));
     }
 
 }

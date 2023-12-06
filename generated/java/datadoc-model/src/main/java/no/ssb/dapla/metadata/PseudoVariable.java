@@ -8,8 +8,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.processing.Generated;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -19,6 +17,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonValue;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 
 /**
@@ -138,11 +138,11 @@ public class PseudoVariable implements Serializable
      */
     @JsonProperty("source_variable_datatype")
     @JsonPropertyDescription("Data type of the variable prior to pseudonymization.")
-    private PseudoVariable.SourceVariableDatatype sourceVariableDatatype;
+    private PseudoVariable.SourceVariableDataType sourceVariableDatatype;
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -1415496424825597852L;
+    private final static long serialVersionUID = 5828695100678287117L;
 
     /**
      * No args constructor for use in serialization
@@ -174,7 +174,7 @@ public class PseudoVariable implements Serializable
      * @param encryptionAlgorithm
      *     Encryption algorithm. The encryption algorithm used to pseudonymize the variable.
      */
-    public PseudoVariable(String shortName, String dataElementPath, String dataElementPattern, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDatatype sourceVariableDatatype) {
+    public PseudoVariable(String shortName, String dataElementPath, String dataElementPattern, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
         super();
         this.shortName = shortName;
         this.dataElementPath = dataElementPath;
@@ -399,7 +399,7 @@ public class PseudoVariable implements Serializable
      * 
      */
     @JsonProperty("source_variable_datatype")
-    public PseudoVariable.SourceVariableDatatype getSourceVariableDatatype() {
+    public PseudoVariable.SourceVariableDataType getSourceVariableDatatype() {
         return sourceVariableDatatype;
     }
 
@@ -410,7 +410,7 @@ public class PseudoVariable implements Serializable
      * 
      */
     @JsonProperty("source_variable_datatype")
-    public void setSourceVariableDatatype(PseudoVariable.SourceVariableDatatype sourceVariableDatatype) {
+    public void setSourceVariableDatatype(PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
         this.sourceVariableDatatype = sourceVariableDatatype;
     }
 
@@ -517,22 +517,22 @@ public class PseudoVariable implements Serializable
      * 
      */
     @Generated("jsonschema2pojo")
-    public enum SourceVariableDatatype {
+    public enum SourceVariableDataType {
 
         STRING("STRING"),
         INTEGER("INTEGER"),
         FLOAT("FLOAT"),
         DATETIME("DATETIME");
         private final String value;
-        private final static Map<String, PseudoVariable.SourceVariableDatatype> CONSTANTS = new HashMap<String, PseudoVariable.SourceVariableDatatype>();
+        private final static Map<String, PseudoVariable.SourceVariableDataType> CONSTANTS = new HashMap<String, PseudoVariable.SourceVariableDataType>();
 
         static {
-            for (PseudoVariable.SourceVariableDatatype c: values()) {
+            for (PseudoVariable.SourceVariableDataType c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        SourceVariableDatatype(String value) {
+        SourceVariableDataType(String value) {
             this.value = value;
         }
 
@@ -547,8 +547,8 @@ public class PseudoVariable implements Serializable
         }
 
         @JsonCreator
-        public static PseudoVariable.SourceVariableDatatype fromValue(String value) {
-            PseudoVariable.SourceVariableDatatype constant = CONSTANTS.get(value);
+        public static PseudoVariable.SourceVariableDataType fromValue(String value) {
+            PseudoVariable.SourceVariableDataType constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {

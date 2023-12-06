@@ -7,8 +7,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.processing.Generated;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +14,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 
 /**
@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "variables"
 })
 @Generated("jsonschema2pojo")
-public class DatadocJsonSchema implements Serializable
+public class DatadocMetadata implements Serializable
 {
 
     /**
@@ -72,13 +72,13 @@ public class DatadocJsonSchema implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 2230685356983896153L;
+    private final static long serialVersionUID = 6331776212209999409L;
 
     /**
      * No args constructor for use in serialization
      * 
      */
-    public DatadocJsonSchema() {
+    public DatadocMetadata() {
     }
 
     /**
@@ -88,7 +88,7 @@ public class DatadocJsonSchema implements Serializable
      * @param documentVersion
      *     Version of this model.
      */
-    public DatadocJsonSchema(Integer percentageComplete, Object documentVersion, Dataset dataset, List<Variable> variables) {
+    public DatadocMetadata(Integer percentageComplete, Object documentVersion, Dataset dataset, List<Variable> variables) {
         super();
         this.percentageComplete = percentageComplete;
         this.documentVersion = documentVersion;
@@ -187,7 +187,7 @@ public class DatadocJsonSchema implements Serializable
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(DatadocJsonSchema.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(DatadocMetadata.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("percentageComplete");
         sb.append('=');
         sb.append(((this.percentageComplete == null)?"<null>":this.percentageComplete));
@@ -232,10 +232,10 @@ public class DatadocJsonSchema implements Serializable
         if (other == this) {
             return true;
         }
-        if ((other instanceof DatadocJsonSchema) == false) {
+        if ((other instanceof DatadocMetadata) == false) {
             return false;
         }
-        DatadocJsonSchema rhs = ((DatadocJsonSchema) other);
+        DatadocMetadata rhs = ((DatadocMetadata) other);
         return ((((((this.variables == rhs.variables)||((this.variables!= null)&&this.variables.equals(rhs.variables)))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.percentageComplete == rhs.percentageComplete)||((this.percentageComplete!= null)&&this.percentageComplete.equals(rhs.percentageComplete))))&&((this.dataset == rhs.dataset)||((this.dataset!= null)&&this.dataset.equals(rhs.dataset))))&&((this.documentVersion == rhs.documentVersion)||((this.documentVersion!= null)&&this.documentVersion.equals(rhs.documentVersion))));
     }
 
