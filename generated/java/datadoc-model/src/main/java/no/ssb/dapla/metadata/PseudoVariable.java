@@ -142,7 +142,7 @@ public class PseudoVariable implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 5828695100678287117L;
+    private final static long serialVersionUID = 2935780493278493782L;
 
     /**
      * No args constructor for use in serialization
@@ -186,6 +186,10 @@ public class PseudoVariable implements Serializable
         this.encryptionAlgorithmParameters = encryptionAlgorithmParameters;
         this.sourceVariable = sourceVariable;
         this.sourceVariableDatatype = sourceVariableDatatype;
+    }
+
+    public static PseudoVariable.PseudoVariableBuilderBase builder() {
+        return new PseudoVariable.PseudoVariableBuilder();
     }
 
     /**
@@ -507,6 +511,105 @@ public class PseudoVariable implements Serializable
         }
         PseudoVariable rhs = ((PseudoVariable) other);
         return ((((((((((((this.stableIdentifierType == rhs.stableIdentifierType)||((this.stableIdentifierType!= null)&&this.stableIdentifierType.equals(rhs.stableIdentifierType)))&&((this.encryptionKeyReference == rhs.encryptionKeyReference)||((this.encryptionKeyReference!= null)&&this.encryptionKeyReference.equals(rhs.encryptionKeyReference))))&&((this.dataElementPath == rhs.dataElementPath)||((this.dataElementPath!= null)&&this.dataElementPath.equals(rhs.dataElementPath))))&&((this.sourceVariable == rhs.sourceVariable)||((this.sourceVariable!= null)&&this.sourceVariable.equals(rhs.sourceVariable))))&&((this.sourceVariableDatatype == rhs.sourceVariableDatatype)||((this.sourceVariableDatatype!= null)&&this.sourceVariableDatatype.equals(rhs.sourceVariableDatatype))))&&((this.encryptionAlgorithmParameters == rhs.encryptionAlgorithmParameters)||((this.encryptionAlgorithmParameters!= null)&&this.encryptionAlgorithmParameters.equals(rhs.encryptionAlgorithmParameters))))&&((this.dataElementPattern == rhs.dataElementPattern)||((this.dataElementPattern!= null)&&this.dataElementPattern.equals(rhs.dataElementPattern))))&&((this.stableIdentifierVersion == rhs.stableIdentifierVersion)||((this.stableIdentifierVersion!= null)&&this.stableIdentifierVersion.equals(rhs.stableIdentifierVersion))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))))&&((this.encryptionAlgorithm == rhs.encryptionAlgorithm)||((this.encryptionAlgorithm!= null)&&this.encryptionAlgorithm.equals(rhs.encryptionAlgorithm))));
+    }
+
+    public static class PseudoVariableBuilder
+        extends PseudoVariable.PseudoVariableBuilderBase<PseudoVariable>
+    {
+
+
+        public PseudoVariableBuilder() {
+            super();
+        }
+
+        public PseudoVariableBuilder(String shortName, String dataElementPath, String dataElementPattern, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
+            super(shortName, dataElementPath, dataElementPattern, stableIdentifierType, stableIdentifierVersion, encryptionAlgorithm, encryptionKeyReference, encryptionAlgorithmParameters, sourceVariable, sourceVariableDatatype);
+        }
+
+    }
+
+    public static abstract class PseudoVariableBuilderBase<T extends PseudoVariable >{
+
+        protected T instance;
+
+        @SuppressWarnings("unchecked")
+        public PseudoVariableBuilderBase() {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(PseudoVariable.PseudoVariableBuilder.class)) {
+                this.instance = ((T) new PseudoVariable());
+            }
+        }
+
+        @SuppressWarnings("unchecked")
+        public PseudoVariableBuilderBase(String shortName, String dataElementPath, String dataElementPattern, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(PseudoVariable.PseudoVariableBuilder.class)) {
+                this.instance = ((T) new PseudoVariable(shortName, dataElementPath, dataElementPattern, stableIdentifierType, stableIdentifierVersion, encryptionAlgorithm, encryptionKeyReference, encryptionAlgorithmParameters, sourceVariable, sourceVariableDatatype));
+            }
+        }
+
+        public T build() {
+            T result;
+            result = this.instance;
+            this.instance = null;
+            return result;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withShortName(String shortName) {
+            ((PseudoVariable) this.instance).shortName = shortName;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withDataElementPath(String dataElementPath) {
+            ((PseudoVariable) this.instance).dataElementPath = dataElementPath;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withDataElementPattern(String dataElementPattern) {
+            ((PseudoVariable) this.instance).dataElementPattern = dataElementPattern;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withStableIdentifierType(String stableIdentifierType) {
+            ((PseudoVariable) this.instance).stableIdentifierType = stableIdentifierType;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withStableIdentifierVersion(String stableIdentifierVersion) {
+            ((PseudoVariable) this.instance).stableIdentifierVersion = stableIdentifierVersion;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withEncryptionAlgorithm(String encryptionAlgorithm) {
+            ((PseudoVariable) this.instance).encryptionAlgorithm = encryptionAlgorithm;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withEncryptionKeyReference(String encryptionKeyReference) {
+            ((PseudoVariable) this.instance).encryptionKeyReference = encryptionKeyReference;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withEncryptionAlgorithmParameters(List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters) {
+            ((PseudoVariable) this.instance).encryptionAlgorithmParameters = encryptionAlgorithmParameters;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withSourceVariable(String sourceVariable) {
+            ((PseudoVariable) this.instance).sourceVariable = sourceVariable;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withSourceVariableDatatype(PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
+            ((PseudoVariable) this.instance).sourceVariableDatatype = sourceVariableDatatype;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withAdditionalProperty(String name, Object value) {
+            ((PseudoVariable) this.instance).additionalProperties.put(name, value);
+            return this;
+        }
+
     }
 
 

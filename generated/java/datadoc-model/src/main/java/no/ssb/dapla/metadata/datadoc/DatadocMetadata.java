@@ -72,7 +72,7 @@ public class DatadocMetadata implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 6331776212209999409L;
+    private final static long serialVersionUID = -4272218570845459383L;
 
     /**
      * No args constructor for use in serialization
@@ -94,6 +94,10 @@ public class DatadocMetadata implements Serializable
         this.documentVersion = documentVersion;
         this.dataset = dataset;
         this.variables = variables;
+    }
+
+    public static DatadocMetadata.DatadocMetadataBuilderBase builder() {
+        return new DatadocMetadata.DatadocMetadataBuilder();
     }
 
     /**
@@ -237,6 +241,75 @@ public class DatadocMetadata implements Serializable
         }
         DatadocMetadata rhs = ((DatadocMetadata) other);
         return ((((((this.variables == rhs.variables)||((this.variables!= null)&&this.variables.equals(rhs.variables)))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.percentageComplete == rhs.percentageComplete)||((this.percentageComplete!= null)&&this.percentageComplete.equals(rhs.percentageComplete))))&&((this.dataset == rhs.dataset)||((this.dataset!= null)&&this.dataset.equals(rhs.dataset))))&&((this.documentVersion == rhs.documentVersion)||((this.documentVersion!= null)&&this.documentVersion.equals(rhs.documentVersion))));
+    }
+
+    public static class DatadocMetadataBuilder
+        extends DatadocMetadata.DatadocMetadataBuilderBase<DatadocMetadata>
+    {
+
+
+        public DatadocMetadataBuilder() {
+            super();
+        }
+
+        public DatadocMetadataBuilder(Integer percentageComplete, Object documentVersion, Dataset dataset, List<Variable> variables) {
+            super(percentageComplete, documentVersion, dataset, variables);
+        }
+
+    }
+
+    public static abstract class DatadocMetadataBuilderBase<T extends DatadocMetadata >{
+
+        protected T instance;
+
+        @SuppressWarnings("unchecked")
+        public DatadocMetadataBuilderBase() {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(DatadocMetadata.DatadocMetadataBuilder.class)) {
+                this.instance = ((T) new DatadocMetadata());
+            }
+        }
+
+        @SuppressWarnings("unchecked")
+        public DatadocMetadataBuilderBase(Integer percentageComplete, Object documentVersion, Dataset dataset, List<Variable> variables) {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(DatadocMetadata.DatadocMetadataBuilder.class)) {
+                this.instance = ((T) new DatadocMetadata(percentageComplete, documentVersion, dataset, variables));
+            }
+        }
+
+        public T build() {
+            T result;
+            result = this.instance;
+            this.instance = null;
+            return result;
+        }
+
+        public DatadocMetadata.DatadocMetadataBuilderBase withPercentageComplete(Integer percentageComplete) {
+            ((DatadocMetadata) this.instance).percentageComplete = percentageComplete;
+            return this;
+        }
+
+        public DatadocMetadata.DatadocMetadataBuilderBase withDocumentVersion(Object documentVersion) {
+            ((DatadocMetadata) this.instance).documentVersion = documentVersion;
+            return this;
+        }
+
+        public DatadocMetadata.DatadocMetadataBuilderBase withDataset(Dataset dataset) {
+            ((DatadocMetadata) this.instance).dataset = dataset;
+            return this;
+        }
+
+        public DatadocMetadata.DatadocMetadataBuilderBase withVariables(List<Variable> variables) {
+            ((DatadocMetadata) this.instance).variables = variables;
+            return this;
+        }
+
+        public DatadocMetadata.DatadocMetadataBuilderBase withAdditionalProperty(String name, Object value) {
+            ((DatadocMetadata) this.instance).additionalProperties.put(name, value);
+            return this;
+        }
+
     }
 
 }

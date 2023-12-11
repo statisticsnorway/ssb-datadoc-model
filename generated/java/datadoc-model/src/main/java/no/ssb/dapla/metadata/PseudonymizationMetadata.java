@@ -61,7 +61,7 @@ public class PseudonymizationMetadata implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 5122921273769273027L;
+    private final static long serialVersionUID = 1047157680246856180L;
 
     /**
      * No args constructor for use in serialization
@@ -75,6 +75,10 @@ public class PseudonymizationMetadata implements Serializable
         this.documentVersion = documentVersion;
         this.pseudoDataset = pseudoDataset;
         this.pseudoVariables = pseudoVariables;
+    }
+
+    public static PseudonymizationMetadata.PseudonymizationMetadataBuilderBase builder() {
+        return new PseudonymizationMetadata.PseudonymizationMetadataBuilder();
     }
 
     /**
@@ -195,6 +199,70 @@ public class PseudonymizationMetadata implements Serializable
         }
         PseudonymizationMetadata rhs = ((PseudonymizationMetadata) other);
         return (((((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties)))&&((this.pseudoDataset == rhs.pseudoDataset)||((this.pseudoDataset!= null)&&this.pseudoDataset.equals(rhs.pseudoDataset))))&&((this.documentVersion == rhs.documentVersion)||((this.documentVersion!= null)&&this.documentVersion.equals(rhs.documentVersion))))&&((this.pseudoVariables == rhs.pseudoVariables)||((this.pseudoVariables!= null)&&this.pseudoVariables.equals(rhs.pseudoVariables))));
+    }
+
+    public static class PseudonymizationMetadataBuilder
+        extends PseudonymizationMetadata.PseudonymizationMetadataBuilderBase<PseudonymizationMetadata>
+    {
+
+
+        public PseudonymizationMetadataBuilder() {
+            super();
+        }
+
+        public PseudonymizationMetadataBuilder(Object documentVersion, PseudoDataset pseudoDataset, List<PseudoVariable> pseudoVariables) {
+            super(documentVersion, pseudoDataset, pseudoVariables);
+        }
+
+    }
+
+    public static abstract class PseudonymizationMetadataBuilderBase<T extends PseudonymizationMetadata >{
+
+        protected T instance;
+
+        @SuppressWarnings("unchecked")
+        public PseudonymizationMetadataBuilderBase() {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(PseudonymizationMetadata.PseudonymizationMetadataBuilder.class)) {
+                this.instance = ((T) new PseudonymizationMetadata());
+            }
+        }
+
+        @SuppressWarnings("unchecked")
+        public PseudonymizationMetadataBuilderBase(Object documentVersion, PseudoDataset pseudoDataset, List<PseudoVariable> pseudoVariables) {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(PseudonymizationMetadata.PseudonymizationMetadataBuilder.class)) {
+                this.instance = ((T) new PseudonymizationMetadata(documentVersion, pseudoDataset, pseudoVariables));
+            }
+        }
+
+        public T build() {
+            T result;
+            result = this.instance;
+            this.instance = null;
+            return result;
+        }
+
+        public PseudonymizationMetadata.PseudonymizationMetadataBuilderBase withDocumentVersion(Object documentVersion) {
+            ((PseudonymizationMetadata) this.instance).documentVersion = documentVersion;
+            return this;
+        }
+
+        public PseudonymizationMetadata.PseudonymizationMetadataBuilderBase withPseudoDataset(PseudoDataset pseudoDataset) {
+            ((PseudonymizationMetadata) this.instance).pseudoDataset = pseudoDataset;
+            return this;
+        }
+
+        public PseudonymizationMetadata.PseudonymizationMetadataBuilderBase withPseudoVariables(List<PseudoVariable> pseudoVariables) {
+            ((PseudonymizationMetadata) this.instance).pseudoVariables = pseudoVariables;
+            return this;
+        }
+
+        public PseudonymizationMetadata.PseudonymizationMetadataBuilderBase withAdditionalProperty(String name, Object value) {
+            ((PseudonymizationMetadata) this.instance).additionalProperties.put(name, value);
+            return this;
+        }
+
     }
 
 }

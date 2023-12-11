@@ -75,6 +75,8 @@
                     <includeJsr303Annotations>true</includeJsr303Annotations>
                     <useJakartaValidation>true</useJakartaValidation>
                     <useTitleAsClassname>true</useTitleAsClassname>
+                    <generateBuilders>true</generateBuilders>
+                    <useInnerClassBuilders>true</useInnerClassBuilders>
                 </configuration>
                 <executions>
                     <execution>
