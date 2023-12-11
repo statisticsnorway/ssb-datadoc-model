@@ -79,7 +79,7 @@ public class PseudoVariable implements Serializable
      */
     @JsonProperty("stable_identifier_type")
     @JsonPropertyDescription("Type of stable identifier the variable was mapped to prior to pseudonymization.")
-    private String stableIdentifierType;
+    private PseudoVariable.StableIdentifierType stableIdentifierType;
     /**
      * Stable identifier version
      * <p>
@@ -142,7 +142,7 @@ public class PseudoVariable implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 2935780493278493782L;
+    private final static long serialVersionUID = -5927895841064659498L;
 
     /**
      * No args constructor for use in serialization
@@ -174,7 +174,7 @@ public class PseudoVariable implements Serializable
      * @param encryptionAlgorithm
      *     Encryption algorithm. The encryption algorithm used to pseudonymize the variable.
      */
-    public PseudoVariable(String shortName, String dataElementPath, String dataElementPattern, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
+    public PseudoVariable(String shortName, String dataElementPath, String dataElementPattern, PseudoVariable.StableIdentifierType stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
         super();
         this.shortName = shortName;
         this.dataElementPath = dataElementPath;
@@ -267,7 +267,7 @@ public class PseudoVariable implements Serializable
      * 
      */
     @JsonProperty("stable_identifier_type")
-    public String getStableIdentifierType() {
+    public PseudoVariable.StableIdentifierType getStableIdentifierType() {
         return stableIdentifierType;
     }
 
@@ -278,7 +278,7 @@ public class PseudoVariable implements Serializable
      * 
      */
     @JsonProperty("stable_identifier_type")
-    public void setStableIdentifierType(String stableIdentifierType) {
+    public void setStableIdentifierType(PseudoVariable.StableIdentifierType stableIdentifierType) {
         this.stableIdentifierType = stableIdentifierType;
     }
 
@@ -522,7 +522,7 @@ public class PseudoVariable implements Serializable
             super();
         }
 
-        public PseudoVariableBuilder(String shortName, String dataElementPath, String dataElementPattern, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
+        public PseudoVariableBuilder(String shortName, String dataElementPath, String dataElementPattern, PseudoVariable.StableIdentifierType stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
             super(shortName, dataElementPath, dataElementPattern, stableIdentifierType, stableIdentifierVersion, encryptionAlgorithm, encryptionKeyReference, encryptionAlgorithmParameters, sourceVariable, sourceVariableDatatype);
         }
 
@@ -541,7 +541,7 @@ public class PseudoVariable implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public PseudoVariableBuilderBase(String shortName, String dataElementPath, String dataElementPattern, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
+        public PseudoVariableBuilderBase(String shortName, String dataElementPath, String dataElementPattern, PseudoVariable.StableIdentifierType stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(PseudoVariable.PseudoVariableBuilder.class)) {
                 this.instance = ((T) new PseudoVariable(shortName, dataElementPath, dataElementPattern, stableIdentifierType, stableIdentifierVersion, encryptionAlgorithm, encryptionKeyReference, encryptionAlgorithmParameters, sourceVariable, sourceVariableDatatype));
@@ -570,7 +570,7 @@ public class PseudoVariable implements Serializable
             return this;
         }
 
-        public PseudoVariable.PseudoVariableBuilderBase withStableIdentifierType(String stableIdentifierType) {
+        public PseudoVariable.PseudoVariableBuilderBase withStableIdentifierType(PseudoVariable.StableIdentifierType stableIdentifierType) {
             ((PseudoVariable) this.instance).stableIdentifierType = stableIdentifierType;
             return this;
         }
@@ -652,6 +652,52 @@ public class PseudoVariable implements Serializable
         @JsonCreator
         public static PseudoVariable.SourceVariableDataType fromValue(String value) {
             PseudoVariable.SourceVariableDataType constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException(value);
+            } else {
+                return constant;
+            }
+        }
+
+    }
+
+
+    /**
+     * Stable identifier type
+     * <p>
+     * Type of stable identifier the variable was mapped to prior to pseudonymization.Only relevant when the variable is mapped to a stable identifier.
+     * 
+     */
+    @Generated("jsonschema2pojo")
+    public enum StableIdentifierType {
+
+        FREG_SNR("FREG_SNR");
+        private final String value;
+        private final static Map<String, PseudoVariable.StableIdentifierType> CONSTANTS = new HashMap<String, PseudoVariable.StableIdentifierType>();
+
+        static {
+            for (PseudoVariable.StableIdentifierType c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        StableIdentifierType(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+
+        @JsonValue
+        public String value() {
+            return this.value;
+        }
+
+        @JsonCreator
+        public static PseudoVariable.StableIdentifierType fromValue(String value) {
+            PseudoVariable.StableIdentifierType constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {
