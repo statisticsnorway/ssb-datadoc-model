@@ -58,7 +58,7 @@ public class MetadataContainer implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 4303907007177379069L;
+    private final static long serialVersionUID = 2615848749785607333L;
 
     /**
      * No args constructor for use in serialization
@@ -72,6 +72,10 @@ public class MetadataContainer implements Serializable
         this.documentVersion = documentVersion;
         this.datadoc = datadoc;
         this.pseudonymization = pseudonymization;
+    }
+
+    public static MetadataContainer.MetadataContainerBuilderBase builder() {
+        return new MetadataContainer.MetadataContainerBuilder();
     }
 
     /**
@@ -194,6 +198,70 @@ public class MetadataContainer implements Serializable
         }
         MetadataContainer rhs = ((MetadataContainer) other);
         return (((((this.datadoc == rhs.datadoc)||((this.datadoc!= null)&&this.datadoc.equals(rhs.datadoc)))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.pseudonymization == rhs.pseudonymization)||((this.pseudonymization!= null)&&this.pseudonymization.equals(rhs.pseudonymization))))&&((this.documentVersion == rhs.documentVersion)||((this.documentVersion!= null)&&this.documentVersion.equals(rhs.documentVersion))));
+    }
+
+    public static class MetadataContainerBuilder
+        extends MetadataContainer.MetadataContainerBuilderBase<MetadataContainer>
+    {
+
+
+        public MetadataContainerBuilder() {
+            super();
+        }
+
+        public MetadataContainerBuilder(Object documentVersion, DatadocMetadata datadoc, PseudonymizationMetadata pseudonymization) {
+            super(documentVersion, datadoc, pseudonymization);
+        }
+
+    }
+
+    public static abstract class MetadataContainerBuilderBase<T extends MetadataContainer >{
+
+        protected T instance;
+
+        @SuppressWarnings("unchecked")
+        public MetadataContainerBuilderBase() {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(MetadataContainer.MetadataContainerBuilder.class)) {
+                this.instance = ((T) new MetadataContainer());
+            }
+        }
+
+        @SuppressWarnings("unchecked")
+        public MetadataContainerBuilderBase(Object documentVersion, DatadocMetadata datadoc, PseudonymizationMetadata pseudonymization) {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(MetadataContainer.MetadataContainerBuilder.class)) {
+                this.instance = ((T) new MetadataContainer(documentVersion, datadoc, pseudonymization));
+            }
+        }
+
+        public T build() {
+            T result;
+            result = this.instance;
+            this.instance = null;
+            return result;
+        }
+
+        public MetadataContainer.MetadataContainerBuilderBase withDocumentVersion(Object documentVersion) {
+            ((MetadataContainer) this.instance).documentVersion = documentVersion;
+            return this;
+        }
+
+        public MetadataContainer.MetadataContainerBuilderBase withDatadoc(DatadocMetadata datadoc) {
+            ((MetadataContainer) this.instance).datadoc = datadoc;
+            return this;
+        }
+
+        public MetadataContainer.MetadataContainerBuilderBase withPseudonymization(PseudonymizationMetadata pseudonymization) {
+            ((MetadataContainer) this.instance).pseudonymization = pseudonymization;
+            return this;
+        }
+
+        public MetadataContainer.MetadataContainerBuilderBase withAdditionalProperty(String name, Object value) {
+            ((MetadataContainer) this.instance).additionalProperties.put(name, value);
+            return this;
+        }
+
     }
 
 }

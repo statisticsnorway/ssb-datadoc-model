@@ -23,7 +23,11 @@ public class EncryptionAlgorithmParameter implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 2482243490308963901L;
+    private final static long serialVersionUID = -1219234877163922487L;
+
+    public static EncryptionAlgorithmParameter.EncryptionAlgorithmParameterBuilderBase builder() {
+        return new EncryptionAlgorithmParameter.EncryptionAlgorithmParameterBuilder();
+    }
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
@@ -68,6 +72,43 @@ public class EncryptionAlgorithmParameter implements Serializable
         }
         EncryptionAlgorithmParameter rhs = ((EncryptionAlgorithmParameter) other);
         return ((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties)));
+    }
+
+    public static class EncryptionAlgorithmParameterBuilder
+        extends EncryptionAlgorithmParameter.EncryptionAlgorithmParameterBuilderBase<EncryptionAlgorithmParameter>
+    {
+
+
+        public EncryptionAlgorithmParameterBuilder() {
+            super();
+        }
+
+    }
+
+    public static abstract class EncryptionAlgorithmParameterBuilderBase<T extends EncryptionAlgorithmParameter >{
+
+        protected T instance;
+
+        @SuppressWarnings("unchecked")
+        public EncryptionAlgorithmParameterBuilderBase() {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(EncryptionAlgorithmParameter.EncryptionAlgorithmParameterBuilder.class)) {
+                this.instance = ((T) new EncryptionAlgorithmParameter());
+            }
+        }
+
+        public T build() {
+            T result;
+            result = this.instance;
+            this.instance = null;
+            return result;
+        }
+
+        public EncryptionAlgorithmParameter.EncryptionAlgorithmParameterBuilderBase withAdditionalProperty(String name, Object value) {
+            ((EncryptionAlgorithmParameter) this.instance).additionalProperties.put(name, value);
+            return this;
+        }
+
     }
 
 }
