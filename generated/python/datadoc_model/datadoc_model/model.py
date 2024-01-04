@@ -4,12 +4,11 @@
 
 from __future__ import annotations
 
-from datetime import datetime
 from enum import Enum
 from typing import Any, Literal, Optional
 from uuid import UUID
 
-from pydantic import AnyUrl, BaseModel, Field
+from pydantic import AnyUrl, AwareDatetime, BaseModel, Field
 
 
 class Assessment(str, Enum):
@@ -52,7 +51,7 @@ class VariableRole(str, Enum):
 class LanguageStringType(BaseModel):
     en: Optional[str] = None
     nn: Optional[str] = None
-    nb: str
+    nb: Optional[str] = None
 
 
 class UnitType(str, Enum):
@@ -236,8 +235,8 @@ class Dataset(BaseModel):
         description='Owner of the data set (responsible division in Statistics Norway). See also Classification of organisational units https://www.ssb.no/en/klass/klassifikasjoner/83',
         title='Owner',
     )
-    file_path: str = Field(
-        ...,
+    file_path: Optional[str] = Field(
+        None,
         description="The file path contains the data set's name and the path to where it is stored",
         title='File path',
     )
@@ -346,12 +345,12 @@ class Variable(BaseModel):
         description='Unique SSB identifier for the instance variable in the data set',
         title='Identifier',
     )
-    contains_data_from: Optional[datetime] = Field(
+    contains_data_from: Optional[AwareDatetime] = Field(
         None,
         description='The instance variable in the data set contains data from and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some variables only contain data for the most recent periods/years, e.g. if the entire data set contains data from 1970 to 2020, while some instance variables only contain data from 1998 onwards.',
         title='Contains data from',
     )
-    contains_data_until: Optional[datetime] = Field(
+    contains_data_until: Optional[AwareDatetime] = Field(
         None,
         description='The instance variable in the data set contains data up to and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some of the instance variables in the data set are terminated (no longer updated) after a given point in time.',
         title='Contains data up until',
@@ -365,8 +364,8 @@ class DatadocJsonSchema(BaseModel):
     document_version: Literal['2.0.0'] = Field(
         '2.0.0', description='Version of this model'
     )
-    dataset: Dataset
-    variables: list[Variable]
+    dataset: Optional[Dataset] = None
+    variables: Optional[list[Variable]] = None
 
 
 class MetadataContainer(BaseModel):
