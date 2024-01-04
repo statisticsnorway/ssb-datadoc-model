@@ -58,6 +58,7 @@ jobs:
             --force-optional
             --use-subclass-enum
             --use-standard-collections
+            --use-double-quotes
             --target-python-version 3.10
             --output generated/python/datadoc_model/datadoc_model/model.py
 
