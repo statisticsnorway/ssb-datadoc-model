@@ -267,7 +267,7 @@
                     },
                     "multiplication_factor": {
                         "title": "Multiplication factor",
-                        "description": "A multiplication factor is a number that amplifies or increases the base value of something else.",
+                        "description": "A multiplication factor for a value/result is a number that multiplies that value/result.",
                         "type": "integer"
                     },
                     "format": {
@@ -281,11 +281,63 @@
                         "type": "string",
                         "format": "uri"
                     },
-                    "sentinel_value_uri": {
-                        "title": "Sentinel value URI",
-                        "description": "A link (URI) to an overview of sentinel values included in the variable. Proposals for the standardization of sentinel values ​​have been drafted, but this has not yet been processed by the Standards Committee in Statistics Norway:  01 - In total, 02 - Sum, 03 - Subtotal, 04 - Other, 05 - Rest, 06 - Invalid value, 07 - Unspecified, 08 - Not relevant",
-                        "type": "string",
-                        "format": "uri"
+                    "special_value": {
+                        "title": "Special values",
+                        "type": "object",
+                        "properties": {
+                            "sentinel": {
+                                "title": "Sentinel values",
+                                "type": "object",
+                                "properties": {
+                                    "sentinel_value_uri": {
+                                        "title": "Sentinel value URI",
+                                        "description": "A link (URI) to a standardized list of sentinel values included in the variable, eg. a link to a codelist in Klass (https://www.ssb.no/en/klass/"),
+                                        "$comment": "Proposals for the standardization of sentinel values ​​have been drafted, but this has not yet been processed by the Standards Committee in Statistics Norway.",
+                                        "type": "string",
+                                        "format": "uri"
+                                    },
+                                    "sentinel_value_elements": {
+                                        "title": "Sentinel value elements",
+                                        "description": "A selection (subset) of sentinel values in the 'sentinel_value_uri' ​​applicable to the data set.",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "other_value": {
+                                "description": "Other special values not represented as 'sentinel_values' in a standardized code list.",
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code":{
+                                            "title": "Code",
+                                            "description": "Other value code",
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "title": "Name",
+                                            "description": "Other value name (text)",
+                                            "$ref": "./no/languageStringType.json#/languageStringType"
+                                        },
+                                        "valid_from": {
+                                            "title": "Valid from",
+                                            "description": "Other value valid from date",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "valid_until": {
+                                            "title": "Valid until",
+                                            "description": "Other value until date",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
                     "invalid_value_description": {
                         "title": "Invalid value(s) description",
