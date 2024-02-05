@@ -212,7 +212,8 @@
                             "INTEGER",
                             "DATETIME",
                             "BOOLEAN",
-                            "FLOAT"
+                            "FLOAT",
+                            "ARRAY"
                         ]
                     },
                     "variable_role": {
