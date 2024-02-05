@@ -817,7 +817,8 @@ public class Variable implements Serializable
         INTEGER("INTEGER"),
         DATETIME("DATETIME"),
         BOOLEAN("BOOLEAN"),
-        FLOAT("FLOAT");
+        FLOAT("FLOAT"),
+        ARRAY("ARRAY");
         private final String value;
         private final static Map<String, Variable.DataType> CONSTANTS = new HashMap<String, Variable.DataType>();
 
