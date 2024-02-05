@@ -291,7 +291,7 @@
                                 "properties": {
                                     "sentinel_value_uri": {
                                         "title": "Sentinel value URI",
-                                        "description": "A link (URI) to a standardized list of sentinel values included in the variable, eg. a link to a codelist in Klass (https://www.ssb.no/en/klass/"),
+                                        "description": "A link (URI) to a standardized list of sentinel values included in the variable, eg. a link to a codelist in Klass (https://www.ssb.no/en/klass/)",
                                         "$comment": "Proposals for the standardization of sentinel values ​​have been drafted, but this has not yet been processed by the Standards Committee in Statistics Norway.",
                                         "type": "string",
                                         "format": "uri"
@@ -307,7 +307,8 @@
                                 }
                             },
                             "other_value": {
-                                "description": "Other special values not represented as 'sentinel_values' in a standardized code list.",
+                                "title": "Other special values",
+                                "description": "Other special values not represented as 'sentinel_value' in a standardized code list.",
                                 "type": "array",
                                 "items": {
                                     "type": "object",
