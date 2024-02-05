@@ -34,6 +34,7 @@ import jakarta.validation.constraints.NotNull;
     "comment",
     "temporality_type",
     "measurement_unit",
+    "multiplication_factor",
     "format",
     "classification_uri",
     "sentinel_value_uri",
@@ -145,6 +146,15 @@ public class Variable implements Serializable
     @JsonPropertyDescription("Measurement unit")
     private String measurementUnit;
     /**
+     * Multiplication factor
+     * <p>
+     * A multiplication factor is a number that amplifies or increases the base value of something else.
+     * 
+     */
+    @JsonProperty("multiplication_factor")
+    @JsonPropertyDescription("A multiplication factor is a number that amplifies or increases the base value of something else.")
+    private Integer multiplicationFactor;
+    /**
      * Format
      * <p>
      * The format of the values ​​(physical format or regular expression) in machine-readable form for validation. This can be used as a further specification of the data type (dataType) in those cases where this is relevant.
@@ -210,7 +220,7 @@ public class Variable implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -2952914587996934465L;
+    private final static long serialVersionUID = -3016237275954677161L;
 
     /**
      * No args constructor for use in serialization
@@ -255,10 +265,12 @@ public class Variable implements Serializable
      *     Short name. Physical name of the variable in the dataset. Should match the recommended short name.
      * @param dataSource
      *     Data source. Data source. Set at data set level, but can be overwritten at variable instance level.
+     * @param multiplicationFactor
+     *     Multiplication factor. A multiplication factor is a number that amplifies or increases the base value of something else.
      * @param invalidValueDescription
      *     Invalid value(s) description. Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.
      */
-    public Variable(String shortName, LanguageStringType name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, LanguageStringType dataSource, LanguageStringType populationDescription, LanguageStringType comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, String format, URI classificationUri, URI sentinelValueUri, LanguageStringType invalidValueDescription, UUID id, Date containsDataFrom, Date containsDataUntil) {
+    public Variable(String shortName, LanguageStringType name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, LanguageStringType dataSource, LanguageStringType populationDescription, LanguageStringType comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, URI sentinelValueUri, LanguageStringType invalidValueDescription, UUID id, Date containsDataFrom, Date containsDataUntil) {
         super();
         this.shortName = shortName;
         this.name = name;
@@ -271,6 +283,7 @@ public class Variable implements Serializable
         this.comment = comment;
         this.temporalityType = temporalityType;
         this.measurementUnit = measurementUnit;
+        this.multiplicationFactor = multiplicationFactor;
         this.format = format;
         this.classificationUri = classificationUri;
         this.sentinelValueUri = sentinelValueUri;
@@ -517,6 +530,28 @@ public class Variable implements Serializable
     }
 
     /**
+     * Multiplication factor
+     * <p>
+     * A multiplication factor is a number that amplifies or increases the base value of something else.
+     * 
+     */
+    @JsonProperty("multiplication_factor")
+    public Integer getMultiplicationFactor() {
+        return multiplicationFactor;
+    }
+
+    /**
+     * Multiplication factor
+     * <p>
+     * A multiplication factor is a number that amplifies or increases the base value of something else.
+     * 
+     */
+    @JsonProperty("multiplication_factor")
+    public void setMultiplicationFactor(Integer multiplicationFactor) {
+        this.multiplicationFactor = multiplicationFactor;
+    }
+
+    /**
      * Format
      * <p>
      * The format of the values ​​(physical format or regular expression) in machine-readable form for validation. This can be used as a further specification of the data type (dataType) in those cases where this is relevant.
@@ -726,6 +761,10 @@ public class Variable implements Serializable
         sb.append('=');
         sb.append(((this.measurementUnit == null)?"<null>":this.measurementUnit));
         sb.append(',');
+        sb.append("multiplicationFactor");
+        sb.append('=');
+        sb.append(((this.multiplicationFactor == null)?"<null>":this.multiplicationFactor));
+        sb.append(',');
         sb.append("format");
         sb.append('=');
         sb.append(((this.format == null)?"<null>":this.format));
@@ -787,6 +826,7 @@ public class Variable implements Serializable
         result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
         result = ((result* 31)+((this.shortName == null)? 0 :this.shortName.hashCode()));
         result = ((result* 31)+((this.dataSource == null)? 0 :this.dataSource.hashCode()));
+        result = ((result* 31)+((this.multiplicationFactor == null)? 0 :this.multiplicationFactor.hashCode()));
         result = ((result* 31)+((this.invalidValueDescription == null)? 0 :this.invalidValueDescription.hashCode()));
         return result;
     }
@@ -800,7 +840,7 @@ public class Variable implements Serializable
             return false;
         }
         Variable rhs = ((Variable) other);
-        return ((((((((((((((((((((this.containsDataUntil == rhs.containsDataUntil)||((this.containsDataUntil!= null)&&this.containsDataUntil.equals(rhs.containsDataUntil)))&&((this.containsDataFrom == rhs.containsDataFrom)||((this.containsDataFrom!= null)&&this.containsDataFrom.equals(rhs.containsDataFrom))))&&((this.dataType == rhs.dataType)||((this.dataType!= null)&&this.dataType.equals(rhs.dataType))))&&((this.format == rhs.format)||((this.format!= null)&&this.format.equals(rhs.format))))&&((this.classificationUri == rhs.classificationUri)||((this.classificationUri!= null)&&this.classificationUri.equals(rhs.classificationUri))))&&((this.populationDescription == rhs.populationDescription)||((this.populationDescription!= null)&&this.populationDescription.equals(rhs.populationDescription))))&&((this.definitionUri == rhs.definitionUri)||((this.definitionUri!= null)&&this.definitionUri.equals(rhs.definitionUri))))&&((this.temporalityType == rhs.temporalityType)||((this.temporalityType!= null)&&this.temporalityType.equals(rhs.temporalityType))))&&((this.measurementUnit == rhs.measurementUnit)||((this.measurementUnit!= null)&&this.measurementUnit.equals(rhs.measurementUnit))))&&((this.directPersonIdentifying == rhs.directPersonIdentifying)||((this.directPersonIdentifying!= null)&&this.directPersonIdentifying.equals(rhs.directPersonIdentifying))))&&((this.variableRole == rhs.variableRole)||((this.variableRole!= null)&&this.variableRole.equals(rhs.variableRole))))&&((this.sentinelValueUri == rhs.sentinelValueUri)||((this.sentinelValueUri!= null)&&this.sentinelValueUri.equals(rhs.sentinelValueUri))))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.comment == rhs.comment)||((this.comment!= null)&&this.comment.equals(rhs.comment))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))))&&((this.dataSource == rhs.dataSource)||((this.dataSource!= null)&&this.dataSource.equals(rhs.dataSource))))&&((this.invalidValueDescription == rhs.invalidValueDescription)||((this.invalidValueDescription!= null)&&this.invalidValueDescription.equals(rhs.invalidValueDescription))));
+        return (((((((((((((((((((((this.containsDataUntil == rhs.containsDataUntil)||((this.containsDataUntil!= null)&&this.containsDataUntil.equals(rhs.containsDataUntil)))&&((this.containsDataFrom == rhs.containsDataFrom)||((this.containsDataFrom!= null)&&this.containsDataFrom.equals(rhs.containsDataFrom))))&&((this.dataType == rhs.dataType)||((this.dataType!= null)&&this.dataType.equals(rhs.dataType))))&&((this.format == rhs.format)||((this.format!= null)&&this.format.equals(rhs.format))))&&((this.classificationUri == rhs.classificationUri)||((this.classificationUri!= null)&&this.classificationUri.equals(rhs.classificationUri))))&&((this.populationDescription == rhs.populationDescription)||((this.populationDescription!= null)&&this.populationDescription.equals(rhs.populationDescription))))&&((this.definitionUri == rhs.definitionUri)||((this.definitionUri!= null)&&this.definitionUri.equals(rhs.definitionUri))))&&((this.temporalityType == rhs.temporalityType)||((this.temporalityType!= null)&&this.temporalityType.equals(rhs.temporalityType))))&&((this.measurementUnit == rhs.measurementUnit)||((this.measurementUnit!= null)&&this.measurementUnit.equals(rhs.measurementUnit))))&&((this.directPersonIdentifying == rhs.directPersonIdentifying)||((this.directPersonIdentifying!= null)&&this.directPersonIdentifying.equals(rhs.directPersonIdentifying))))&&((this.variableRole == rhs.variableRole)||((this.variableRole!= null)&&this.variableRole.equals(rhs.variableRole))))&&((this.sentinelValueUri == rhs.sentinelValueUri)||((this.sentinelValueUri!= null)&&this.sentinelValueUri.equals(rhs.sentinelValueUri))))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.comment == rhs.comment)||((this.comment!= null)&&this.comment.equals(rhs.comment))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))))&&((this.dataSource == rhs.dataSource)||((this.dataSource!= null)&&this.dataSource.equals(rhs.dataSource))))&&((this.multiplicationFactor == rhs.multiplicationFactor)||((this.multiplicationFactor!= null)&&this.multiplicationFactor.equals(rhs.multiplicationFactor))))&&((this.invalidValueDescription == rhs.invalidValueDescription)||((this.invalidValueDescription!= null)&&this.invalidValueDescription.equals(rhs.invalidValueDescription))));
     }
 
 
@@ -863,8 +903,8 @@ public class Variable implements Serializable
             super();
         }
 
-        public VariableBuilder(String shortName, LanguageStringType name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, LanguageStringType dataSource, LanguageStringType populationDescription, LanguageStringType comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, String format, URI classificationUri, URI sentinelValueUri, LanguageStringType invalidValueDescription, UUID id, Date containsDataFrom, Date containsDataUntil) {
-            super(shortName, name, dataType, variableRole, definitionUri, directPersonIdentifying, dataSource, populationDescription, comment, temporalityType, measurementUnit, format, classificationUri, sentinelValueUri, invalidValueDescription, id, containsDataFrom, containsDataUntil);
+        public VariableBuilder(String shortName, LanguageStringType name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, LanguageStringType dataSource, LanguageStringType populationDescription, LanguageStringType comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, URI sentinelValueUri, LanguageStringType invalidValueDescription, UUID id, Date containsDataFrom, Date containsDataUntil) {
+            super(shortName, name, dataType, variableRole, definitionUri, directPersonIdentifying, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, sentinelValueUri, invalidValueDescription, id, containsDataFrom, containsDataUntil);
         }
 
     }
@@ -882,10 +922,10 @@ public class Variable implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public VariableBuilderBase(String shortName, LanguageStringType name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, LanguageStringType dataSource, LanguageStringType populationDescription, LanguageStringType comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, String format, URI classificationUri, URI sentinelValueUri, LanguageStringType invalidValueDescription, UUID id, Date containsDataFrom, Date containsDataUntil) {
+        public VariableBuilderBase(String shortName, LanguageStringType name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, LanguageStringType dataSource, LanguageStringType populationDescription, LanguageStringType comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, URI sentinelValueUri, LanguageStringType invalidValueDescription, UUID id, Date containsDataFrom, Date containsDataUntil) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(Variable.VariableBuilder.class)) {
-                this.instance = ((T) new Variable(shortName, name, dataType, variableRole, definitionUri, directPersonIdentifying, dataSource, populationDescription, comment, temporalityType, measurementUnit, format, classificationUri, sentinelValueUri, invalidValueDescription, id, containsDataFrom, containsDataUntil));
+                this.instance = ((T) new Variable(shortName, name, dataType, variableRole, definitionUri, directPersonIdentifying, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, sentinelValueUri, invalidValueDescription, id, containsDataFrom, containsDataUntil));
             }
         }
 
@@ -948,6 +988,11 @@ public class Variable implements Serializable
 
         public Variable.VariableBuilderBase withMeasurementUnit(String measurementUnit) {
             ((Variable) this.instance).measurementUnit = measurementUnit;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withMultiplicationFactor(Integer multiplicationFactor) {
+            ((Variable) this.instance).multiplicationFactor = multiplicationFactor;
             return this;
         }
 
