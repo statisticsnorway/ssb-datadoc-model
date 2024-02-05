@@ -265,6 +265,11 @@
                         "$comment": "TODO: measurement_unit implemented as string. In the future this should be implemente as enum? See https://www.ssb.no/klass/klassifikasjoner/303/koder",
                         "type": "string"
                     },
+                    "multiplication_factor": {
+                        "title": "Multiplication factor",
+                        "description": "A multiplication factor is a number that amplifies or increases the base value of something else.",
+                        "type": "integer"
+                    },
                     "format": {
                         "title": "Format",
                         "description": "The format of the values ​​(physical format or regular expression) in machine-readable form for validation. This can be used as a further specification of the data type (dataType) in those cases where this is relevant.",
