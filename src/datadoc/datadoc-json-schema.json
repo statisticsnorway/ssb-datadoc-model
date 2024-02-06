@@ -196,7 +196,13 @@
                     "short_name": {
                         "type": "string",
                         "title": "Short name",
-                        "description": "Physical name of the variable in the dataset. Should match the recommended short name."
+                        "description": "Physical name of the variable (data element) in the dataset. Should match the recommended short name."
+                    },
+                    "data_element_path": {
+                        "title": "Data element path",
+                        "description": "The path (dot notation) to the data element in a hierarchical data structure, eg. 'person.adress'. Must be given in addition to the short_name.",
+                        "$comment": "For hierarchical datasets only, eg. json and xml documents.",
+                        "type": "string"
                     },
                     "name": {
                         "title": "Name",
