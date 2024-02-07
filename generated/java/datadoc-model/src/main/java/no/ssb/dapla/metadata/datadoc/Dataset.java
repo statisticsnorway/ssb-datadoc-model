@@ -204,11 +204,11 @@ public class Dataset implements Serializable
     /**
      * Custom type for dataset metadata
      * <p>
-     * Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array og objects).
+     * Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array or objects).
      * 
      */
     @JsonProperty("custom_type")
-    @JsonPropertyDescription("Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array og objects).")
+    @JsonPropertyDescription("Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array or objects).")
     @Valid
     private List<CustomType> customType = new ArrayList<CustomType>();
     /**
@@ -361,7 +361,7 @@ public class Dataset implements Serializable
      * @param version
      *     Version. Version of data set.
      * @param customType
-     *     Custom type for dataset metadata. Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array og objects).
+     *     Custom type for dataset metadata. Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array or objects).
      * @param metadataCreatedDate
      *     Metadata created date. Created date for metadata about the data set.
      * @param name
@@ -744,7 +744,7 @@ public class Dataset implements Serializable
     /**
      * Custom type for dataset metadata
      * <p>
-     * Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array og objects).
+     * Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array or objects).
      * 
      */
     @JsonProperty("custom_type")
@@ -755,7 +755,7 @@ public class Dataset implements Serializable
     /**
      * Custom type for dataset metadata
      * <p>
-     * Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array og objects).
+     * Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array or objects).
      * 
      */
     @JsonProperty("custom_type")
