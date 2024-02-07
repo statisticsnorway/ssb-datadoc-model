@@ -120,7 +120,7 @@
                 },
                 "custom_type": {
                     "title": "Custom type for dataset metadata",
-                    "description": "Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array og objects).",
+                    "description": "Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array or objects).",
                     "type": "array",
                     "items": {
                         "type": "object",
@@ -380,6 +380,36 @@
                         "title": "Invalid value(s) description",
                         "description": "Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.",
                         "$ref": "./no/languageStringType.json#/languageStringType"
+                    },
+                    "custom_type": {
+                        "title": "Custom type for variable metadata",
+                        "description": "Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array or objects).",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "key": {
+                                    "title": "Key",
+                                    "description": "Custom type KEY",
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "title": "Value",
+                                    "description": "Custom type VALUE (of type string, array or object).",
+                                    "oneOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "array"
+                                        },
+                                        {
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
                     },
                     "id": {
                         "title": "Identifier",
