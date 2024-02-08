@@ -1,7 +1,7 @@
 from datadoc_model.model import (
-    DatadocMetadata,
+    DatadocJsonSchema,
     MetadataContainer,
-    PseudonymizationMetadata,
+    PseudonymizationJsonSchema,
 )
 
 
@@ -11,10 +11,10 @@ def test_instantiate_no_values_container():
 
 
 def test_instantiate_no_values_datadoc():
-    container = DatadocMetadata()
-    assert isinstance(container, DatadocMetadata)
+    datadoc = DatadocJsonSchema()
+    assert isinstance(datadoc, DatadocJsonSchema)
 
 
 def test_instantiate_no_values_pseudo():
-    container = PseudonymizationMetadata()
-    assert isinstance(container, PseudonymizationMetadata)
+    pseudo = PseudonymizationJsonSchema()
+    assert isinstance(pseudo, PseudonymizationJsonSchema)
