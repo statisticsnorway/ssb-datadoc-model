@@ -45,7 +45,7 @@ jobs:
 
       - name: Install datamodel-codegen
         run: |
-            python -m pipx install datamodel-code-generator==0.24.2
+            python -m pipx install datamodel-code-generator==0.25.2
 
       - name: Generate Python
         run: >
@@ -53,12 +53,14 @@ jobs:
             --input-file-type jsonschema
             --input src/metadata-container-json-schema.json
             --output-model-type pydantic_v2.BaseModel
-            --force-optional
+            --base-class "datadoc_model.datadoc_base_model.DatadocBaseModel"
             --use-default
             --use-title-as-name
             --use-one-literal-as-default
+            --force-optional
             --use-subclass-enum
             --use-standard-collections
+            --use-double-quotes
             --target-python-version 3.10
             --output generated/python/datadoc_model/datadoc_model/model.py
 

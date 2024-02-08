@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import javax.annotation.processing.Generated;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -21,6 +19,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonValue;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -86,7 +86,7 @@ public class Dataset implements Serializable
     @JsonProperty("dataset_status")
     @JsonPropertyDescription("Life cycle for data set")
     @NotNull
-    private Dataset.DatasetStatus datasetStatus;
+    private Dataset.DataSetStatus datasetStatus;
     /**
      * Data set state
      * <p>
@@ -97,7 +97,7 @@ public class Dataset implements Serializable
     @JsonProperty("dataset_state")
     @JsonPropertyDescription("Steady state of data")
     @NotNull
-    private Dataset.DatasetState datasetState;
+    private Dataset.DataSetState datasetState;
     /**
      * Reusable langugage string type
      * (Required)
@@ -296,7 +296,7 @@ public class Dataset implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -847907615474067461L;
+    private final static long serialVersionUID = 1788379209809172251L;
 
     /**
      * No args constructor for use in serialization
@@ -358,7 +358,7 @@ public class Dataset implements Serializable
      * @param dataSource
      *     Data source. Data source. Set either for the data set or instance variable.
      */
-    public Dataset(String shortName, Dataset.Assessment assessment, Dataset.DatasetStatus datasetStatus, Dataset.DatasetState datasetState, LanguageStringType name, LanguageStringType description, LanguageStringType dataSource, LanguageStringType registerUri, LanguageStringType populationDescription, String version, LanguageStringType versionDescription, Dataset.UnitType unitType, Dataset.TemporalityTypeType temporalityType, LanguageStringType subjectField, List<String> keyword, LanguageStringType spatialCoverageDescription, UUID id, LanguageStringType owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
+    public Dataset(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, LanguageStringType name, LanguageStringType description, LanguageStringType dataSource, LanguageStringType registerUri, LanguageStringType populationDescription, String version, LanguageStringType versionDescription, Dataset.UnitType unitType, Dataset.TemporalityTypeType temporalityType, LanguageStringType subjectField, List<String> keyword, LanguageStringType spatialCoverageDescription, UUID id, LanguageStringType owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
         super();
         this.shortName = shortName;
         this.assessment = assessment;
@@ -385,6 +385,10 @@ public class Dataset implements Serializable
         this.metadataLastUpdatedBy = metadataLastUpdatedBy;
         this.containsDataFrom = containsDataFrom;
         this.containsDataUntil = containsDataUntil;
+    }
+
+    public static Dataset.DatasetBuilderBase builder() {
+        return new Dataset.DatasetBuilder();
     }
 
     /**
@@ -443,7 +447,7 @@ public class Dataset implements Serializable
      * 
      */
     @JsonProperty("dataset_status")
-    public Dataset.DatasetStatus getDatasetStatus() {
+    public Dataset.DataSetStatus getDatasetStatus() {
         return datasetStatus;
     }
 
@@ -455,7 +459,7 @@ public class Dataset implements Serializable
      * 
      */
     @JsonProperty("dataset_status")
-    public void setDatasetStatus(Dataset.DatasetStatus datasetStatus) {
+    public void setDatasetStatus(Dataset.DataSetStatus datasetStatus) {
         this.datasetStatus = datasetStatus;
     }
 
@@ -467,7 +471,7 @@ public class Dataset implements Serializable
      * 
      */
     @JsonProperty("dataset_state")
-    public Dataset.DatasetState getDatasetState() {
+    public Dataset.DataSetState getDatasetState() {
         return datasetState;
     }
 
@@ -479,7 +483,7 @@ public class Dataset implements Serializable
      * 
      */
     @JsonProperty("dataset_state")
-    public void setDatasetState(Dataset.DatasetState datasetState) {
+    public void setDatasetState(Dataset.DataSetState datasetState) {
         this.datasetState = datasetState;
     }
 
@@ -1149,6 +1153,180 @@ public class Dataset implements Serializable
 
     }
 
+    public static class DatasetBuilder
+        extends Dataset.DatasetBuilderBase<Dataset>
+    {
+
+
+        public DatasetBuilder() {
+            super();
+        }
+
+        public DatasetBuilder(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, LanguageStringType name, LanguageStringType description, LanguageStringType dataSource, LanguageStringType registerUri, LanguageStringType populationDescription, String version, LanguageStringType versionDescription, Dataset.UnitType unitType, Dataset.TemporalityTypeType temporalityType, LanguageStringType subjectField, List<String> keyword, LanguageStringType spatialCoverageDescription, UUID id, LanguageStringType owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
+            super(shortName, assessment, datasetStatus, datasetState, name, description, dataSource, registerUri, populationDescription, version, versionDescription, unitType, temporalityType, subjectField, keyword, spatialCoverageDescription, id, owner, filePath, metadataCreatedDate, metadataCreatedBy, metadataLastUpdatedDate, metadataLastUpdatedBy, containsDataFrom, containsDataUntil);
+        }
+
+    }
+
+    public static abstract class DatasetBuilderBase<T extends Dataset >{
+
+        protected T instance;
+
+        @SuppressWarnings("unchecked")
+        public DatasetBuilderBase() {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(Dataset.DatasetBuilder.class)) {
+                this.instance = ((T) new Dataset());
+            }
+        }
+
+        @SuppressWarnings("unchecked")
+        public DatasetBuilderBase(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, LanguageStringType name, LanguageStringType description, LanguageStringType dataSource, LanguageStringType registerUri, LanguageStringType populationDescription, String version, LanguageStringType versionDescription, Dataset.UnitType unitType, Dataset.TemporalityTypeType temporalityType, LanguageStringType subjectField, List<String> keyword, LanguageStringType spatialCoverageDescription, UUID id, LanguageStringType owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(Dataset.DatasetBuilder.class)) {
+                this.instance = ((T) new Dataset(shortName, assessment, datasetStatus, datasetState, name, description, dataSource, registerUri, populationDescription, version, versionDescription, unitType, temporalityType, subjectField, keyword, spatialCoverageDescription, id, owner, filePath, metadataCreatedDate, metadataCreatedBy, metadataLastUpdatedDate, metadataLastUpdatedBy, containsDataFrom, containsDataUntil));
+            }
+        }
+
+        public T build() {
+            T result;
+            result = this.instance;
+            this.instance = null;
+            return result;
+        }
+
+        public Dataset.DatasetBuilderBase withShortName(String shortName) {
+            ((Dataset) this.instance).shortName = shortName;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withAssessment(Dataset.Assessment assessment) {
+            ((Dataset) this.instance).assessment = assessment;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withDatasetStatus(Dataset.DataSetStatus datasetStatus) {
+            ((Dataset) this.instance).datasetStatus = datasetStatus;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withDatasetState(Dataset.DataSetState datasetState) {
+            ((Dataset) this.instance).datasetState = datasetState;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withName(LanguageStringType name) {
+            ((Dataset) this.instance).name = name;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withDescription(LanguageStringType description) {
+            ((Dataset) this.instance).description = description;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withDataSource(LanguageStringType dataSource) {
+            ((Dataset) this.instance).dataSource = dataSource;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withRegisterUri(LanguageStringType registerUri) {
+            ((Dataset) this.instance).registerUri = registerUri;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withPopulationDescription(LanguageStringType populationDescription) {
+            ((Dataset) this.instance).populationDescription = populationDescription;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withVersion(String version) {
+            ((Dataset) this.instance).version = version;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withVersionDescription(LanguageStringType versionDescription) {
+            ((Dataset) this.instance).versionDescription = versionDescription;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withUnitType(Dataset.UnitType unitType) {
+            ((Dataset) this.instance).unitType = unitType;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withTemporalityType(Dataset.TemporalityTypeType temporalityType) {
+            ((Dataset) this.instance).temporalityType = temporalityType;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withSubjectField(LanguageStringType subjectField) {
+            ((Dataset) this.instance).subjectField = subjectField;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withKeyword(List<String> keyword) {
+            ((Dataset) this.instance).keyword = keyword;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withSpatialCoverageDescription(LanguageStringType spatialCoverageDescription) {
+            ((Dataset) this.instance).spatialCoverageDescription = spatialCoverageDescription;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withId(UUID id) {
+            ((Dataset) this.instance).id = id;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withOwner(LanguageStringType owner) {
+            ((Dataset) this.instance).owner = owner;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withFilePath(String filePath) {
+            ((Dataset) this.instance).filePath = filePath;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withMetadataCreatedDate(Date metadataCreatedDate) {
+            ((Dataset) this.instance).metadataCreatedDate = metadataCreatedDate;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withMetadataCreatedBy(String metadataCreatedBy) {
+            ((Dataset) this.instance).metadataCreatedBy = metadataCreatedBy;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withMetadataLastUpdatedDate(Date metadataLastUpdatedDate) {
+            ((Dataset) this.instance).metadataLastUpdatedDate = metadataLastUpdatedDate;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withMetadataLastUpdatedBy(String metadataLastUpdatedBy) {
+            ((Dataset) this.instance).metadataLastUpdatedBy = metadataLastUpdatedBy;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withContainsDataFrom(String containsDataFrom) {
+            ((Dataset) this.instance).containsDataFrom = containsDataFrom;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withContainsDataUntil(String containsDataUntil) {
+            ((Dataset) this.instance).containsDataUntil = containsDataUntil;
+            return this;
+        }
+
+        public Dataset.DatasetBuilderBase withAdditionalProperty(String name, Object value) {
+            ((Dataset) this.instance).additionalProperties.put(name, value);
+            return this;
+        }
+
+    }
+
 
     /**
      * Data set state
@@ -1157,7 +1335,7 @@ public class Dataset implements Serializable
      * 
      */
     @Generated("jsonschema2pojo")
-    public enum DatasetState {
+    public enum DataSetState {
 
         SOURCE_DATA("SOURCE_DATA"),
         INPUT_DATA("INPUT_DATA"),
@@ -1165,15 +1343,15 @@ public class Dataset implements Serializable
         STATISTICS("STATISTICS"),
         OUTPUT_DATA("OUTPUT_DATA");
         private final String value;
-        private final static Map<String, Dataset.DatasetState> CONSTANTS = new HashMap<String, Dataset.DatasetState>();
+        private final static Map<String, Dataset.DataSetState> CONSTANTS = new HashMap<String, Dataset.DataSetState>();
 
         static {
-            for (Dataset.DatasetState c: values()) {
+            for (Dataset.DataSetState c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        DatasetState(String value) {
+        DataSetState(String value) {
             this.value = value;
         }
 
@@ -1188,8 +1366,8 @@ public class Dataset implements Serializable
         }
 
         @JsonCreator
-        public static Dataset.DatasetState fromValue(String value) {
-            Dataset.DatasetState constant = CONSTANTS.get(value);
+        public static Dataset.DataSetState fromValue(String value) {
+            Dataset.DataSetState constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {
@@ -1207,22 +1385,22 @@ public class Dataset implements Serializable
      * 
      */
     @Generated("jsonschema2pojo")
-    public enum DatasetStatus {
+    public enum DataSetStatus {
 
         DRAFT("DRAFT"),
         INTERNAL("INTERNAL"),
         EXTERNAL("EXTERNAL"),
         DEPRECATED("DEPRECATED");
         private final String value;
-        private final static Map<String, Dataset.DatasetStatus> CONSTANTS = new HashMap<String, Dataset.DatasetStatus>();
+        private final static Map<String, Dataset.DataSetStatus> CONSTANTS = new HashMap<String, Dataset.DataSetStatus>();
 
         static {
-            for (Dataset.DatasetStatus c: values()) {
+            for (Dataset.DataSetStatus c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        DatasetStatus(String value) {
+        DataSetStatus(String value) {
             this.value = value;
         }
 
@@ -1237,8 +1415,8 @@ public class Dataset implements Serializable
         }
 
         @JsonCreator
-        public static Dataset.DatasetStatus fromValue(String value) {
-            Dataset.DatasetStatus constant = CONSTANTS.get(value);
+        public static Dataset.DataSetStatus fromValue(String value) {
+            Dataset.DataSetStatus constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {

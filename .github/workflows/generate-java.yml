@@ -39,7 +39,7 @@ jobs:
       - name: Generate Java
         run: |
             pushd generated/java/datadoc-model
-            rm -rf target/generated-sources/jsonschema2pojo
+            rm -rf src/main/java
             ./mvnw jsonschema2pojo:generate
             popd
 

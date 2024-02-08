@@ -8,8 +8,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.processing.Generated;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -19,6 +17,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonValue;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 
 /**
@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @JsonPropertyOrder({
     "short_name",
     "data_element_path",
+    "data_element_pattern",
     "stable_identifier_type",
     "stable_identifier_version",
     "encryption_algorithm",
@@ -55,12 +56,21 @@ public class PseudoVariable implements Serializable
     /**
      * Data element path
      * <p>
-     * Path to one or multiple data element(s) in the dataset.Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path.
+     * Path to a single, concrete data element in the dataset.Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path.
      * 
      */
     @JsonProperty("data_element_path")
-    @JsonPropertyDescription("Path to one or multiple data element(s) in the dataset.")
+    @JsonPropertyDescription("Path to a single, concrete data element in the dataset.")
     private String dataElementPath;
+    /**
+     * Data element pattern
+     * <p>
+     * Pattern which matched this variable (if a pattern was used).Typically a glob pattern.
+     * 
+     */
+    @JsonProperty("data_element_pattern")
+    @JsonPropertyDescription("Pattern which matched this variable (if a pattern was used).")
+    private String dataElementPattern;
     /**
      * Stable identifier type
      * <p>
@@ -128,11 +138,11 @@ public class PseudoVariable implements Serializable
      */
     @JsonProperty("source_variable_datatype")
     @JsonPropertyDescription("Data type of the variable prior to pseudonymization.")
-    private PseudoVariable.SourceVariableDatatype sourceVariableDatatype;
+    private PseudoVariable.SourceVariableDataType sourceVariableDatatype;
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -6450199571654355576L;
+    private final static long serialVersionUID = 2935780493278493782L;
 
     /**
      * No args constructor for use in serialization
@@ -148,13 +158,15 @@ public class PseudoVariable implements Serializable
      * @param encryptionKeyReference
      *     Encryption key reference. Name of or reference to the encryption key used to pseudonymize the variable.
      * @param dataElementPath
-     *     Data element path. Path to one or multiple data element(s) in the dataset.
+     *     Data element path. Path to a single, concrete data element in the dataset.
      * @param sourceVariable
      *     Source variable. Short name of the source variable.
      * @param sourceVariableDatatype
      *     Source variable data type. Data type of the variable prior to pseudonymization.
      * @param encryptionAlgorithmParameters
      *     Encryption algorithm parameters. Parameters supplied to the encryption algorithm.
+     * @param dataElementPattern
+     *     Data element pattern. Pattern which matched this variable (if a pattern was used).
      * @param stableIdentifierVersion
      *     Stable identifier version. Version of stable identifier the variable was mapped to prior to pseudonymization.
      * @param shortName
@@ -162,10 +174,11 @@ public class PseudoVariable implements Serializable
      * @param encryptionAlgorithm
      *     Encryption algorithm. The encryption algorithm used to pseudonymize the variable.
      */
-    public PseudoVariable(String shortName, String dataElementPath, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDatatype sourceVariableDatatype) {
+    public PseudoVariable(String shortName, String dataElementPath, String dataElementPattern, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
         super();
         this.shortName = shortName;
         this.dataElementPath = dataElementPath;
+        this.dataElementPattern = dataElementPattern;
         this.stableIdentifierType = stableIdentifierType;
         this.stableIdentifierVersion = stableIdentifierVersion;
         this.encryptionAlgorithm = encryptionAlgorithm;
@@ -173,6 +186,10 @@ public class PseudoVariable implements Serializable
         this.encryptionAlgorithmParameters = encryptionAlgorithmParameters;
         this.sourceVariable = sourceVariable;
         this.sourceVariableDatatype = sourceVariableDatatype;
+    }
+
+    public static PseudoVariable.PseudoVariableBuilderBase builder() {
+        return new PseudoVariable.PseudoVariableBuilder();
     }
 
     /**
@@ -202,7 +219,7 @@ public class PseudoVariable implements Serializable
     /**
      * Data element path
      * <p>
-     * Path to one or multiple data element(s) in the dataset.Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path.
+     * Path to a single, concrete data element in the dataset.Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path.
      * 
      */
     @JsonProperty("data_element_path")
@@ -213,12 +230,34 @@ public class PseudoVariable implements Serializable
     /**
      * Data element path
      * <p>
-     * Path to one or multiple data element(s) in the dataset.Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path.
+     * Path to a single, concrete data element in the dataset.Only for use in heirarchical datasets. Use JsonPath dot-notation to specify the path.
      * 
      */
     @JsonProperty("data_element_path")
     public void setDataElementPath(String dataElementPath) {
         this.dataElementPath = dataElementPath;
+    }
+
+    /**
+     * Data element pattern
+     * <p>
+     * Pattern which matched this variable (if a pattern was used).Typically a glob pattern.
+     * 
+     */
+    @JsonProperty("data_element_pattern")
+    public String getDataElementPattern() {
+        return dataElementPattern;
+    }
+
+    /**
+     * Data element pattern
+     * <p>
+     * Pattern which matched this variable (if a pattern was used).Typically a glob pattern.
+     * 
+     */
+    @JsonProperty("data_element_pattern")
+    public void setDataElementPattern(String dataElementPattern) {
+        this.dataElementPattern = dataElementPattern;
     }
 
     /**
@@ -364,7 +403,7 @@ public class PseudoVariable implements Serializable
      * 
      */
     @JsonProperty("source_variable_datatype")
-    public PseudoVariable.SourceVariableDatatype getSourceVariableDatatype() {
+    public PseudoVariable.SourceVariableDataType getSourceVariableDatatype() {
         return sourceVariableDatatype;
     }
 
@@ -375,7 +414,7 @@ public class PseudoVariable implements Serializable
      * 
      */
     @JsonProperty("source_variable_datatype")
-    public void setSourceVariableDatatype(PseudoVariable.SourceVariableDatatype sourceVariableDatatype) {
+    public void setSourceVariableDatatype(PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
         this.sourceVariableDatatype = sourceVariableDatatype;
     }
 
@@ -400,6 +439,10 @@ public class PseudoVariable implements Serializable
         sb.append("dataElementPath");
         sb.append('=');
         sb.append(((this.dataElementPath == null)?"<null>":this.dataElementPath));
+        sb.append(',');
+        sb.append("dataElementPattern");
+        sb.append('=');
+        sb.append(((this.dataElementPattern == null)?"<null>":this.dataElementPattern));
         sb.append(',');
         sb.append("stableIdentifierType");
         sb.append('=');
@@ -450,6 +493,7 @@ public class PseudoVariable implements Serializable
         result = ((result* 31)+((this.sourceVariable == null)? 0 :this.sourceVariable.hashCode()));
         result = ((result* 31)+((this.sourceVariableDatatype == null)? 0 :this.sourceVariableDatatype.hashCode()));
         result = ((result* 31)+((this.encryptionAlgorithmParameters == null)? 0 :this.encryptionAlgorithmParameters.hashCode()));
+        result = ((result* 31)+((this.dataElementPattern == null)? 0 :this.dataElementPattern.hashCode()));
         result = ((result* 31)+((this.stableIdentifierVersion == null)? 0 :this.stableIdentifierVersion.hashCode()));
         result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
         result = ((result* 31)+((this.shortName == null)? 0 :this.shortName.hashCode()));
@@ -466,7 +510,106 @@ public class PseudoVariable implements Serializable
             return false;
         }
         PseudoVariable rhs = ((PseudoVariable) other);
-        return (((((((((((this.stableIdentifierType == rhs.stableIdentifierType)||((this.stableIdentifierType!= null)&&this.stableIdentifierType.equals(rhs.stableIdentifierType)))&&((this.encryptionKeyReference == rhs.encryptionKeyReference)||((this.encryptionKeyReference!= null)&&this.encryptionKeyReference.equals(rhs.encryptionKeyReference))))&&((this.dataElementPath == rhs.dataElementPath)||((this.dataElementPath!= null)&&this.dataElementPath.equals(rhs.dataElementPath))))&&((this.sourceVariable == rhs.sourceVariable)||((this.sourceVariable!= null)&&this.sourceVariable.equals(rhs.sourceVariable))))&&((this.sourceVariableDatatype == rhs.sourceVariableDatatype)||((this.sourceVariableDatatype!= null)&&this.sourceVariableDatatype.equals(rhs.sourceVariableDatatype))))&&((this.encryptionAlgorithmParameters == rhs.encryptionAlgorithmParameters)||((this.encryptionAlgorithmParameters!= null)&&this.encryptionAlgorithmParameters.equals(rhs.encryptionAlgorithmParameters))))&&((this.stableIdentifierVersion == rhs.stableIdentifierVersion)||((this.stableIdentifierVersion!= null)&&this.stableIdentifierVersion.equals(rhs.stableIdentifierVersion))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))))&&((this.encryptionAlgorithm == rhs.encryptionAlgorithm)||((this.encryptionAlgorithm!= null)&&this.encryptionAlgorithm.equals(rhs.encryptionAlgorithm))));
+        return ((((((((((((this.stableIdentifierType == rhs.stableIdentifierType)||((this.stableIdentifierType!= null)&&this.stableIdentifierType.equals(rhs.stableIdentifierType)))&&((this.encryptionKeyReference == rhs.encryptionKeyReference)||((this.encryptionKeyReference!= null)&&this.encryptionKeyReference.equals(rhs.encryptionKeyReference))))&&((this.dataElementPath == rhs.dataElementPath)||((this.dataElementPath!= null)&&this.dataElementPath.equals(rhs.dataElementPath))))&&((this.sourceVariable == rhs.sourceVariable)||((this.sourceVariable!= null)&&this.sourceVariable.equals(rhs.sourceVariable))))&&((this.sourceVariableDatatype == rhs.sourceVariableDatatype)||((this.sourceVariableDatatype!= null)&&this.sourceVariableDatatype.equals(rhs.sourceVariableDatatype))))&&((this.encryptionAlgorithmParameters == rhs.encryptionAlgorithmParameters)||((this.encryptionAlgorithmParameters!= null)&&this.encryptionAlgorithmParameters.equals(rhs.encryptionAlgorithmParameters))))&&((this.dataElementPattern == rhs.dataElementPattern)||((this.dataElementPattern!= null)&&this.dataElementPattern.equals(rhs.dataElementPattern))))&&((this.stableIdentifierVersion == rhs.stableIdentifierVersion)||((this.stableIdentifierVersion!= null)&&this.stableIdentifierVersion.equals(rhs.stableIdentifierVersion))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))))&&((this.encryptionAlgorithm == rhs.encryptionAlgorithm)||((this.encryptionAlgorithm!= null)&&this.encryptionAlgorithm.equals(rhs.encryptionAlgorithm))));
+    }
+
+    public static class PseudoVariableBuilder
+        extends PseudoVariable.PseudoVariableBuilderBase<PseudoVariable>
+    {
+
+
+        public PseudoVariableBuilder() {
+            super();
+        }
+
+        public PseudoVariableBuilder(String shortName, String dataElementPath, String dataElementPattern, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
+            super(shortName, dataElementPath, dataElementPattern, stableIdentifierType, stableIdentifierVersion, encryptionAlgorithm, encryptionKeyReference, encryptionAlgorithmParameters, sourceVariable, sourceVariableDatatype);
+        }
+
+    }
+
+    public static abstract class PseudoVariableBuilderBase<T extends PseudoVariable >{
+
+        protected T instance;
+
+        @SuppressWarnings("unchecked")
+        public PseudoVariableBuilderBase() {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(PseudoVariable.PseudoVariableBuilder.class)) {
+                this.instance = ((T) new PseudoVariable());
+            }
+        }
+
+        @SuppressWarnings("unchecked")
+        public PseudoVariableBuilderBase(String shortName, String dataElementPath, String dataElementPattern, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters, String sourceVariable, PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(PseudoVariable.PseudoVariableBuilder.class)) {
+                this.instance = ((T) new PseudoVariable(shortName, dataElementPath, dataElementPattern, stableIdentifierType, stableIdentifierVersion, encryptionAlgorithm, encryptionKeyReference, encryptionAlgorithmParameters, sourceVariable, sourceVariableDatatype));
+            }
+        }
+
+        public T build() {
+            T result;
+            result = this.instance;
+            this.instance = null;
+            return result;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withShortName(String shortName) {
+            ((PseudoVariable) this.instance).shortName = shortName;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withDataElementPath(String dataElementPath) {
+            ((PseudoVariable) this.instance).dataElementPath = dataElementPath;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withDataElementPattern(String dataElementPattern) {
+            ((PseudoVariable) this.instance).dataElementPattern = dataElementPattern;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withStableIdentifierType(String stableIdentifierType) {
+            ((PseudoVariable) this.instance).stableIdentifierType = stableIdentifierType;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withStableIdentifierVersion(String stableIdentifierVersion) {
+            ((PseudoVariable) this.instance).stableIdentifierVersion = stableIdentifierVersion;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withEncryptionAlgorithm(String encryptionAlgorithm) {
+            ((PseudoVariable) this.instance).encryptionAlgorithm = encryptionAlgorithm;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withEncryptionKeyReference(String encryptionKeyReference) {
+            ((PseudoVariable) this.instance).encryptionKeyReference = encryptionKeyReference;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withEncryptionAlgorithmParameters(List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters) {
+            ((PseudoVariable) this.instance).encryptionAlgorithmParameters = encryptionAlgorithmParameters;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withSourceVariable(String sourceVariable) {
+            ((PseudoVariable) this.instance).sourceVariable = sourceVariable;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withSourceVariableDatatype(PseudoVariable.SourceVariableDataType sourceVariableDatatype) {
+            ((PseudoVariable) this.instance).sourceVariableDatatype = sourceVariableDatatype;
+            return this;
+        }
+
+        public PseudoVariable.PseudoVariableBuilderBase withAdditionalProperty(String name, Object value) {
+            ((PseudoVariable) this.instance).additionalProperties.put(name, value);
+            return this;
+        }
+
     }
 
 
@@ -477,22 +620,22 @@ public class PseudoVariable implements Serializable
      * 
      */
     @Generated("jsonschema2pojo")
-    public enum SourceVariableDatatype {
+    public enum SourceVariableDataType {
 
         STRING("STRING"),
         INTEGER("INTEGER"),
         FLOAT("FLOAT"),
         DATETIME("DATETIME");
         private final String value;
-        private final static Map<String, PseudoVariable.SourceVariableDatatype> CONSTANTS = new HashMap<String, PseudoVariable.SourceVariableDatatype>();
+        private final static Map<String, PseudoVariable.SourceVariableDataType> CONSTANTS = new HashMap<String, PseudoVariable.SourceVariableDataType>();
 
         static {
-            for (PseudoVariable.SourceVariableDatatype c: values()) {
+            for (PseudoVariable.SourceVariableDataType c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        SourceVariableDatatype(String value) {
+        SourceVariableDataType(String value) {
             this.value = value;
         }
 
@@ -507,8 +650,8 @@ public class PseudoVariable implements Serializable
         }
 
         @JsonCreator
-        public static PseudoVariable.SourceVariableDatatype fromValue(String value) {
-            PseudoVariable.SourceVariableDatatype constant = CONSTANTS.get(value);
+        public static PseudoVariable.SourceVariableDataType fromValue(String value) {
+            PseudoVariable.SourceVariableDataType constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {

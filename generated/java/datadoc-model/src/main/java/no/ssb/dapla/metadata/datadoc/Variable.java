@@ -9,8 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 import javax.annotation.processing.Generated;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -20,6 +18,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonValue;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -210,7 +210,7 @@ public class Variable implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -6960793146359253774L;
+    private final static long serialVersionUID = -2952914587996934465L;
 
     /**
      * No args constructor for use in serialization
@@ -278,6 +278,10 @@ public class Variable implements Serializable
         this.id = id;
         this.containsDataFrom = containsDataFrom;
         this.containsDataUntil = containsDataUntil;
+    }
+
+    public static Variable.VariableBuilderBase builder() {
+        return new Variable.VariableBuilder();
     }
 
     /**
@@ -812,7 +816,8 @@ public class Variable implements Serializable
         STRING("STRING"),
         INTEGER("INTEGER"),
         DATETIME("DATETIME"),
-        BOOLEAN("BOOLEAN");
+        BOOLEAN("BOOLEAN"),
+        FLOAT("FLOAT");
         private final String value;
         private final static Map<String, Variable.DataType> CONSTANTS = new HashMap<String, Variable.DataType>();
 
@@ -844,6 +849,145 @@ public class Variable implements Serializable
             } else {
                 return constant;
             }
+        }
+
+    }
+
+    public static class VariableBuilder
+        extends Variable.VariableBuilderBase<Variable>
+    {
+
+
+        public VariableBuilder() {
+            super();
+        }
+
+        public VariableBuilder(String shortName, LanguageStringType name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, LanguageStringType dataSource, LanguageStringType populationDescription, LanguageStringType comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, String format, URI classificationUri, URI sentinelValueUri, LanguageStringType invalidValueDescription, UUID id, Date containsDataFrom, Date containsDataUntil) {
+            super(shortName, name, dataType, variableRole, definitionUri, directPersonIdentifying, dataSource, populationDescription, comment, temporalityType, measurementUnit, format, classificationUri, sentinelValueUri, invalidValueDescription, id, containsDataFrom, containsDataUntil);
+        }
+
+    }
+
+    public static abstract class VariableBuilderBase<T extends Variable >{
+
+        protected T instance;
+
+        @SuppressWarnings("unchecked")
+        public VariableBuilderBase() {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(Variable.VariableBuilder.class)) {
+                this.instance = ((T) new Variable());
+            }
+        }
+
+        @SuppressWarnings("unchecked")
+        public VariableBuilderBase(String shortName, LanguageStringType name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, LanguageStringType dataSource, LanguageStringType populationDescription, LanguageStringType comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, String format, URI classificationUri, URI sentinelValueUri, LanguageStringType invalidValueDescription, UUID id, Date containsDataFrom, Date containsDataUntil) {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(Variable.VariableBuilder.class)) {
+                this.instance = ((T) new Variable(shortName, name, dataType, variableRole, definitionUri, directPersonIdentifying, dataSource, populationDescription, comment, temporalityType, measurementUnit, format, classificationUri, sentinelValueUri, invalidValueDescription, id, containsDataFrom, containsDataUntil));
+            }
+        }
+
+        public T build() {
+            T result;
+            result = this.instance;
+            this.instance = null;
+            return result;
+        }
+
+        public Variable.VariableBuilderBase withShortName(String shortName) {
+            ((Variable) this.instance).shortName = shortName;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withName(LanguageStringType name) {
+            ((Variable) this.instance).name = name;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withDataType(Variable.DataType dataType) {
+            ((Variable) this.instance).dataType = dataType;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withVariableRole(Variable.VariableRole variableRole) {
+            ((Variable) this.instance).variableRole = variableRole;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withDefinitionUri(URI definitionUri) {
+            ((Variable) this.instance).definitionUri = definitionUri;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withDirectPersonIdentifying(Boolean directPersonIdentifying) {
+            ((Variable) this.instance).directPersonIdentifying = directPersonIdentifying;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withDataSource(LanguageStringType dataSource) {
+            ((Variable) this.instance).dataSource = dataSource;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withPopulationDescription(LanguageStringType populationDescription) {
+            ((Variable) this.instance).populationDescription = populationDescription;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withComment(LanguageStringType comment) {
+            ((Variable) this.instance).comment = comment;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withTemporalityType(no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType) {
+            ((Variable) this.instance).temporalityType = temporalityType;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withMeasurementUnit(String measurementUnit) {
+            ((Variable) this.instance).measurementUnit = measurementUnit;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withFormat(String format) {
+            ((Variable) this.instance).format = format;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withClassificationUri(URI classificationUri) {
+            ((Variable) this.instance).classificationUri = classificationUri;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withSentinelValueUri(URI sentinelValueUri) {
+            ((Variable) this.instance).sentinelValueUri = sentinelValueUri;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withInvalidValueDescription(LanguageStringType invalidValueDescription) {
+            ((Variable) this.instance).invalidValueDescription = invalidValueDescription;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withId(UUID id) {
+            ((Variable) this.instance).id = id;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withContainsDataFrom(Date containsDataFrom) {
+            ((Variable) this.instance).containsDataFrom = containsDataFrom;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withContainsDataUntil(Date containsDataUntil) {
+            ((Variable) this.instance).containsDataUntil = containsDataUntil;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withAdditionalProperty(String name, Object value) {
+            ((Variable) this.instance).additionalProperties.put(name, value);
+            return this;
         }
 
     }

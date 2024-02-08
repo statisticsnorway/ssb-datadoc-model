@@ -5,14 +5,14 @@ import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.processing.Generated;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 
 /**
@@ -44,7 +44,7 @@ public class LanguageStringType implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 657811707745008224L;
+    private final static long serialVersionUID = -2807086073068172838L;
 
     /**
      * No args constructor for use in serialization
@@ -58,6 +58,10 @@ public class LanguageStringType implements Serializable
         this.en = en;
         this.nn = nn;
         this.nb = nb;
+    }
+
+    public static LanguageStringType.LanguageStringTypeBuilderBase builder() {
+        return new LanguageStringType.LanguageStringTypeBuilder();
     }
 
     @JsonProperty("en")
@@ -158,6 +162,70 @@ public class LanguageStringType implements Serializable
         }
         LanguageStringType rhs = ((LanguageStringType) other);
         return (((((this.nn == rhs.nn)||((this.nn!= null)&&this.nn.equals(rhs.nn)))&&((this.en == rhs.en)||((this.en!= null)&&this.en.equals(rhs.en))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.nb == rhs.nb)||((this.nb!= null)&&this.nb.equals(rhs.nb))));
+    }
+
+    public static class LanguageStringTypeBuilder
+        extends LanguageStringType.LanguageStringTypeBuilderBase<LanguageStringType>
+    {
+
+
+        public LanguageStringTypeBuilder() {
+            super();
+        }
+
+        public LanguageStringTypeBuilder(String en, String nn, String nb) {
+            super(en, nn, nb);
+        }
+
+    }
+
+    public static abstract class LanguageStringTypeBuilderBase<T extends LanguageStringType >{
+
+        protected T instance;
+
+        @SuppressWarnings("unchecked")
+        public LanguageStringTypeBuilderBase() {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(LanguageStringType.LanguageStringTypeBuilder.class)) {
+                this.instance = ((T) new LanguageStringType());
+            }
+        }
+
+        @SuppressWarnings("unchecked")
+        public LanguageStringTypeBuilderBase(String en, String nn, String nb) {
+            // Skip initialization when called from subclass
+            if (this.getClass().equals(LanguageStringType.LanguageStringTypeBuilder.class)) {
+                this.instance = ((T) new LanguageStringType(en, nn, nb));
+            }
+        }
+
+        public T build() {
+            T result;
+            result = this.instance;
+            this.instance = null;
+            return result;
+        }
+
+        public LanguageStringType.LanguageStringTypeBuilderBase withEn(String en) {
+            ((LanguageStringType) this.instance).en = en;
+            return this;
+        }
+
+        public LanguageStringType.LanguageStringTypeBuilderBase withNn(String nn) {
+            ((LanguageStringType) this.instance).nn = nn;
+            return this;
+        }
+
+        public LanguageStringType.LanguageStringTypeBuilderBase withNb(String nb) {
+            ((LanguageStringType) this.instance).nb = nb;
+            return this;
+        }
+
+        public LanguageStringType.LanguageStringTypeBuilderBase withAdditionalProperty(String name, Object value) {
+            ((LanguageStringType) this.instance).additionalProperties.put(name, value);
+            return this;
+        }
+
     }
 
 }

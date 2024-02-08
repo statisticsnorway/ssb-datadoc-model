@@ -211,7 +211,8 @@
                             "STRING",
                             "INTEGER",
                             "DATETIME",
-                            "BOOLEAN"
+                            "BOOLEAN",
+                            "FLOAT"
                         ]
                     },
                     "variable_role": {
