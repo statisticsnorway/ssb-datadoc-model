@@ -98,7 +98,7 @@
                 "subject_field": {
                     "title": "Subject field",
                     "description": "Primary area of statistics in which the data set is included",
-                    "$ref": "./no/languageStringType.json#/languageStringType"
+                    "type": "string"
                 },
                 "keyword": {
                     "title": "Keyword(s)",
