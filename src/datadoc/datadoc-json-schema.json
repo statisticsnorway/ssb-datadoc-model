@@ -69,11 +69,6 @@
                     "description": "Data source. Set either for the data set or instance variable.",
                     "$ref": "./no/languageStringType.json#/languageStringType"
                 },
-                "register_uri": {
-                    "title": "Register",
-                    "description": "Link to register",
-                    "$ref": "./no/languageStringType.json#/languageStringType"
-                },
                 "population_description": {
                     "title": "Description of population",
                     "description": "Description of the population covered in the data set. Includes unit type, spatial coverage and period of time.",
