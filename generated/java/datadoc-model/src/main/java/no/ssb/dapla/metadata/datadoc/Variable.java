@@ -72,14 +72,14 @@ public class Variable implements Serializable
     @JsonPropertyDescription("The path (dot notation) to the data element in a hierarchical data structure, eg. 'person.adress'. Must be given in addition to the short_name.")
     private String dataElementPath;
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * (Required)
      * 
      */
     @JsonProperty("name")
     @Valid
     @NotNull
-    private LanguageStringType name;
+    private List<Object> name = new ArrayList<Object>();
     /**
      * Data type
      * <p>
@@ -123,26 +123,26 @@ public class Variable implements Serializable
     @NotNull
     private Boolean directPersonIdentifying;
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * 
      */
     @JsonProperty("data_source")
     @Valid
-    private LanguageStringType dataSource;
+    private List<Object> dataSource = new ArrayList<Object>();
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * 
      */
     @JsonProperty("population_description")
     @Valid
-    private LanguageStringType populationDescription;
+    private List<Object> populationDescription = new ArrayList<Object>();
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * 
      */
     @JsonProperty("comment")
     @Valid
-    private LanguageStringType comment;
+    private List<Object> comment = new ArrayList<Object>();
     /**
      * Reusable temporalitytype type
      * 
@@ -195,12 +195,12 @@ public class Variable implements Serializable
     @Valid
     private SpecialValues specialValue;
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * 
      */
     @JsonProperty("invalid_value_description")
     @Valid
-    private LanguageStringType invalidValueDescription;
+    private List<Object> invalidValueDescription = new ArrayList<Object>();
     /**
      * Custom type for variable metadata
      * <p>
@@ -243,7 +243,7 @@ public class Variable implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 1684720938968430884L;
+    private final static long serialVersionUID = 1019444275429139130L;
 
     /**
      * No args constructor for use in serialization
@@ -297,7 +297,7 @@ public class Variable implements Serializable
      * @param invalidValueDescription
      *     Invalid value(s) description. Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.
      */
-    public Variable(String shortName, String dataElementPath, LanguageStringType name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, LanguageStringType dataSource, LanguageStringType populationDescription, LanguageStringType comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, LanguageStringType invalidValueDescription, List<CustomType__1> customType, UUID id, Date containsDataFrom, Date containsDataUntil) {
+    public Variable(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, List<Object> dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, Date containsDataFrom, Date containsDataUntil) {
         super();
         this.shortName = shortName;
         this.dataElementPath = dataElementPath;
@@ -373,22 +373,22 @@ public class Variable implements Serializable
     }
 
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * (Required)
      * 
      */
     @JsonProperty("name")
-    public LanguageStringType getName() {
+    public List<Object> getName() {
         return name;
     }
 
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * (Required)
      * 
      */
     @JsonProperty("name")
-    public void setName(LanguageStringType name) {
+    public void setName(List<Object> name) {
         this.name = name;
     }
 
@@ -487,56 +487,56 @@ public class Variable implements Serializable
     }
 
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * 
      */
     @JsonProperty("data_source")
-    public LanguageStringType getDataSource() {
+    public List<Object> getDataSource() {
         return dataSource;
     }
 
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * 
      */
     @JsonProperty("data_source")
-    public void setDataSource(LanguageStringType dataSource) {
+    public void setDataSource(List<Object> dataSource) {
         this.dataSource = dataSource;
     }
 
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * 
      */
     @JsonProperty("population_description")
-    public LanguageStringType getPopulationDescription() {
+    public List<Object> getPopulationDescription() {
         return populationDescription;
     }
 
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * 
      */
     @JsonProperty("population_description")
-    public void setPopulationDescription(LanguageStringType populationDescription) {
+    public void setPopulationDescription(List<Object> populationDescription) {
         this.populationDescription = populationDescription;
     }
 
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * 
      */
     @JsonProperty("comment")
-    public LanguageStringType getComment() {
+    public List<Object> getComment() {
         return comment;
     }
 
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * 
      */
     @JsonProperty("comment")
-    public void setComment(LanguageStringType comment) {
+    public void setComment(List<Object> comment) {
         this.comment = comment;
     }
 
@@ -669,20 +669,20 @@ public class Variable implements Serializable
     }
 
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * 
      */
     @JsonProperty("invalid_value_description")
-    public LanguageStringType getInvalidValueDescription() {
+    public List<Object> getInvalidValueDescription() {
         return invalidValueDescription;
     }
 
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * 
      */
     @JsonProperty("invalid_value_description")
-    public void setInvalidValueDescription(LanguageStringType invalidValueDescription) {
+    public void setInvalidValueDescription(List<Object> invalidValueDescription) {
         this.invalidValueDescription = invalidValueDescription;
     }
 
@@ -986,7 +986,7 @@ public class Variable implements Serializable
             super();
         }
 
-        public VariableBuilder(String shortName, String dataElementPath, LanguageStringType name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, LanguageStringType dataSource, LanguageStringType populationDescription, LanguageStringType comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, LanguageStringType invalidValueDescription, List<CustomType__1> customType, UUID id, Date containsDataFrom, Date containsDataUntil) {
+        public VariableBuilder(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, List<Object> dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, Date containsDataFrom, Date containsDataUntil) {
             super(shortName, dataElementPath, name, dataType, variableRole, definitionUri, directPersonIdentifying, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil);
         }
 
@@ -1005,7 +1005,7 @@ public class Variable implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public VariableBuilderBase(String shortName, String dataElementPath, LanguageStringType name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, LanguageStringType dataSource, LanguageStringType populationDescription, LanguageStringType comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, LanguageStringType invalidValueDescription, List<CustomType__1> customType, UUID id, Date containsDataFrom, Date containsDataUntil) {
+        public VariableBuilderBase(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, List<Object> dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, Date containsDataFrom, Date containsDataUntil) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(Variable.VariableBuilder.class)) {
                 this.instance = ((T) new Variable(shortName, dataElementPath, name, dataType, variableRole, definitionUri, directPersonIdentifying, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil));
@@ -1029,7 +1029,7 @@ public class Variable implements Serializable
             return this;
         }
 
-        public Variable.VariableBuilderBase withName(LanguageStringType name) {
+        public Variable.VariableBuilderBase withName(List<Object> name) {
             ((Variable) this.instance).name = name;
             return this;
         }
@@ -1054,17 +1054,17 @@ public class Variable implements Serializable
             return this;
         }
 
-        public Variable.VariableBuilderBase withDataSource(LanguageStringType dataSource) {
+        public Variable.VariableBuilderBase withDataSource(List<Object> dataSource) {
             ((Variable) this.instance).dataSource = dataSource;
             return this;
         }
 
-        public Variable.VariableBuilderBase withPopulationDescription(LanguageStringType populationDescription) {
+        public Variable.VariableBuilderBase withPopulationDescription(List<Object> populationDescription) {
             ((Variable) this.instance).populationDescription = populationDescription;
             return this;
         }
 
-        public Variable.VariableBuilderBase withComment(LanguageStringType comment) {
+        public Variable.VariableBuilderBase withComment(List<Object> comment) {
             ((Variable) this.instance).comment = comment;
             return this;
         }
@@ -1099,7 +1099,7 @@ public class Variable implements Serializable
             return this;
         }
 
-        public Variable.VariableBuilderBase withInvalidValueDescription(LanguageStringType invalidValueDescription) {
+        public Variable.VariableBuilderBase withInvalidValueDescription(List<Object> invalidValueDescription) {
             ((Variable) this.instance).invalidValueDescription = invalidValueDescription;
             return this;
         }

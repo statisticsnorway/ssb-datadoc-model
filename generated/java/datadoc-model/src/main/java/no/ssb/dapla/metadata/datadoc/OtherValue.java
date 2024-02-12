@@ -2,8 +2,10 @@
 package no.ssb.dapla.metadata.datadoc;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.processing.Generated;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -36,12 +38,12 @@ public class OtherValue implements Serializable
     @JsonPropertyDescription("Other value code")
     private String code;
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * 
      */
     @JsonProperty("name")
     @Valid
-    private LanguageStringType name;
+    private List<Object> name = new ArrayList<Object>();
     /**
      * Valid from
      * <p>
@@ -63,7 +65,7 @@ public class OtherValue implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -5723978274694723388L;
+    private final static long serialVersionUID = 7799050029710232246L;
 
     /**
      * No args constructor for use in serialization
@@ -83,7 +85,7 @@ public class OtherValue implements Serializable
      * @param validFrom
      *     Valid from. Other value valid from date.
      */
-    public OtherValue(String code, LanguageStringType name, Date validFrom, Date validUntil) {
+    public OtherValue(String code, List<Object> name, Date validFrom, Date validUntil) {
         super();
         this.code = code;
         this.name = name;
@@ -118,20 +120,20 @@ public class OtherValue implements Serializable
     }
 
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * 
      */
     @JsonProperty("name")
-    public LanguageStringType getName() {
+    public List<Object> getName() {
         return name;
     }
 
     /**
-     * Reusable langugage string type
+     * Reusableb langugage string type
      * 
      */
     @JsonProperty("name")
-    public void setName(LanguageStringType name) {
+    public void setName(List<Object> name) {
         this.name = name;
     }
 
@@ -253,7 +255,7 @@ public class OtherValue implements Serializable
             super();
         }
 
-        public OtherValueBuilder(String code, LanguageStringType name, Date validFrom, Date validUntil) {
+        public OtherValueBuilder(String code, List<Object> name, Date validFrom, Date validUntil) {
             super(code, name, validFrom, validUntil);
         }
 
@@ -272,7 +274,7 @@ public class OtherValue implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public OtherValueBuilderBase(String code, LanguageStringType name, Date validFrom, Date validUntil) {
+        public OtherValueBuilderBase(String code, List<Object> name, Date validFrom, Date validUntil) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(OtherValue.OtherValueBuilder.class)) {
                 this.instance = ((T) new OtherValue(code, name, validFrom, validUntil));
@@ -291,7 +293,7 @@ public class OtherValue implements Serializable
             return this;
         }
 
-        public OtherValue.OtherValueBuilderBase withName(LanguageStringType name) {
+        public OtherValue.OtherValueBuilderBase withName(List<Object> name) {
             ((OtherValue) this.instance).name = name;
             return this;
         }
