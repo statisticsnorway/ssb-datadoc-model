@@ -34,10 +34,10 @@ jobs:
         run: poetry --version
       - name: Install dependencies
         run: |
-          poetry install --all-extras
+          poetry install
       - name: Run unit tests
         run: |
-          set -o pipefail; poetry run pytest -v --cache-clear --junitxml=pytest.xml --cov-report=term-missing --cov=datadoc | tee pytest-coverage.txt
+          set -o pipefail; poetry run pytest -v --cache-clear --junitxml=pytest.xml --cov-report=term-missing --cov=datadoc_model | tee pytest-coverage.txt
       - name: Pytest coverage comment
         id: coverageComment
         # Always run
