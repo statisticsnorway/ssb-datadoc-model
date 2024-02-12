@@ -87,8 +87,7 @@
                 "unit_type": {
                     "title": "Unit type",
                     "description": "Unit Type for data file, table or data set. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter",
-                    "type": "string",
-                    "$ref": "./no/unitType.json#/unitType"
+                    "type": "string"
                 },
                 "temporality_type": {
                     "title": "Temporality type",
