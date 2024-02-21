@@ -10,7 +10,7 @@
         },
         "document_version": {
             "description": "Version of this model",
-            "const": "2.0.0"
+            "const": "2.1.0"
         },
         "dataset": {
             "type": "object",
@@ -92,8 +92,7 @@
                 "unit_type": {
                     "title": "Unit type",
                     "description": "Unit Type for data file, table or data set. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter",
-                    "type": "string",
-                    "$ref": "./no/unitType.json#/unitType"
+                    "type": "string"
                 },
                 "temporality_type": {
                     "title": "Temporality type",

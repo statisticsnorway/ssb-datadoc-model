@@ -167,7 +167,7 @@ public class Dataset implements Serializable
     @JsonProperty("unit_type")
     @JsonPropertyDescription("Unit Type for data file, table or data set. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter")
     @NotNull
-    private Dataset.UnitType unitType;
+    private String unitType;
     /**
      * Reusable temporalitytype type
      * 
@@ -296,7 +296,7 @@ public class Dataset implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 1788379209809172251L;
+    private final static long serialVersionUID = 8856456406912570855L;
 
     /**
      * No args constructor for use in serialization
@@ -358,7 +358,7 @@ public class Dataset implements Serializable
      * @param dataSource
      *     Data source. Data source. Set either for the data set or instance variable.
      */
-    public Dataset(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, LanguageStringType name, LanguageStringType description, LanguageStringType dataSource, LanguageStringType registerUri, LanguageStringType populationDescription, String version, LanguageStringType versionDescription, Dataset.UnitType unitType, Dataset.TemporalityTypeType temporalityType, LanguageStringType subjectField, List<String> keyword, LanguageStringType spatialCoverageDescription, UUID id, LanguageStringType owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
+    public Dataset(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, LanguageStringType name, LanguageStringType description, LanguageStringType dataSource, LanguageStringType registerUri, LanguageStringType populationDescription, String version, LanguageStringType versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, LanguageStringType subjectField, List<String> keyword, LanguageStringType spatialCoverageDescription, UUID id, LanguageStringType owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
         super();
         this.shortName = shortName;
         this.assessment = assessment;
@@ -633,7 +633,7 @@ public class Dataset implements Serializable
      * 
      */
     @JsonProperty("unit_type")
-    public Dataset.UnitType getUnitType() {
+    public String getUnitType() {
         return unitType;
     }
 
@@ -645,7 +645,7 @@ public class Dataset implements Serializable
      * 
      */
     @JsonProperty("unit_type")
-    public void setUnitType(Dataset.UnitType unitType) {
+    public void setUnitType(String unitType) {
         this.unitType = unitType;
     }
 
@@ -1162,7 +1162,7 @@ public class Dataset implements Serializable
             super();
         }
 
-        public DatasetBuilder(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, LanguageStringType name, LanguageStringType description, LanguageStringType dataSource, LanguageStringType registerUri, LanguageStringType populationDescription, String version, LanguageStringType versionDescription, Dataset.UnitType unitType, Dataset.TemporalityTypeType temporalityType, LanguageStringType subjectField, List<String> keyword, LanguageStringType spatialCoverageDescription, UUID id, LanguageStringType owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
+        public DatasetBuilder(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, LanguageStringType name, LanguageStringType description, LanguageStringType dataSource, LanguageStringType registerUri, LanguageStringType populationDescription, String version, LanguageStringType versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, LanguageStringType subjectField, List<String> keyword, LanguageStringType spatialCoverageDescription, UUID id, LanguageStringType owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
             super(shortName, assessment, datasetStatus, datasetState, name, description, dataSource, registerUri, populationDescription, version, versionDescription, unitType, temporalityType, subjectField, keyword, spatialCoverageDescription, id, owner, filePath, metadataCreatedDate, metadataCreatedBy, metadataLastUpdatedDate, metadataLastUpdatedBy, containsDataFrom, containsDataUntil);
         }
 
@@ -1181,7 +1181,7 @@ public class Dataset implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public DatasetBuilderBase(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, LanguageStringType name, LanguageStringType description, LanguageStringType dataSource, LanguageStringType registerUri, LanguageStringType populationDescription, String version, LanguageStringType versionDescription, Dataset.UnitType unitType, Dataset.TemporalityTypeType temporalityType, LanguageStringType subjectField, List<String> keyword, LanguageStringType spatialCoverageDescription, UUID id, LanguageStringType owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
+        public DatasetBuilderBase(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, LanguageStringType name, LanguageStringType description, LanguageStringType dataSource, LanguageStringType registerUri, LanguageStringType populationDescription, String version, LanguageStringType versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, LanguageStringType subjectField, List<String> keyword, LanguageStringType spatialCoverageDescription, UUID id, LanguageStringType owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(Dataset.DatasetBuilder.class)) {
                 this.instance = ((T) new Dataset(shortName, assessment, datasetStatus, datasetState, name, description, dataSource, registerUri, populationDescription, version, versionDescription, unitType, temporalityType, subjectField, keyword, spatialCoverageDescription, id, owner, filePath, metadataCreatedDate, metadataCreatedBy, metadataLastUpdatedDate, metadataLastUpdatedBy, containsDataFrom, containsDataUntil));
@@ -1250,7 +1250,7 @@ public class Dataset implements Serializable
             return this;
         }
 
-        public Dataset.DatasetBuilderBase withUnitType(Dataset.UnitType unitType) {
+        public Dataset.DatasetBuilderBase withUnitType(String unitType) {
             ((Dataset) this.instance).unitType = unitType;
             return this;
         }
@@ -1464,72 +1464,6 @@ public class Dataset implements Serializable
         @JsonCreator
         public static Dataset.TemporalityTypeType fromValue(String value) {
             Dataset.TemporalityTypeType constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException(value);
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
-
-    /**
-     * Unit type
-     * <p>
-     * Unit Type for data file, table or data set. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter
-     * 
-     */
-    @Generated("jsonschema2pojo")
-    public enum UnitType {
-
-        ARBEIDSULYKKE("ARBEIDSULYKKE"),
-        BOLIG("BOLIG"),
-        BYGNING("BYGNING"),
-        EIENDOM("EIENDOM"),
-        FAMILIE("FAMILIE"),
-        FORETAK("FORETAK"),
-        FYLKE("FYLKE"),
-        HAVNEANLOEP("HAVNEANLOEP"),
-        HUSHOLDNING("HUSHOLDNING"),
-        KJOERETOEY("KJOERETOEY"),
-        KOMMUNE("KOMMUNE"),
-        KURS("KURS"),
-        LOVBRUDD("LOVBRUDD"),
-        PERSON("PERSON"),
-        STAT("STAT"),
-        STORFE("STORFE"),
-        TRAFIKKULYKKE("TRAFIKKULYKKE"),
-        TRANSAKSJON("TRANSAKSJON"),
-        VARE_TJENESTE("VARE_TJENESTE"),
-        VERDIPAPIR("VERDIPAPIR"),
-        VIRKSOMHET("VIRKSOMHET");
-        private final String value;
-        private final static Map<String, Dataset.UnitType> CONSTANTS = new HashMap<String, Dataset.UnitType>();
-
-        static {
-            for (Dataset.UnitType c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        UnitType(String value) {
-            this.value = value;
-        }
-
-        @Override
-        public String toString() {
-            return this.value;
-        }
-
-        @JsonValue
-        public String value() {
-            return this.value;
-        }
-
-        @JsonCreator
-        public static Dataset.UnitType fromValue(String value) {
-            Dataset.UnitType constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {
