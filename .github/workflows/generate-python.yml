@@ -55,6 +55,7 @@ jobs:
             --output-model-type pydantic_v2.BaseModel
             --base-class "datadoc_model.datadoc_base_model.DatadocBaseModel"
             --use-default
+            --use-title-as-name
             --use-one-literal-as-default
             --force-optional
             --use-subclass-enum
