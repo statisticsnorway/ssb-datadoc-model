@@ -1,13 +1,14 @@
+name: Generate Java
 
 on:
   push:
     branches:
-    - "**"
-    - "!main"
+      - "**"
+      - "!main"
     paths:
-    - "src/**"
-    - "generated/java/datadoc-model/pom.xml"
-    - ".github/workflows/generate-java.yml"
+      - "src/**"
+      - "generated/java/datadoc-model/pom.xml"
+      - ".github/workflows/generate-java.yml"
 
 # Allow only one generate workflow to run at a time. This avoids race conditions when
 # pushing to the same branch.
@@ -38,10 +39,10 @@ jobs:
 
       - name: Generate Java
         run: |
-            pushd generated/java/datadoc-model
-            rm -rf src/main/java
-            ./mvnw jsonschema2pojo:generate
-            popd
+          pushd generated/java/datadoc-model
+          rm -rf src/main/java
+          ./mvnw jsonschema2pojo:generate
+          popd
 
       - name: Check for modified files
         id: git-check
@@ -50,11 +51,11 @@ jobs:
       - name: Commit
         if: steps.git-check.outputs.modified == 'true'
         run: |
-            git add -A
-            git commit -m '[GENERATE] Java classes from JSON Schema'
+          git add -A
+          git commit -m '[GENERATE] Java classes from JSON Schema'
 
       - name: Push
         if: steps.git-check.outputs.modified == 'true'
         run: |
-            git pull --rebase origin "${GITHUB_REF}"
-            git push origin "${GITHUB_REF}"
+          git pull --rebase origin "${GITHUB_REF}"
+          git push origin "${GITHUB_REF}"
