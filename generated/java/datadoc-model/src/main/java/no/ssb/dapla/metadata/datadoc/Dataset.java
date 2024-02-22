@@ -333,11 +333,7 @@ public class Dataset implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-<<<<<<< HEAD
     private final static long serialVersionUID = -7459109918184248449L;
-=======
-    private final static long serialVersionUID = 8856456406912570855L;
->>>>>>> origin/main
 
     /**
      * No args constructor for use in serialization
@@ -405,11 +401,7 @@ public class Dataset implements Serializable
      * @param dataSource
      *     Data source. Data source. Set either for the data set or instance variable.
      */
-<<<<<<< HEAD
     public Dataset(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, List<Object> dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, List<Object> owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
-=======
-    public Dataset(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, LanguageStringType name, LanguageStringType description, LanguageStringType dataSource, LanguageStringType registerUri, LanguageStringType populationDescription, String version, LanguageStringType versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, LanguageStringType subjectField, List<String> keyword, LanguageStringType spatialCoverageDescription, UUID id, LanguageStringType owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
->>>>>>> origin/main
         super();
         this.shortName = shortName;
         this.assessment = assessment;
@@ -1307,13 +1299,8 @@ public class Dataset implements Serializable
             super();
         }
 
-<<<<<<< HEAD
         public DatasetBuilder(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, List<Object> dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, List<Object> owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
             super(shortName, assessment, datasetStatus, datasetState, name, description, dataSource, populationDescription, version, versionDescription, unitType, temporalityType, subjectField, keyword, spatialCoverageDescription, containsPersonalData, useRestriction, useRestrictionDate, customType, id, owner, filePath, metadataCreatedDate, metadataCreatedBy, metadataLastUpdatedDate, metadataLastUpdatedBy, containsDataFrom, containsDataUntil);
-=======
-        public DatasetBuilder(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, LanguageStringType name, LanguageStringType description, LanguageStringType dataSource, LanguageStringType registerUri, LanguageStringType populationDescription, String version, LanguageStringType versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, LanguageStringType subjectField, List<String> keyword, LanguageStringType spatialCoverageDescription, UUID id, LanguageStringType owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
-            super(shortName, assessment, datasetStatus, datasetState, name, description, dataSource, registerUri, populationDescription, version, versionDescription, unitType, temporalityType, subjectField, keyword, spatialCoverageDescription, id, owner, filePath, metadataCreatedDate, metadataCreatedBy, metadataLastUpdatedDate, metadataLastUpdatedBy, containsDataFrom, containsDataUntil);
->>>>>>> origin/main
         }
 
     }
@@ -1331,11 +1318,7 @@ public class Dataset implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-<<<<<<< HEAD
         public DatasetBuilderBase(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, List<Object> dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, List<Object> owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
-=======
-        public DatasetBuilderBase(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, LanguageStringType name, LanguageStringType description, LanguageStringType dataSource, LanguageStringType registerUri, LanguageStringType populationDescription, String version, LanguageStringType versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, LanguageStringType subjectField, List<String> keyword, LanguageStringType spatialCoverageDescription, UUID id, LanguageStringType owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
->>>>>>> origin/main
             // Skip initialization when called from subclass
             if (this.getClass().equals(Dataset.DatasetBuilder.class)) {
                 this.instance = ((T) new Dataset(shortName, assessment, datasetStatus, datasetState, name, description, dataSource, populationDescription, version, versionDescription, unitType, temporalityType, subjectField, keyword, spatialCoverageDescription, containsPersonalData, useRestriction, useRestrictionDate, customType, id, owner, filePath, metadataCreatedDate, metadataCreatedBy, metadataLastUpdatedDate, metadataLastUpdatedBy, containsDataFrom, containsDataUntil));
@@ -1642,7 +1625,6 @@ public class Dataset implements Serializable
 
     }
 
-<<<<<<< HEAD
 
     /**
      * Use restriction
@@ -1691,6 +1673,4 @@ public class Dataset implements Serializable
 
     }
 
-=======
->>>>>>> origin/main
 }
