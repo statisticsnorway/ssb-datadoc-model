@@ -214,12 +214,12 @@ public class Dataset implements Serializable
     /**
      * Owner
      * <p>
-     * Owner of the data set (responsible division in Statistics Norway). See also Classification of organisational units https://www.ssb.no/en/klass/klassifikasjoner/83
+     * Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83
      * (Required)
      * 
      */
     @JsonProperty("owner")
-    @JsonPropertyDescription("Owner of the data set (responsible division in Statistics Norway). See also Classification of organisational units https://www.ssb.no/en/klass/klassifikasjoner/83")
+    @JsonPropertyDescription("Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83")
     @NotNull
     private String owner;
     /**
@@ -342,7 +342,7 @@ public class Dataset implements Serializable
      * @param keyword
      *     Keyword(s). A list of searchable keywords that can contribute to the development of effective filtering and search services.
      * @param owner
-     *     Owner. Owner of the data set (responsible division in Statistics Norway). See also Classification of organisational units https://www.ssb.no/en/klass/klassifikasjoner/83.
+     *     Owner. Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83.
      * @param containsDataFrom
      *     Contains data from. The data set contains data from date/time.
      * @param filePath
@@ -756,7 +756,7 @@ public class Dataset implements Serializable
     /**
      * Owner
      * <p>
-     * Owner of the data set (responsible division in Statistics Norway). See also Classification of organisational units https://www.ssb.no/en/klass/klassifikasjoner/83
+     * Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83
      * (Required)
      * 
      */
@@ -768,7 +768,7 @@ public class Dataset implements Serializable
     /**
      * Owner
      * <p>
-     * Owner of the data set (responsible division in Statistics Norway). See also Classification of organisational units https://www.ssb.no/en/klass/klassifikasjoner/83
+     * Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83
      * (Required)
      * 
      */
