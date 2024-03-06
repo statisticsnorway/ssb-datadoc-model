@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - master
-      - backport/*
+      - backport/**
     paths:
       - "generated/python/**"
       - ".github/workflows/release-python.yml"
