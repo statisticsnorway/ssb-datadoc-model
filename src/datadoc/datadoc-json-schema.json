@@ -126,7 +126,7 @@
                 },
                 "owner": {
                     "title": "Owner",
-                    "description": "Owner of the data set (responsible division in Statistics Norway). See also Classification of organisational units https://www.ssb.no/en/klass/klassifikasjoner/83",
+                    "description": "Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83",
                     "type": "string"
                 },
                 "file_path": {
