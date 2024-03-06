@@ -5,9 +5,10 @@ on:
     branches:
       - main
       - master
+      - backport/*
     paths:
-    - "generated/python/**"
-    - ".github/workflows/release-python.yml"
+      - "generated/python/**"
+      - ".github/workflows/release-python.yml"
 
 jobs:
   release:
@@ -75,12 +76,12 @@ jobs:
           packages-dir: generated/python/datadoc_model/dist
           password: ${{ secrets.PYPI_TOKEN }}
 
-    #   - name: Publish package on TestPyPI
-    #     if: "! steps.check-version.outputs.tag"
-    #     uses: pypa/gh-action-pypi-publish@v1.8.10
-    #     with:
-    #       packages-dir: generated/python/datadoc_model/dist
-    #       repository-url: https://test.pypi.org/legacy/
+      #   - name: Publish package on TestPyPI
+      #     if: "! steps.check-version.outputs.tag"
+      #     uses: pypa/gh-action-pypi-publish@v1.8.10
+      #     with:
+      #       packages-dir: generated/python/datadoc_model/dist
+      #       repository-url: https://test.pypi.org/legacy/
 
       - name: Publish the release notes
         uses: release-drafter/release-drafter@v5.25.0
