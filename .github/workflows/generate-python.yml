@@ -45,7 +45,7 @@ jobs:
 
       - name: Install datamodel-codegen
         run: |
-            python -m pipx install datamodel-code-generator[http]==0.25.2
+            python -m pipx install datamodel-code-generator==0.25.2
 
       - name: Generate Python
         run: >
