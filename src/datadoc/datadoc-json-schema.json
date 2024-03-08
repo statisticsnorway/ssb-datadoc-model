@@ -10,7 +10,7 @@
         },
         "document_version": {
             "description": "Version of this model",
-            "const": "2.1.0"
+            "const": "2.2.0"
         },
         "dataset": {
             "type": "object",
