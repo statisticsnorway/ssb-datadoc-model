@@ -10,7 +10,7 @@
         },
         "document_version": {
             "description": "Version of this model",
-            "const": "3.0.0"
+            "const": "3.1.0"
         },
         "dataset": {
             "type": "object",
@@ -172,8 +172,8 @@
                 },
                 "owner": {
                     "title": "Owner",
-                    "description": "Owner of the data set (responsible division in Statistics Norway). See also Classification of organisational units https://www.ssb.no/en/klass/klassifikasjoner/83",
-                    "$ref": "./languageStringType.json#/languageStringType"
+                    "description": "Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83",
+                    "type": "string"
                 },
                 "file_path": {
                     "title": "File path",
