@@ -249,14 +249,16 @@ public class Dataset implements Serializable
     @NotNull
     private UUID id;
     /**
-     * Reusableb langugage string type
+     * Owner
+     * <p>
+     * Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83
      * (Required)
      * 
      */
     @JsonProperty("owner")
-    @Valid
+    @JsonPropertyDescription("Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83")
     @NotNull
-    private List<Object> owner = new ArrayList<Object>();
+    private String owner;
     /**
      * File path
      * <p>
@@ -333,7 +335,7 @@ public class Dataset implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -7459109918184248449L;
+    private final static long serialVersionUID = 3214435550238803228L;
 
     /**
      * No args constructor for use in serialization
@@ -375,7 +377,7 @@ public class Dataset implements Serializable
      * @param keyword
      *     Keyword(s). A list of searchable keywords that can contribute to the development of effective filtering and search services.
      * @param owner
-     *     Owner. Owner of the data set (responsible division in Statistics Norway). See also Classification of organisational units https://www.ssb.no/en/klass/klassifikasjoner/83.
+     *     Owner. Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83.
      * @param containsDataFrom
      *     Contains data from. The data set contains data from date/time.
      * @param filePath
@@ -401,7 +403,7 @@ public class Dataset implements Serializable
      * @param dataSource
      *     Data source. Data source. Set either for the data set or instance variable.
      */
-    public Dataset(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, List<Object> dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, List<Object> owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
+    public Dataset(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, List<Object> dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, String owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
         super();
         this.shortName = shortName;
         this.assessment = assessment;
@@ -874,22 +876,26 @@ public class Dataset implements Serializable
     }
 
     /**
-     * Reusableb langugage string type
+     * Owner
+     * <p>
+     * Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83
      * (Required)
      * 
      */
     @JsonProperty("owner")
-    public List<Object> getOwner() {
+    public String getOwner() {
         return owner;
     }
 
     /**
-     * Reusableb langugage string type
+     * Owner
+     * <p>
+     * Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83
      * (Required)
      * 
      */
     @JsonProperty("owner")
-    public void setOwner(List<Object> owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
 
@@ -1299,7 +1305,7 @@ public class Dataset implements Serializable
             super();
         }
 
-        public DatasetBuilder(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, List<Object> dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, List<Object> owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
+        public DatasetBuilder(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, List<Object> dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, String owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
             super(shortName, assessment, datasetStatus, datasetState, name, description, dataSource, populationDescription, version, versionDescription, unitType, temporalityType, subjectField, keyword, spatialCoverageDescription, containsPersonalData, useRestriction, useRestrictionDate, customType, id, owner, filePath, metadataCreatedDate, metadataCreatedBy, metadataLastUpdatedDate, metadataLastUpdatedBy, containsDataFrom, containsDataUntil);
         }
 
@@ -1318,7 +1324,7 @@ public class Dataset implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public DatasetBuilderBase(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, List<Object> dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, List<Object> owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
+        public DatasetBuilderBase(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, List<Object> dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, String owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(Dataset.DatasetBuilder.class)) {
                 this.instance = ((T) new Dataset(shortName, assessment, datasetStatus, datasetState, name, description, dataSource, populationDescription, version, versionDescription, unitType, temporalityType, subjectField, keyword, spatialCoverageDescription, containsPersonalData, useRestriction, useRestrictionDate, customType, id, owner, filePath, metadataCreatedDate, metadataCreatedBy, metadataLastUpdatedDate, metadataLastUpdatedBy, containsDataFrom, containsDataUntil));
@@ -1432,7 +1438,7 @@ public class Dataset implements Serializable
             return this;
         }
 
-        public Dataset.DatasetBuilderBase withOwner(List<Object> owner) {
+        public Dataset.DatasetBuilderBase withOwner(String owner) {
             ((Dataset) this.instance).owner = owner;
             return this;
         }
