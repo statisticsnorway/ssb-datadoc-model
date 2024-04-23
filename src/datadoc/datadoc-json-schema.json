@@ -67,7 +67,7 @@
                 "data_source": {
                     "title": "Data source",
                     "description": "Data source. Set either for the data set or instance variable.",
-                    "$ref": "./languageStringType.json#/languageStringType"
+                    "$ref": "string"
                 },
                 "population_description": {
                     "title": "Description of population",
@@ -294,7 +294,7 @@
                     "data_source": {
                         "title": "Data source",
                         "description": "Data source. Set at data set level, but can be overwritten at variable instance level.",
-                        "$ref": "./languageStringType.json#/languageStringType"
+                        "$ref": "string"
                     },
                     "population_description": {
                         "title": "Population description",
