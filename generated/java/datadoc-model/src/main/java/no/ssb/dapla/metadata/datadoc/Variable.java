@@ -123,12 +123,14 @@ public class Variable implements Serializable
     @NotNull
     private Boolean directPersonIdentifying;
     /**
-     * Reusableb langugage string type
+     * Data source
+     * <p>
+     * Data source. Set at data set level, but can be overwritten at variable instance level.
      * 
      */
     @JsonProperty("data_source")
-    @Valid
-    private List<Object> dataSource = new ArrayList<Object>();
+    @JsonPropertyDescription("Data source. Set at data set level, but can be overwritten at variable instance level.")
+    private String dataSource;
     /**
      * Reusableb langugage string type
      * 
@@ -243,7 +245,7 @@ public class Variable implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 1019444275429139130L;
+    private final static long serialVersionUID = 2841624760609543476L;
 
     /**
      * No args constructor for use in serialization
@@ -297,7 +299,7 @@ public class Variable implements Serializable
      * @param invalidValueDescription
      *     Invalid value(s) description. Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.
      */
-    public Variable(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, List<Object> dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, Date containsDataFrom, Date containsDataUntil) {
+    public Variable(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, Date containsDataFrom, Date containsDataUntil) {
         super();
         this.shortName = shortName;
         this.dataElementPath = dataElementPath;
@@ -487,20 +489,24 @@ public class Variable implements Serializable
     }
 
     /**
-     * Reusableb langugage string type
+     * Data source
+     * <p>
+     * Data source. Set at data set level, but can be overwritten at variable instance level.
      * 
      */
     @JsonProperty("data_source")
-    public List<Object> getDataSource() {
+    public String getDataSource() {
         return dataSource;
     }
 
     /**
-     * Reusableb langugage string type
+     * Data source
+     * <p>
+     * Data source. Set at data set level, but can be overwritten at variable instance level.
      * 
      */
     @JsonProperty("data_source")
-    public void setDataSource(List<Object> dataSource) {
+    public void setDataSource(String dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -986,7 +992,7 @@ public class Variable implements Serializable
             super();
         }
 
-        public VariableBuilder(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, List<Object> dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, Date containsDataFrom, Date containsDataUntil) {
+        public VariableBuilder(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, Date containsDataFrom, Date containsDataUntil) {
             super(shortName, dataElementPath, name, dataType, variableRole, definitionUri, directPersonIdentifying, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil);
         }
 
@@ -1005,7 +1011,7 @@ public class Variable implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public VariableBuilderBase(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, List<Object> dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, Date containsDataFrom, Date containsDataUntil) {
+        public VariableBuilderBase(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, Date containsDataFrom, Date containsDataUntil) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(Variable.VariableBuilder.class)) {
                 this.instance = ((T) new Variable(shortName, dataElementPath, name, dataType, variableRole, definitionUri, directPersonIdentifying, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil));
@@ -1054,7 +1060,7 @@ public class Variable implements Serializable
             return this;
         }
 
-        public Variable.VariableBuilderBase withDataSource(List<Object> dataSource) {
+        public Variable.VariableBuilderBase withDataSource(String dataSource) {
             ((Variable) this.instance).dataSource = dataSource;
             return this;
         }
