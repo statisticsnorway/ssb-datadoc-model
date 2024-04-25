@@ -205,12 +205,14 @@
                 "contains_data_from": {
                     "title": "Contains data from",
                     "description": "The data set contains data from date/time",
-                    "type": "string"
+                    "type": "string",
+                    "format": "date-time"
                 },
                 "contains_data_until": {
                     "title": "Contains data up until",
                     "description": "The data set contains data up until date/time",
-                    "type": "string"
+                    "type": "string",
+                    "format": "date-time"
                 }
             },
             "required": [
