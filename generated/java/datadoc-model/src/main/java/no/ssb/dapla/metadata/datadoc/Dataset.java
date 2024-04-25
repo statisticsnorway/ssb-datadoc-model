@@ -324,7 +324,7 @@ public class Dataset implements Serializable
      */
     @JsonProperty("contains_data_from")
     @JsonPropertyDescription("The data set contains data from date/time")
-    private Date containsDataFrom;
+    private String containsDataFrom;
     /**
      * Contains data up until
      * <p>
@@ -333,11 +333,11 @@ public class Dataset implements Serializable
      */
     @JsonProperty("contains_data_until")
     @JsonPropertyDescription("The data set contains data up until date/time")
-    private Date containsDataUntil;
+    private String containsDataUntil;
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 3893292763053544510L;
+    private final static long serialVersionUID = -226168508644193475L;
 
     /**
      * No args constructor for use in serialization
@@ -405,7 +405,7 @@ public class Dataset implements Serializable
      * @param dataSource
      *     Data source. Data source. Set either for the data set or instance variable.
      */
-    public Dataset(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, String dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, String owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, Date containsDataFrom, Date containsDataUntil) {
+    public Dataset(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, String dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, String owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
         super();
         this.shortName = shortName;
         this.assessment = assessment;
@@ -1032,7 +1032,7 @@ public class Dataset implements Serializable
      * 
      */
     @JsonProperty("contains_data_from")
-    public Date getContainsDataFrom() {
+    public String getContainsDataFrom() {
         return containsDataFrom;
     }
 
@@ -1043,7 +1043,7 @@ public class Dataset implements Serializable
      * 
      */
     @JsonProperty("contains_data_from")
-    public void setContainsDataFrom(Date containsDataFrom) {
+    public void setContainsDataFrom(String containsDataFrom) {
         this.containsDataFrom = containsDataFrom;
     }
 
@@ -1054,7 +1054,7 @@ public class Dataset implements Serializable
      * 
      */
     @JsonProperty("contains_data_until")
-    public Date getContainsDataUntil() {
+    public String getContainsDataUntil() {
         return containsDataUntil;
     }
 
@@ -1065,7 +1065,7 @@ public class Dataset implements Serializable
      * 
      */
     @JsonProperty("contains_data_until")
-    public void setContainsDataUntil(Date containsDataUntil) {
+    public void setContainsDataUntil(String containsDataUntil) {
         this.containsDataUntil = containsDataUntil;
     }
 
@@ -1311,7 +1311,7 @@ public class Dataset implements Serializable
             super();
         }
 
-        public DatasetBuilder(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, String dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, String owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, Date containsDataFrom, Date containsDataUntil) {
+        public DatasetBuilder(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, String dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, String owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
             super(shortName, assessment, datasetStatus, datasetState, name, description, dataSource, populationDescription, version, versionDescription, unitType, temporalityType, subjectField, keyword, spatialCoverageDescription, containsPersonalData, useRestriction, useRestrictionDate, customType, id, owner, filePath, metadataCreatedDate, metadataCreatedBy, metadataLastUpdatedDate, metadataLastUpdatedBy, containsDataFrom, containsDataUntil);
         }
 
@@ -1330,7 +1330,7 @@ public class Dataset implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public DatasetBuilderBase(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, String dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, String owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, Date containsDataFrom, Date containsDataUntil) {
+        public DatasetBuilderBase(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, String dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, String owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(Dataset.DatasetBuilder.class)) {
                 this.instance = ((T) new Dataset(shortName, assessment, datasetStatus, datasetState, name, description, dataSource, populationDescription, version, versionDescription, unitType, temporalityType, subjectField, keyword, spatialCoverageDescription, containsPersonalData, useRestriction, useRestrictionDate, customType, id, owner, filePath, metadataCreatedDate, metadataCreatedBy, metadataLastUpdatedDate, metadataLastUpdatedBy, containsDataFrom, containsDataUntil));
@@ -1474,12 +1474,12 @@ public class Dataset implements Serializable
             return this;
         }
 
-        public Dataset.DatasetBuilderBase withContainsDataFrom(Date containsDataFrom) {
+        public Dataset.DatasetBuilderBase withContainsDataFrom(String containsDataFrom) {
             ((Dataset) this.instance).containsDataFrom = containsDataFrom;
             return this;
         }
 
-        public Dataset.DatasetBuilderBase withContainsDataUntil(Date containsDataUntil) {
+        public Dataset.DatasetBuilderBase withContainsDataUntil(String containsDataUntil) {
             ((Dataset) this.instance).containsDataUntil = containsDataUntil;
             return this;
         }
