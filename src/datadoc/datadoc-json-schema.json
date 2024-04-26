@@ -10,7 +10,7 @@
         },
         "document_version": {
             "description": "Version of this model",
-            "const": "3.2.0"
+            "const": "3.3.0"
         },
         "dataset": {
             "type": "object",
@@ -205,12 +205,14 @@
                 "contains_data_from": {
                     "title": "Contains data from",
                     "description": "The data set contains data from date/time",
-                    "type": "string"
+                    "type": "string",
+                    "format": "date"
                 },
                 "contains_data_until": {
                     "title": "Contains data up until",
                     "description": "The data set contains data up until date/time",
-                    "type": "string"
+                    "type": "string",
+                    "format": "date"
                 }
             },
             "required": [
@@ -438,13 +440,13 @@
                         "title": "Contains data from",
                         "description": "The instance variable in the data set contains data from and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some variables only contain data for the most recent periods/years, e.g. if the entire data set contains data from 1970 to 2020, while some instance variables only contain data from 1998 onwards.",
                         "type": "string",
-                        "format": "date-time"
+                        "format": "date"
                     },
                     "contains_data_until": {
                         "title": "Contains data up until",
                         "description": "The instance variable in the data set contains data up to and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some of the instance variables in the data set are terminated (no longer updated) after a given point in time.",
                         "type": "string",
-                        "format": "date-time"
+                        "format": "date"
                     }
                 },
                 "required": [

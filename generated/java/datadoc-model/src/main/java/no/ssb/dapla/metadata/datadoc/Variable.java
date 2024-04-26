@@ -4,7 +4,6 @@ package no.ssb.dapla.metadata.datadoc;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -232,7 +231,7 @@ public class Variable implements Serializable
      */
     @JsonProperty("contains_data_from")
     @JsonPropertyDescription("The instance variable in the data set contains data from and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some variables only contain data for the most recent periods/years, e.g. if the entire data set contains data from 1970 to 2020, while some instance variables only contain data from 1998 onwards.")
-    private Date containsDataFrom;
+    private String containsDataFrom;
     /**
      * Contains data up until
      * <p>
@@ -241,11 +240,11 @@ public class Variable implements Serializable
      */
     @JsonProperty("contains_data_until")
     @JsonPropertyDescription("The instance variable in the data set contains data up to and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some of the instance variables in the data set are terminated (no longer updated) after a given point in time.")
-    private Date containsDataUntil;
+    private String containsDataUntil;
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 2841624760609543476L;
+    private final static long serialVersionUID = 1640768487711195113L;
 
     /**
      * No args constructor for use in serialization
@@ -299,7 +298,7 @@ public class Variable implements Serializable
      * @param invalidValueDescription
      *     Invalid value(s) description. Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.
      */
-    public Variable(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, Date containsDataFrom, Date containsDataUntil) {
+    public Variable(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
         super();
         this.shortName = shortName;
         this.dataElementPath = dataElementPath;
@@ -745,7 +744,7 @@ public class Variable implements Serializable
      * 
      */
     @JsonProperty("contains_data_from")
-    public Date getContainsDataFrom() {
+    public String getContainsDataFrom() {
         return containsDataFrom;
     }
 
@@ -756,7 +755,7 @@ public class Variable implements Serializable
      * 
      */
     @JsonProperty("contains_data_from")
-    public void setContainsDataFrom(Date containsDataFrom) {
+    public void setContainsDataFrom(String containsDataFrom) {
         this.containsDataFrom = containsDataFrom;
     }
 
@@ -767,7 +766,7 @@ public class Variable implements Serializable
      * 
      */
     @JsonProperty("contains_data_until")
-    public Date getContainsDataUntil() {
+    public String getContainsDataUntil() {
         return containsDataUntil;
     }
 
@@ -778,7 +777,7 @@ public class Variable implements Serializable
      * 
      */
     @JsonProperty("contains_data_until")
-    public void setContainsDataUntil(Date containsDataUntil) {
+    public void setContainsDataUntil(String containsDataUntil) {
         this.containsDataUntil = containsDataUntil;
     }
 
@@ -992,7 +991,7 @@ public class Variable implements Serializable
             super();
         }
 
-        public VariableBuilder(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, Date containsDataFrom, Date containsDataUntil) {
+        public VariableBuilder(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
             super(shortName, dataElementPath, name, dataType, variableRole, definitionUri, directPersonIdentifying, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil);
         }
 
@@ -1011,7 +1010,7 @@ public class Variable implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public VariableBuilderBase(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, Date containsDataFrom, Date containsDataUntil) {
+        public VariableBuilderBase(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean directPersonIdentifying, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(Variable.VariableBuilder.class)) {
                 this.instance = ((T) new Variable(shortName, dataElementPath, name, dataType, variableRole, definitionUri, directPersonIdentifying, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil));
@@ -1120,12 +1119,12 @@ public class Variable implements Serializable
             return this;
         }
 
-        public Variable.VariableBuilderBase withContainsDataFrom(Date containsDataFrom) {
+        public Variable.VariableBuilderBase withContainsDataFrom(String containsDataFrom) {
             ((Variable) this.instance).containsDataFrom = containsDataFrom;
             return this;
         }
 
-        public Variable.VariableBuilderBase withContainsDataUntil(Date containsDataUntil) {
+        public Variable.VariableBuilderBase withContainsDataUntil(String containsDataUntil) {
             ((Variable) this.instance).containsDataUntil = containsDataUntil;
             return this;
         }
