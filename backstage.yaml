@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ssb-datadoc-model
+  title: Datadoc model
+  description: |
+    Data Model for use in Statistics Norway's Metadata system for documenting datasets
+  tags:
+    - dapla
+    - metadata
+    - python
+    - java
+    - json
+    - pydantic
+  links:
+    - url: https://pypi.org/project/ssb-datadoc-model/
+      title: pypi packaged
+  annotations:
+    github.com/project-slug: statisticsnorway/ssb-datadoc-model
+spec:
+  type: library
+  owner: dapla-metadata-developers
+  lifecycle: production
+  system: metadata
