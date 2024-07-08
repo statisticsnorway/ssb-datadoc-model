@@ -111,7 +111,7 @@ public class Variable implements Serializable
     @JsonPropertyDescription("A link (URI) to the variable's definition in Vardok/VarDef")
     private URI definitionUri;
     /**
-     * Personal data
+     * Is personal data
      * <p>
      * A description of whether the variable instance is personal data and, if so, whether it is pseudonymised/encrypted or non-pseudonymised/encrypted (directly identifiable).
      * (Required)
@@ -120,7 +120,7 @@ public class Variable implements Serializable
     @JsonProperty("is_personal_data")
     @JsonPropertyDescription("A description of whether the variable instance is personal data and, if so, whether it is pseudonymised/encrypted or non-pseudonymised/encrypted (directly identifiable).")
     @NotNull
-    private Variable.PersonalData isPersonalData;
+    private Variable.IsPersonalData isPersonalData;
     /**
      * Data source
      * <p>
@@ -244,7 +244,7 @@ public class Variable implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -3000904150307129296L;
+    private final static long serialVersionUID = 427186001957736391L;
 
     /**
      * No args constructor for use in serialization
@@ -284,7 +284,7 @@ public class Variable implements Serializable
      * @param name
      *     Name. Variable names can be inherited from VarDef, but can also be documented/changed here.
      * @param isPersonalData
-     *     Personal data. A description of whether the variable instance is personal data and, if so, whether it is pseudonymised/encrypted or non-pseudonymised/encrypted (directly identifiable).
+     *     Is personal data. A description of whether the variable instance is personal data and, if so, whether it is pseudonymised/encrypted or non-pseudonymised/encrypted (directly identifiable).
      * @param comment
      *     Comment. Further clarification of the variables definition.
      * @param id
@@ -298,7 +298,7 @@ public class Variable implements Serializable
      * @param invalidValueDescription
      *     Invalid value(s) description. Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.
      */
-    public Variable(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Variable.PersonalData isPersonalData, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
+    public Variable(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Variable.IsPersonalData isPersonalData, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
         super();
         this.shortName = shortName;
         this.dataElementPath = dataElementPath;
@@ -464,26 +464,26 @@ public class Variable implements Serializable
     }
 
     /**
-     * Personal data
+     * Is personal data
      * <p>
      * A description of whether the variable instance is personal data and, if so, whether it is pseudonymised/encrypted or non-pseudonymised/encrypted (directly identifiable).
      * (Required)
      * 
      */
     @JsonProperty("is_personal_data")
-    public Variable.PersonalData getIsPersonalData() {
+    public Variable.IsPersonalData getIsPersonalData() {
         return isPersonalData;
     }
 
     /**
-     * Personal data
+     * Is personal data
      * <p>
      * A description of whether the variable instance is personal data and, if so, whether it is pseudonymised/encrypted or non-pseudonymised/encrypted (directly identifiable).
      * (Required)
      * 
      */
     @JsonProperty("is_personal_data")
-    public void setIsPersonalData(Variable.PersonalData isPersonalData) {
+    public void setIsPersonalData(Variable.IsPersonalData isPersonalData) {
         this.isPersonalData = isPersonalData;
     }
 
@@ -984,27 +984,27 @@ public class Variable implements Serializable
 
 
     /**
-     * Personal data
+     * Is personal data
      * <p>
      * A description of whether the variable instance is personal data and, if so, whether it is pseudonymised/encrypted or non-pseudonymised/encrypted (directly identifiable).
      * 
      */
     @Generated("jsonschema2pojo")
-    public enum PersonalData {
+    public enum IsPersonalData {
 
         NOT_PERSONAL_DATA("NOT_PERSONAL_DATA"),
         PSEUDONYMISED_ENCRYPTED_PERSONAL_DATA("PSEUDONYMISED_ENCRYPTED_PERSONAL_DATA"),
         NON_PSEUDONYMISED_ENCRYPTED_PERSONAL_DATA("NON_PSEUDONYMISED_ENCRYPTED_PERSONAL_DATA");
         private final String value;
-        private final static Map<String, Variable.PersonalData> CONSTANTS = new HashMap<String, Variable.PersonalData>();
+        private final static Map<String, Variable.IsPersonalData> CONSTANTS = new HashMap<String, Variable.IsPersonalData>();
 
         static {
-            for (Variable.PersonalData c: values()) {
+            for (Variable.IsPersonalData c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        PersonalData(String value) {
+        IsPersonalData(String value) {
             this.value = value;
         }
 
@@ -1019,8 +1019,8 @@ public class Variable implements Serializable
         }
 
         @JsonCreator
-        public static Variable.PersonalData fromValue(String value) {
-            Variable.PersonalData constant = CONSTANTS.get(value);
+        public static Variable.IsPersonalData fromValue(String value) {
+            Variable.IsPersonalData constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {
@@ -1039,7 +1039,7 @@ public class Variable implements Serializable
             super();
         }
 
-        public VariableBuilder(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Variable.PersonalData isPersonalData, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
+        public VariableBuilder(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Variable.IsPersonalData isPersonalData, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
             super(shortName, dataElementPath, name, dataType, variableRole, definitionUri, isPersonalData, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil);
         }
 
@@ -1058,7 +1058,7 @@ public class Variable implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public VariableBuilderBase(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Variable.PersonalData isPersonalData, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
+        public VariableBuilderBase(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Variable.IsPersonalData isPersonalData, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(Variable.VariableBuilder.class)) {
                 this.instance = ((T) new Variable(shortName, dataElementPath, name, dataType, variableRole, definitionUri, isPersonalData, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil));
@@ -1102,7 +1102,7 @@ public class Variable implements Serializable
             return this;
         }
 
-        public Variable.VariableBuilderBase withIsPersonalData(Variable.PersonalData isPersonalData) {
+        public Variable.VariableBuilderBase withIsPersonalData(Variable.IsPersonalData isPersonalData) {
             ((Variable) this.instance).isPersonalData = isPersonalData;
             return this;
         }
