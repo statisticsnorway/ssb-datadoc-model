@@ -288,10 +288,15 @@
                         "type": "string",
                         "format": "uri"
                     },
-                    "direct_person_identifying": {
-                        "title": "Direct Person identifying Information (DPI)",
-                        "description": "Direct Person identifying Information (DPI). Some of the values ​​in an instance variable kan be DPI, others not. In this case, DPI is set equal to true. For example, the variable exporter where some of the values ​​can be organization number, others social security numbers (sole proprietorships).",
-                        "type": "boolean"
+                    "is_personal_data": {
+                        "title": "",
+                        "description": "",
+                        "type": "string",
+                        "enum": [
+                            "NOT_PERSONAL_DATA",
+                            "PSEUDONYMISED_ENCRYPTED_PERSONAL_DATA",
+                            "NON_PSEUDONYMISED_ENCRYPTED_PERSONAL_DATA"
+                        ]
                     },
                     "data_source": {
                         "title": "Data source",
