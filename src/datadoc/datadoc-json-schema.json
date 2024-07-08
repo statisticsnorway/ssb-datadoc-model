@@ -289,7 +289,7 @@
                         "format": "uri"
                     },
                     "is_personal_data": {
-                        "title": "Personal data",
+                        "title": "Is personal data",
                         "description": "A description of whether the variable instance is personal data and, if so, whether it is pseudonymised/encrypted or non-pseudonymised/encrypted (directly identifiable).",
                         "type": "string",
                         "enum": [
