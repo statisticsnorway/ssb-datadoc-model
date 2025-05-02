@@ -35,35 +35,26 @@ jobs:
           git config user.name "dapla-bot[bot]"
           git config user.email "143391972+dapla-bot[bot]@users.noreply.github.com"
 
-      - uses: actions/setup-python@v2
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: 3.11.5
+          enable-cache: true
 
-      - name: Install pipx
-        run: |
-          python -m pip install --upgrade pipx
-          python -m pipx ensurepath
-
-      - name: Install datamodel-codegen
-        run: |
-          python -m pipx install datamodel-code-generator==0.25.2
-
-      - name: Generate Python
+      - name: Generate All-optional Python models
         run: >
-          datamodel-codegen
-          --input-file-type jsonschema
-          --input src/metadata-container-json-schema.json
-          --output-model-type pydantic_v2.BaseModel
-          --base-class "datadoc_model.datadoc_base_model.DatadocBaseModel"
-          --use-default
-          --use-title-as-name
-          --use-one-literal-as-default
-          --force-optional
-          --use-subclass-enum
-          --use-standard-collections
-          --use-double-quotes
-          --target-python-version 3.10
-          --output generated/python/datadoc_model/datadoc_model/model.py
+          uvx
+            --with datamodel-code-generator
+            -- bash bin/generate_python.sh
+                      --output=generated/python/datadoc_model/datadoc_model/all_optional/model.py
+                      --force-optional
+
+      - name: Generate Required Python models
+        run: >
+          uvx
+            --with datamodel-code-generator
+            -- bash bin/generate_python.sh
+                      --output=generated/python/datadoc_model/datadoc_model/required/model.py
+                      --force-optional
 
       - name: Check for modified files
         id: git-check
