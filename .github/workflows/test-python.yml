@@ -22,10 +22,10 @@ jobs:
         working-directory: ./generated/python/datadoc_model
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v1
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - uses: Gr1N/setup-poetry@v8
+      - uses: Gr1N/setup-poetry@v9
       - uses: actions/cache@v4
         with:
           path: ~/.cache/pypoetry/virtualenvs
