@@ -1,4 +1,7 @@
-# This is provided for backwards compatibility
-import all_optional.model
-import all_optional.model as model
-import required.model
+from . import (
+    all_optional,
+    model,  # For backwards compatibility
+    required,
+)
+
+__all__ = ["model", "all_optional", "required"]
