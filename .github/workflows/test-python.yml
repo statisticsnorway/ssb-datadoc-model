@@ -22,19 +22,12 @@ jobs:
         working-directory: ./generated/python/datadoc_model
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v1
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: "3.11"
-      - uses: Gr1N/setup-poetry@v8
-      - uses: actions/cache@v4
-        with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
-      - name: Print Poetry version
-        run: poetry --version
-      - name: Install dependencies
+          version: "0.7.2"
+          enable-cache: true
+
+      - name: Run tests
         run: |
-          poetry install
-      - name: Run unit tests
-        run: |
-          poetry run pytest -v --cache-clear
+          uv run pytest -v --cache-clear

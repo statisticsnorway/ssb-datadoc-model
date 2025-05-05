@@ -23,25 +23,22 @@ jobs:
       run:
         working-directory: ./generated/python/datadoc_model
     steps:
+      - name: Generate token
+        id: generate_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.DAPLA_BOT_APP_ID }}
+          private-key: ${{ secrets.DAPLA_BOT_PRIVATE_KEY }}
+
       - name: Check out the repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
-      - name: Set up Python
-        uses: actions/setup-python@v4.7.1
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: "3.11"
-
-      - name: Upgrade pip
-        run: |
-          pip install -c $GITHUB_WORKSPACE/.github/workflows/constraints.txt pip
-          pip --version
-
-      - name: Install Poetry
-        run: |
-          pip install -c $GITHUB_WORKSPACE/.github/workflows/constraints.txt poetry
-          poetry --version
+          enable-cache: true
 
       - name: Check if there is a parent commit
         id: check-parent-commit
@@ -53,41 +50,32 @@ jobs:
         if: steps.check-parent-commit.outputs.sha
         uses: salsify/action-detect-and-tag-new-version@v2.0.3
         with:
-          tag-template: "python-v{VERSION}"
           version-command: |
-            cd generated/python/datadoc_model &&
-            poetry version | cut -f 2 -d' '
+            uv version
 
-      - name: Bump version for developmental release
-        if: "! steps.check-version.outputs.tag"
+      - name: Set version for developmental release
+        if: (!steps.check-version.outputs.tag)
         run: |
-          poetry version patch &&
-          version=$(poetry version | awk '{ print $2 }') &&
-          poetry version $version.dev.$(date +%s)
+          uv version "$(uv version --bump patch >> /dev/null && uv version --short).dev.$(date +%s)"
 
       - name: Build package
         run: |
-          poetry build --ansi
+          uv build
 
       - name: Publish package on PyPI
         if: steps.check-version.outputs.tag
-        uses: pypa/gh-action-pypi-publish@v1.8.10
-        with:
-          packages-dir: generated/python/datadoc_model/dist
-          password: ${{ secrets.PYPI_TOKEN }}
+        uses: pypa/gh-action-pypi-publish@v1.12.4
 
-      #   - name: Publish package on TestPyPI
-      #     if: "! steps.check-version.outputs.tag"
-      #     uses: pypa/gh-action-pypi-publish@v1.8.10
-      #     with:
-      #       packages-dir: generated/python/datadoc_model/dist
-      #       repository-url: https://test.pypi.org/legacy/
+      - name: Publish package on TestPyPI
+        if: (!steps.check-version.outputs.tag)
+        uses: pypa/gh-action-pypi-publish@v1.12.4
+        with:
+          repository-url: https://test.pypi.org/legacy/
 
       - name: Publish the release notes
-        uses: release-drafter/release-drafter@v5.25.0
+        uses: release-drafter/release-drafter@v6.1.0
         with:
           publish: ${{ steps.check-version.outputs.tag != '' }}
           tag: ${{ steps.check-version.outputs.tag }}
-          config-name: release-drafter-python.yml
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
