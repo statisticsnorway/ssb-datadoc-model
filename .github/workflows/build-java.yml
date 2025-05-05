@@ -5,14 +5,14 @@ on:
     branches:
       - main
     paths:
-    - "generated/java/**"
-    - ".github/workflows/build-java.yml"
+      - "generated/java/**"
+      - ".github/workflows/build-java.yml"
   pull_request:
     branches:
       - main
     paths:
-    - "generated/java/**"
-    - ".github/workflows/build-java.yml"
+      - "generated/java/**"
+      - ".github/workflows/build-java.yml"
 
 jobs:
   build:
@@ -39,7 +39,7 @@ jobs:
           token_format: access_token
 
       - name: Cache Maven packages
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -47,6 +47,5 @@ jobs:
 
       - name: Build with Maven and deploy to Artifact Registry
         run: |
-            pushd generated/java/datadoc-model
-            ./mvnw --batch-mode -P ssb deploy
-
+          pushd generated/java/datadoc-model
+          ./mvnw --batch-mode -P ssb deploy
