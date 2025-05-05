@@ -18,8 +18,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       id-token: write
+      packages: write
 
     steps:
       - uses: actions/checkout@v3
@@ -29,14 +30,13 @@ jobs:
         with:
           java-version: 21
           distribution: zulu
+          server-id: github
 
-      - name: Authenticate to Google Cloud
-        id: auth
-        uses: google-github-actions/auth@v1.1.1
+      - name: Setup Maven authentication to GitHub packages
+        uses: s4u/maven-settings-action@v2.8.0
+        id: maven_settings
         with:
-          workload_identity_provider: "projects/848539402404/locations/global/workloadIdentityPools/gh-actions/providers/gh-actions"
-          service_account: "gh-actions-dapla-stat@artifact-registry-5n.iam.gserviceaccount.com"
-          token_format: access_token
+          servers: '[{"id": "github","configuration": {"httpHeaders": {"property": {"name": "Authorization","value": "Bearer ${{ secrets.GITHUB_TOKEN }}"}}}}]'
 
       - name: Cache Maven packages
         uses: actions/cache@v4
