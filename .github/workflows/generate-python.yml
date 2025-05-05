@@ -42,19 +42,11 @@ jobs:
 
       - name: Generate All-optional Python models
         run: >
-          uvx
-            --with datamodel-code-generator
-            -- bash bin/generate_python.sh
-                      --output=generated/python/datadoc_model/datadoc_model/all_optional/model.py
-                      --force-optional
+          uvx --with datamodel-code-generator -- bash bin/generate_python.sh --output=generated/python/datadoc_model/datadoc_model/all_optional/model.py --force-optional
 
       - name: Generate Required Python models
         run: >
-          uvx
-            --with datamodel-code-generator
-            -- bash bin/generate_python.sh
-                      --output=generated/python/datadoc_model/datadoc_model/required/model.py
-                      --force-optional
+          uvx --with datamodel-code-generator -- bash bin/generate_python.sh --output=generated/python/datadoc_model/datadoc_model/required/model.py
 
       - name: Check for modified files
         id: git-check
