@@ -42,6 +42,12 @@ jobs:
           git config user.name "dapla-bot[bot]"
           git config user.email "143391972+dapla-bot[bot]@users.noreply.github.com"
 
+      - name: Setup Maven authentication to GitHub packages
+        uses: s4u/maven-settings-action@v2.8.0
+        id: maven_settings
+        with:
+          servers: '[{"id": "github","configuration": {"httpHeaders": {"property": {"name": "Authorization","value": "Bearer ${{ secrets.GITHUB_TOKEN }}"}}}}]'
+
       - name: Generate Java
         run: |
           pushd generated/java/datadoc-model
