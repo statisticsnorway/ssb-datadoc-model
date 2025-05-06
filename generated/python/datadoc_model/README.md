@@ -13,4 +13,4 @@ This package contains pydantic models defining the fields and data types used in
 
 ## Release
 
-To release this package, create a branch and run `poetry version [patch | minor | major]` depending on your change. Once the branch is merged, a GitHub Actions workflow handles the rest.
+To release this package, create a branch and run `uv version --bump [patch | minor | major]` depending on your change. Once the branch is merged, a GitHub Actions workflow handles the rest.
