@@ -21,7 +21,7 @@ jobs:
       pull-requests: read
     defaults:
       run:
-        working-directory: ./generated/python/datadoc_model
+        working-directory: generated/python/datadoc_model
     steps:
       - name: Generate token
         id: generate_token
@@ -51,12 +51,12 @@ jobs:
         uses: salsify/action-detect-and-tag-new-version@v2.0.3
         with:
           version-command: |
-            uv version
+            pushd generated/python/datadoc_model >> /dev/null 2>&1; uv version --short
 
       - name: Set version for developmental release
         if: (!steps.check-version.outputs.tag)
         run: |
-          uv version "$(uv version --bump patch >> /dev/null && uv version --short).dev.$(date +%s)"
+          uv version "$(uv version --bump patch >> /dev/null 2>&1 && uv version --short).dev.$(date +%s)"
 
       - name: Build package
         run: |
@@ -65,11 +65,14 @@ jobs:
       - name: Publish package on PyPI
         if: steps.check-version.outputs.tag
         uses: pypa/gh-action-pypi-publish@v1.12.4
+        with:
+          packages-dir: generated/python/datadoc_model/dist
 
       - name: Publish package on TestPyPI
         if: (!steps.check-version.outputs.tag)
         uses: pypa/gh-action-pypi-publish@v1.12.4
         with:
+          packages-dir: generated/python/datadoc_model/dist
           repository-url: https://test.pypi.org/legacy/
 
       - name: Publish the release notes
