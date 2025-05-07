@@ -1,6 +1,7 @@
 name: Release Python
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -63,7 +64,7 @@ jobs:
           uv build
 
       - name: Publish package on PyPI
-        if: steps.check-version.outputs.tag
+        if: ${{(steps.check-version.outputs.tag) || (github.event_name == 'workflow_dispatch')}}
         uses: pypa/gh-action-pypi-publish@v1.12.4
         with:
           packages-dir: generated/python/datadoc_model/dist
@@ -81,5 +82,6 @@ jobs:
         with:
           publish: ${{ steps.check-version.outputs.tag != '' }}
           tag: ${{ steps.check-version.outputs.tag }}
+          config-name: release-drafter-python.yml
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
