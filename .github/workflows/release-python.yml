@@ -51,7 +51,7 @@ jobs:
         uses: salsify/action-detect-and-tag-new-version@v2.0.3
         with:
           version-command: |
-            pushd generated/python/datadoc_model >> /dev/null 2>&1; uv version --short
+            uv version --short --project generated/python/datadoc_model
 
       - name: Set version for developmental release
         if: (!steps.check-version.outputs.tag)
