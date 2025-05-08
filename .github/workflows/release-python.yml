@@ -55,7 +55,7 @@ jobs:
             uv version --short --project generated/python/datadoc_model
 
       - name: Set version for developmental release
-        if: (!steps.check-version.outputs.tag)
+        if: (!steps.check-version.outputs.tag) && (github.event_name != 'workflow_dispatch')
         run: |
           uv version "$(uv version --bump patch >> /dev/null 2>&1 && uv version --short).dev.$(date +%s)"
 
@@ -64,7 +64,7 @@ jobs:
           uv build
 
       - name: Publish package on PyPI
-        if: ${{(steps.check-version.outputs.tag) || (github.event_name == 'workflow_dispatch')}}
+        if: (steps.check-version.outputs.tag) || (github.event_name == 'workflow_dispatch')
         uses: pypa/gh-action-pypi-publish@v1.12.4
         with:
           packages-dir: generated/python/datadoc_model/dist
