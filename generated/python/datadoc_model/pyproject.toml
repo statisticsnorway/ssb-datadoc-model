@@ -3,13 +3,15 @@ name = "ssb-datadoc-model"
 version = "6.1.2"
 description = "Data Model for use in Statistics Norway's Metadata system"
 authors = [{ name = "Statistics Norway", email = "metadata@ssb.no" }]
+license = "MIT"
+readme = "README.md"
 requires-python = ">=3.10"
 dependencies = ["pydantic>=2.5.2"]
 
 [project.urls]
-homepage = "https://github.com/statisticsnorway/ssb-datadoc-model"
-repository = "https://github.com/statisticsnorway/ssb-datadoc-model"
-changelog = "https://github.com/statisticsnorway/ssb-datadoc-model/releases"
+Homepage = "https://github.com/statisticsnorway/ssb-datadoc-model"
+Repository = "https://github.com/statisticsnorway/ssb-datadoc-model"
+Changelog = "https://github.com/statisticsnorway/ssb-datadoc-model/releases"
 
 [dependency-groups]
 
