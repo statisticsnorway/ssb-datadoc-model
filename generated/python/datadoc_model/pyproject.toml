@@ -1,5 +1,5 @@
 [project]
-name = "datadoc-model"
+name = "ssb-datadoc-model"
 version = "6.1.1"
 description = "Data Model for use in Statistics Norway's Metadata system"
 authors = [{ name = "Statistics Norway", email = "metadata@ssb.no" }]
