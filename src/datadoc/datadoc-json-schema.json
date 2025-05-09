@@ -10,7 +10,7 @@
         },
         "document_version": {
             "description": "Version of this model",
-            "const": "4.0.0"
+            "const": "5.0.0"
         },
         "dataset": {
             "type": "object",
@@ -213,6 +213,12 @@
                     "description": "The data set contains data up until date/time",
                     "type": "string",
                     "format": "date"
+                },
+                "pseudonymization_time": {
+                    "title": "Dataset pseudo time",
+                    "description": "Time at which the dataset was pseudonymized. In ISO 8601 format.",
+                    "type": "string",
+                    "format": "date-time"
                 }
             },
             "required": [
@@ -290,12 +296,47 @@
                     },
                     "is_personal_data": {
                         "title": "Is personal data",
-                        "description": "A description of whether the variable instance is personal data and, if so, whether it is pseudonymised/encrypted or non-pseudonymised/encrypted (directly identifiable).",
-                        "type": "string",
-                        "enum": [
-                            "NOT_PERSONAL_DATA",
-                            "PSEUDONYMISED_ENCRYPTED_PERSONAL_DATA",
-                            "NON_PSEUDONYMISED_ENCRYPTED_PERSONAL_DATA"
+                        "description": "Whether or not the variable is personal data.",
+                        "type": "boolean"
+                    },
+                    "pseudonymization": {
+                        "type": "object",
+                        "description": "A pseudonymized variable in the dataset.",
+                        "properties": {
+                            "stable_identifier_type": {
+                                "type": "string",
+                                "title": "Stable identifier type",
+                                "description": "Type of stable identifier the variable was mapped to prior to pseudonymization.",
+                                "$comment": "Only relevant when the variable is mapped to a stable identifier."
+                            },
+                            "stable_identifier_version": {
+                                "type": "string",
+                                "title": "Stable identifier version",
+                                "description": "Version of stable identifier the variable was mapped to prior to pseudonymization.",
+                                "$comment": "Only relevant when the variable is mapped to a stable identifier."
+                            },
+                            "encryption_algorithm": {
+                                "type": "string",
+                                "title": "Encryption algorithm",
+                                "description": "The encryption algorithm used to pseudonymize the variable."
+                            },
+                            "encryption_key_reference": {
+                                "type": "string",
+                                "title": "Encryption key reference",
+                                "description": "Name of or reference to the encryption key used to pseudonymize the variable."
+                            },
+                            "encryption_algorithm_parameters": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                },
+                                "title": "Encryption algorithm parameters",
+                                "description": "Parameters supplied to the encryption algorithm."
+                            }
+                        },
+                        "required": [
+                            "encryption_algorithm",
+                            "encryption_key_reference"
                         ]
                     },
                     "data_source": {
