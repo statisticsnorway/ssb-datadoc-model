@@ -10,9 +10,6 @@
         },
         "datadoc": {
             "$ref": "./datadoc/datadoc-json-schema.json"
-        },
-        "pseudonymization": {
-            "$ref": "./pseudonymization/pseudonymization-json-schema.json"
         }
     }
 }
