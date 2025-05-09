@@ -1,5 +1,5 @@
 
-package no.ssb.dapla.metadata;
+package no.ssb.dapla.metadata.datadoc;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
@@ -23,7 +23,7 @@ public class EncryptionAlgorithmParameter implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -1219234877163922487L;
+    private final static long serialVersionUID = -7693110438516409562L;
 
     public static EncryptionAlgorithmParameter.EncryptionAlgorithmParameterBuilderBase builder() {
         return new EncryptionAlgorithmParameter.EncryptionAlgorithmParameterBuilder();
