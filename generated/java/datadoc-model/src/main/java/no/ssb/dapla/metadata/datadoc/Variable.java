@@ -31,6 +31,7 @@ import jakarta.validation.constraints.NotNull;
     "variable_role",
     "definition_uri",
     "is_personal_data",
+    "pseudonymization",
     "data_source",
     "population_description",
     "comment",
@@ -113,14 +114,22 @@ public class Variable implements Serializable
     /**
      * Is personal data
      * <p>
-     * A description of whether the variable instance is personal data and, if so, whether it is pseudonymised/encrypted or non-pseudonymised/encrypted (directly identifiable).
+     * Whether or not the variable is personal data.
      * (Required)
      * 
      */
     @JsonProperty("is_personal_data")
-    @JsonPropertyDescription("A description of whether the variable instance is personal data and, if so, whether it is pseudonymised/encrypted or non-pseudonymised/encrypted (directly identifiable).")
+    @JsonPropertyDescription("Whether or not the variable is personal data.")
     @NotNull
-    private Variable.IsPersonalData isPersonalData;
+    private Boolean isPersonalData;
+    /**
+     * A pseudonymized variable in the dataset.
+     * 
+     */
+    @JsonProperty("pseudonymization")
+    @JsonPropertyDescription("A pseudonymized variable in the dataset.")
+    @Valid
+    private Pseudonymization pseudonymization;
     /**
      * Data source
      * <p>
@@ -244,7 +253,7 @@ public class Variable implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 427186001957736391L;
+    private final static long serialVersionUID = -4177767715395844408L;
 
     /**
      * No args constructor for use in serialization
@@ -259,6 +268,8 @@ public class Variable implements Serializable
      *     Special values.
      * @param containsDataUntil
      *     Contains data up until. The instance variable in the data set contains data up to and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some of the instance variables in the data set are terminated (no longer updated) after a given point in time.
+     * @param pseudonymization
+     *     A pseudonymized variable in the dataset.
      * @param containsDataFrom
      *     Contains data from. The instance variable in the data set contains data from and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some variables only contain data for the most recent periods/years, e.g. if the entire data set contains data from 1970 to 2020, while some instance variables only contain data from 1998 onwards.
      * @param dataType
@@ -284,7 +295,7 @@ public class Variable implements Serializable
      * @param name
      *     Name. Variable names can be inherited from VarDef, but can also be documented/changed here.
      * @param isPersonalData
-     *     Is personal data. A description of whether the variable instance is personal data and, if so, whether it is pseudonymised/encrypted or non-pseudonymised/encrypted (directly identifiable).
+     *     Is personal data. Whether or not the variable is personal data.
      * @param comment
      *     Comment. Further clarification of the variables definition.
      * @param id
@@ -298,7 +309,7 @@ public class Variable implements Serializable
      * @param invalidValueDescription
      *     Invalid value(s) description. Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.
      */
-    public Variable(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Variable.IsPersonalData isPersonalData, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
+    public Variable(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean isPersonalData, Pseudonymization pseudonymization, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
         super();
         this.shortName = shortName;
         this.dataElementPath = dataElementPath;
@@ -307,6 +318,7 @@ public class Variable implements Serializable
         this.variableRole = variableRole;
         this.definitionUri = definitionUri;
         this.isPersonalData = isPersonalData;
+        this.pseudonymization = pseudonymization;
         this.dataSource = dataSource;
         this.populationDescription = populationDescription;
         this.comment = comment;
@@ -466,25 +478,43 @@ public class Variable implements Serializable
     /**
      * Is personal data
      * <p>
-     * A description of whether the variable instance is personal data and, if so, whether it is pseudonymised/encrypted or non-pseudonymised/encrypted (directly identifiable).
+     * Whether or not the variable is personal data.
      * (Required)
      * 
      */
     @JsonProperty("is_personal_data")
-    public Variable.IsPersonalData getIsPersonalData() {
+    public Boolean getIsPersonalData() {
         return isPersonalData;
     }
 
     /**
      * Is personal data
      * <p>
-     * A description of whether the variable instance is personal data and, if so, whether it is pseudonymised/encrypted or non-pseudonymised/encrypted (directly identifiable).
+     * Whether or not the variable is personal data.
      * (Required)
      * 
      */
     @JsonProperty("is_personal_data")
-    public void setIsPersonalData(Variable.IsPersonalData isPersonalData) {
+    public void setIsPersonalData(Boolean isPersonalData) {
         this.isPersonalData = isPersonalData;
+    }
+
+    /**
+     * A pseudonymized variable in the dataset.
+     * 
+     */
+    @JsonProperty("pseudonymization")
+    public Pseudonymization getPseudonymization() {
+        return pseudonymization;
+    }
+
+    /**
+     * A pseudonymized variable in the dataset.
+     * 
+     */
+    @JsonProperty("pseudonymization")
+    public void setPseudonymization(Pseudonymization pseudonymization) {
+        this.pseudonymization = pseudonymization;
     }
 
     /**
@@ -823,6 +853,10 @@ public class Variable implements Serializable
         sb.append('=');
         sb.append(((this.isPersonalData == null)?"<null>":this.isPersonalData));
         sb.append(',');
+        sb.append("pseudonymization");
+        sb.append('=');
+        sb.append(((this.pseudonymization == null)?"<null>":this.pseudonymization));
+        sb.append(',');
         sb.append("dataSource");
         sb.append('=');
         sb.append(((this.dataSource == null)?"<null>":this.dataSource));
@@ -896,6 +930,7 @@ public class Variable implements Serializable
         int result = 1;
         result = ((result* 31)+((this.specialValue == null)? 0 :this.specialValue.hashCode()));
         result = ((result* 31)+((this.containsDataUntil == null)? 0 :this.containsDataUntil.hashCode()));
+        result = ((result* 31)+((this.pseudonymization == null)? 0 :this.pseudonymization.hashCode()));
         result = ((result* 31)+((this.containsDataFrom == null)? 0 :this.containsDataFrom.hashCode()));
         result = ((result* 31)+((this.dataType == null)? 0 :this.dataType.hashCode()));
         result = ((result* 31)+((this.format == null)? 0 :this.format.hashCode()));
@@ -928,7 +963,7 @@ public class Variable implements Serializable
             return false;
         }
         Variable rhs = ((Variable) other);
-        return (((((((((((((((((((((((this.specialValue == rhs.specialValue)||((this.specialValue!= null)&&this.specialValue.equals(rhs.specialValue)))&&((this.containsDataUntil == rhs.containsDataUntil)||((this.containsDataUntil!= null)&&this.containsDataUntil.equals(rhs.containsDataUntil))))&&((this.containsDataFrom == rhs.containsDataFrom)||((this.containsDataFrom!= null)&&this.containsDataFrom.equals(rhs.containsDataFrom))))&&((this.dataType == rhs.dataType)||((this.dataType!= null)&&this.dataType.equals(rhs.dataType))))&&((this.format == rhs.format)||((this.format!= null)&&this.format.equals(rhs.format))))&&((this.classificationUri == rhs.classificationUri)||((this.classificationUri!= null)&&this.classificationUri.equals(rhs.classificationUri))))&&((this.populationDescription == rhs.populationDescription)||((this.populationDescription!= null)&&this.populationDescription.equals(rhs.populationDescription))))&&((this.definitionUri == rhs.definitionUri)||((this.definitionUri!= null)&&this.definitionUri.equals(rhs.definitionUri))))&&((this.temporalityType == rhs.temporalityType)||((this.temporalityType!= null)&&this.temporalityType.equals(rhs.temporalityType))))&&((this.measurementUnit == rhs.measurementUnit)||((this.measurementUnit!= null)&&this.measurementUnit.equals(rhs.measurementUnit))))&&((this.customType == rhs.customType)||((this.customType!= null)&&this.customType.equals(rhs.customType))))&&((this.variableRole == rhs.variableRole)||((this.variableRole!= null)&&this.variableRole.equals(rhs.variableRole))))&&((this.dataElementPath == rhs.dataElementPath)||((this.dataElementPath!= null)&&this.dataElementPath.equals(rhs.dataElementPath))))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.isPersonalData == rhs.isPersonalData)||((this.isPersonalData!= null)&&this.isPersonalData.equals(rhs.isPersonalData))))&&((this.comment == rhs.comment)||((this.comment!= null)&&this.comment.equals(rhs.comment))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))))&&((this.dataSource == rhs.dataSource)||((this.dataSource!= null)&&this.dataSource.equals(rhs.dataSource))))&&((this.multiplicationFactor == rhs.multiplicationFactor)||((this.multiplicationFactor!= null)&&this.multiplicationFactor.equals(rhs.multiplicationFactor))))&&((this.invalidValueDescription == rhs.invalidValueDescription)||((this.invalidValueDescription!= null)&&this.invalidValueDescription.equals(rhs.invalidValueDescription))));
+        return ((((((((((((((((((((((((this.specialValue == rhs.specialValue)||((this.specialValue!= null)&&this.specialValue.equals(rhs.specialValue)))&&((this.containsDataUntil == rhs.containsDataUntil)||((this.containsDataUntil!= null)&&this.containsDataUntil.equals(rhs.containsDataUntil))))&&((this.pseudonymization == rhs.pseudonymization)||((this.pseudonymization!= null)&&this.pseudonymization.equals(rhs.pseudonymization))))&&((this.containsDataFrom == rhs.containsDataFrom)||((this.containsDataFrom!= null)&&this.containsDataFrom.equals(rhs.containsDataFrom))))&&((this.dataType == rhs.dataType)||((this.dataType!= null)&&this.dataType.equals(rhs.dataType))))&&((this.format == rhs.format)||((this.format!= null)&&this.format.equals(rhs.format))))&&((this.classificationUri == rhs.classificationUri)||((this.classificationUri!= null)&&this.classificationUri.equals(rhs.classificationUri))))&&((this.populationDescription == rhs.populationDescription)||((this.populationDescription!= null)&&this.populationDescription.equals(rhs.populationDescription))))&&((this.definitionUri == rhs.definitionUri)||((this.definitionUri!= null)&&this.definitionUri.equals(rhs.definitionUri))))&&((this.temporalityType == rhs.temporalityType)||((this.temporalityType!= null)&&this.temporalityType.equals(rhs.temporalityType))))&&((this.measurementUnit == rhs.measurementUnit)||((this.measurementUnit!= null)&&this.measurementUnit.equals(rhs.measurementUnit))))&&((this.customType == rhs.customType)||((this.customType!= null)&&this.customType.equals(rhs.customType))))&&((this.variableRole == rhs.variableRole)||((this.variableRole!= null)&&this.variableRole.equals(rhs.variableRole))))&&((this.dataElementPath == rhs.dataElementPath)||((this.dataElementPath!= null)&&this.dataElementPath.equals(rhs.dataElementPath))))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.isPersonalData == rhs.isPersonalData)||((this.isPersonalData!= null)&&this.isPersonalData.equals(rhs.isPersonalData))))&&((this.comment == rhs.comment)||((this.comment!= null)&&this.comment.equals(rhs.comment))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))))&&((this.dataSource == rhs.dataSource)||((this.dataSource!= null)&&this.dataSource.equals(rhs.dataSource))))&&((this.multiplicationFactor == rhs.multiplicationFactor)||((this.multiplicationFactor!= null)&&this.multiplicationFactor.equals(rhs.multiplicationFactor))))&&((this.invalidValueDescription == rhs.invalidValueDescription)||((this.invalidValueDescription!= null)&&this.invalidValueDescription.equals(rhs.invalidValueDescription))));
     }
 
 
@@ -982,54 +1017,6 @@ public class Variable implements Serializable
 
     }
 
-
-    /**
-     * Is personal data
-     * <p>
-     * A description of whether the variable instance is personal data and, if so, whether it is pseudonymised/encrypted or non-pseudonymised/encrypted (directly identifiable).
-     * 
-     */
-    @Generated("jsonschema2pojo")
-    public enum IsPersonalData {
-
-        NOT_PERSONAL_DATA("NOT_PERSONAL_DATA"),
-        PSEUDONYMISED_ENCRYPTED_PERSONAL_DATA("PSEUDONYMISED_ENCRYPTED_PERSONAL_DATA"),
-        NON_PSEUDONYMISED_ENCRYPTED_PERSONAL_DATA("NON_PSEUDONYMISED_ENCRYPTED_PERSONAL_DATA");
-        private final String value;
-        private final static Map<String, Variable.IsPersonalData> CONSTANTS = new HashMap<String, Variable.IsPersonalData>();
-
-        static {
-            for (Variable.IsPersonalData c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        IsPersonalData(String value) {
-            this.value = value;
-        }
-
-        @Override
-        public String toString() {
-            return this.value;
-        }
-
-        @JsonValue
-        public String value() {
-            return this.value;
-        }
-
-        @JsonCreator
-        public static Variable.IsPersonalData fromValue(String value) {
-            Variable.IsPersonalData constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException(value);
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
     public static class VariableBuilder
         extends Variable.VariableBuilderBase<Variable>
     {
@@ -1039,8 +1026,8 @@ public class Variable implements Serializable
             super();
         }
 
-        public VariableBuilder(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Variable.IsPersonalData isPersonalData, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
-            super(shortName, dataElementPath, name, dataType, variableRole, definitionUri, isPersonalData, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil);
+        public VariableBuilder(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean isPersonalData, Pseudonymization pseudonymization, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
+            super(shortName, dataElementPath, name, dataType, variableRole, definitionUri, isPersonalData, pseudonymization, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil);
         }
 
     }
@@ -1058,10 +1045,10 @@ public class Variable implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public VariableBuilderBase(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Variable.IsPersonalData isPersonalData, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
+        public VariableBuilderBase(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean isPersonalData, Pseudonymization pseudonymization, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(Variable.VariableBuilder.class)) {
-                this.instance = ((T) new Variable(shortName, dataElementPath, name, dataType, variableRole, definitionUri, isPersonalData, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil));
+                this.instance = ((T) new Variable(shortName, dataElementPath, name, dataType, variableRole, definitionUri, isPersonalData, pseudonymization, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil));
             }
         }
 
@@ -1102,8 +1089,13 @@ public class Variable implements Serializable
             return this;
         }
 
-        public Variable.VariableBuilderBase withIsPersonalData(Variable.IsPersonalData isPersonalData) {
+        public Variable.VariableBuilderBase withIsPersonalData(Boolean isPersonalData) {
             ((Variable) this.instance).isPersonalData = isPersonalData;
+            return this;
+        }
+
+        public Variable.VariableBuilderBase withPseudonymization(Pseudonymization pseudonymization) {
+            ((Variable) this.instance).pseudonymization = pseudonymization;
             return this;
         }
 

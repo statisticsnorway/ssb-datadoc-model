@@ -24,8 +24,7 @@ import no.ssb.dapla.metadata.datadoc.DatadocMetadata;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "document_version",
-    "datadoc",
-    "pseudonymization"
+    "datadoc"
 })
 @Generated("jsonschema2pojo")
 public class MetadataContainer implements Serializable
@@ -46,19 +45,10 @@ public class MetadataContainer implements Serializable
     @JsonProperty("datadoc")
     @Valid
     private DatadocMetadata datadoc;
-    /**
-     * Pseudonymization metadata
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("pseudonymization")
-    @Valid
-    private PseudonymizationMetadata pseudonymization;
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = 2615848749785607333L;
+    private final static long serialVersionUID = 5502058716266199719L;
 
     /**
      * No args constructor for use in serialization
@@ -67,11 +57,10 @@ public class MetadataContainer implements Serializable
     public MetadataContainer() {
     }
 
-    public MetadataContainer(Object documentVersion, DatadocMetadata datadoc, PseudonymizationMetadata pseudonymization) {
+    public MetadataContainer(Object documentVersion, DatadocMetadata datadoc) {
         super();
         this.documentVersion = documentVersion;
         this.datadoc = datadoc;
-        this.pseudonymization = pseudonymization;
     }
 
     public static MetadataContainer.MetadataContainerBuilderBase builder() {
@@ -118,28 +107,6 @@ public class MetadataContainer implements Serializable
         this.datadoc = datadoc;
     }
 
-    /**
-     * Pseudonymization metadata
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("pseudonymization")
-    public PseudonymizationMetadata getPseudonymization() {
-        return pseudonymization;
-    }
-
-    /**
-     * Pseudonymization metadata
-     * <p>
-     * 
-     * 
-     */
-    @JsonProperty("pseudonymization")
-    public void setPseudonymization(PseudonymizationMetadata pseudonymization) {
-        this.pseudonymization = pseudonymization;
-    }
-
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -162,10 +129,6 @@ public class MetadataContainer implements Serializable
         sb.append('=');
         sb.append(((this.datadoc == null)?"<null>":this.datadoc));
         sb.append(',');
-        sb.append("pseudonymization");
-        sb.append('=');
-        sb.append(((this.pseudonymization == null)?"<null>":this.pseudonymization));
-        sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
         sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
@@ -183,7 +146,6 @@ public class MetadataContainer implements Serializable
         int result = 1;
         result = ((result* 31)+((this.datadoc == null)? 0 :this.datadoc.hashCode()));
         result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
-        result = ((result* 31)+((this.pseudonymization == null)? 0 :this.pseudonymization.hashCode()));
         result = ((result* 31)+((this.documentVersion == null)? 0 :this.documentVersion.hashCode()));
         return result;
     }
@@ -197,7 +159,7 @@ public class MetadataContainer implements Serializable
             return false;
         }
         MetadataContainer rhs = ((MetadataContainer) other);
-        return (((((this.datadoc == rhs.datadoc)||((this.datadoc!= null)&&this.datadoc.equals(rhs.datadoc)))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.pseudonymization == rhs.pseudonymization)||((this.pseudonymization!= null)&&this.pseudonymization.equals(rhs.pseudonymization))))&&((this.documentVersion == rhs.documentVersion)||((this.documentVersion!= null)&&this.documentVersion.equals(rhs.documentVersion))));
+        return ((((this.datadoc == rhs.datadoc)||((this.datadoc!= null)&&this.datadoc.equals(rhs.datadoc)))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.documentVersion == rhs.documentVersion)||((this.documentVersion!= null)&&this.documentVersion.equals(rhs.documentVersion))));
     }
 
     public static class MetadataContainerBuilder
@@ -209,8 +171,8 @@ public class MetadataContainer implements Serializable
             super();
         }
 
-        public MetadataContainerBuilder(Object documentVersion, DatadocMetadata datadoc, PseudonymizationMetadata pseudonymization) {
-            super(documentVersion, datadoc, pseudonymization);
+        public MetadataContainerBuilder(Object documentVersion, DatadocMetadata datadoc) {
+            super(documentVersion, datadoc);
         }
 
     }
@@ -228,10 +190,10 @@ public class MetadataContainer implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public MetadataContainerBuilderBase(Object documentVersion, DatadocMetadata datadoc, PseudonymizationMetadata pseudonymization) {
+        public MetadataContainerBuilderBase(Object documentVersion, DatadocMetadata datadoc) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(MetadataContainer.MetadataContainerBuilder.class)) {
-                this.instance = ((T) new MetadataContainer(documentVersion, datadoc, pseudonymization));
+                this.instance = ((T) new MetadataContainer(documentVersion, datadoc));
             }
         }
 
@@ -249,11 +211,6 @@ public class MetadataContainer implements Serializable
 
         public MetadataContainer.MetadataContainerBuilderBase withDatadoc(DatadocMetadata datadoc) {
             ((MetadataContainer) this.instance).datadoc = datadoc;
-            return this;
-        }
-
-        public MetadataContainer.MetadataContainerBuilderBase withPseudonymization(PseudonymizationMetadata pseudonymization) {
-            ((MetadataContainer) this.instance).pseudonymization = pseudonymization;
             return this;
         }
 

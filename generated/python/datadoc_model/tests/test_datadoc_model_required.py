@@ -8,7 +8,6 @@ from datadoc_model.required.model import (
     LanguageStringType,
     LanguageStringTypeItem,
     MetadataContainer,
-    PseudonymizationMetadata,
 )
 from pydantic import ValidationError
 
@@ -68,11 +67,6 @@ def test_instantiate_all_required_values_datadoc():
         ),
         variables=[],
     )
-
-
-def test_instantiate_no_values_pseudo():
-    with pytest.raises(ValidationError):
-        PseudonymizationMetadata()
 
 
 def test_unknown_field():
