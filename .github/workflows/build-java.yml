@@ -31,12 +31,7 @@ jobs:
           java-version: 21
           distribution: zulu
           server-id: github
-
-      - name: Setup Maven authentication to GitHub packages
-        uses: s4u/maven-settings-action@v2.8.0
-        id: maven_settings
-        with:
-          servers: '[{"id": "github","configuration": {"httpHeaders": {"property": {"name": "Authorization","value": "Bearer ${{ secrets.GITHUB_TOKEN }}"}}}}]'
+          cache: true
 
       - name: Cache Maven packages
         uses: actions/cache@v4
@@ -49,3 +44,5 @@ jobs:
         run: |
           pushd generated/java/datadoc-model
           ./mvnw --batch-mode -P ssb deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
