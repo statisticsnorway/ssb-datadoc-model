@@ -234,8 +234,7 @@
                 "metadata_created_date",
                 "metadata_created_by",
                 "metadata_last_updated_date",
-                "metadata_last_updated_by",
-                "pseudonymization_time"
+                "metadata_last_updated_by"
             ]
         },
         "variables": {
