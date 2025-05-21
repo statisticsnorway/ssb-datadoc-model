@@ -4,6 +4,7 @@ package no.ssb.dapla.metadata.datadoc;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -24,6 +25,7 @@ import jakarta.validation.constraints.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+    "pseudonymization_time",
     "short_name",
     "data_element_path",
     "name",
@@ -51,6 +53,15 @@ import jakarta.validation.constraints.NotNull;
 public class Variable implements Serializable
 {
 
+    /**
+     * Variable pseudo time
+     * <p>
+     * Time at which the variable was pseudonymized. In ISO 8601 format.
+     * 
+     */
+    @JsonProperty("pseudonymization_time")
+    @JsonPropertyDescription("Time at which the variable was pseudonymized. In ISO 8601 format.")
+    private Date pseudonymizationTime;
     /**
      * Short name
      * <p>
@@ -253,7 +264,7 @@ public class Variable implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -4177767715395844408L;
+    private final static long serialVersionUID = 6528278565097620764L;
 
     /**
      * No args constructor for use in serialization
@@ -292,6 +303,8 @@ public class Variable implements Serializable
      *     Variable role. Role of the instance variable in the data set.
      * @param dataElementPath
      *     Data element path. The path (dot notation) to the data element in a hierarchical data structure, eg. 'person.adress'. Must be given in addition to the short_name.
+     * @param pseudonymizationTime
+     *     Variable pseudo time. Time at which the variable was pseudonymized. In ISO 8601 format.
      * @param name
      *     Name. Variable names can be inherited from VarDef, but can also be documented/changed here.
      * @param isPersonalData
@@ -309,8 +322,9 @@ public class Variable implements Serializable
      * @param invalidValueDescription
      *     Invalid value(s) description. Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.
      */
-    public Variable(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean isPersonalData, Pseudonymization pseudonymization, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
+    public Variable(Date pseudonymizationTime, String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean isPersonalData, Pseudonymization pseudonymization, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
         super();
+        this.pseudonymizationTime = pseudonymizationTime;
         this.shortName = shortName;
         this.dataElementPath = dataElementPath;
         this.name = name;
@@ -337,6 +351,28 @@ public class Variable implements Serializable
 
     public static Variable.VariableBuilderBase builder() {
         return new Variable.VariableBuilder();
+    }
+
+    /**
+     * Variable pseudo time
+     * <p>
+     * Time at which the variable was pseudonymized. In ISO 8601 format.
+     * 
+     */
+    @JsonProperty("pseudonymization_time")
+    public Date getPseudonymizationTime() {
+        return pseudonymizationTime;
+    }
+
+    /**
+     * Variable pseudo time
+     * <p>
+     * Time at which the variable was pseudonymized. In ISO 8601 format.
+     * 
+     */
+    @JsonProperty("pseudonymization_time")
+    public void setPseudonymizationTime(Date pseudonymizationTime) {
+        this.pseudonymizationTime = pseudonymizationTime;
     }
 
     /**
@@ -825,6 +861,10 @@ public class Variable implements Serializable
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(Variable.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("pseudonymizationTime");
+        sb.append('=');
+        sb.append(((this.pseudonymizationTime == null)?"<null>":this.pseudonymizationTime));
+        sb.append(',');
         sb.append("shortName");
         sb.append('=');
         sb.append(((this.shortName == null)?"<null>":this.shortName));
@@ -928,29 +968,30 @@ public class Variable implements Serializable
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.specialValue == null)? 0 :this.specialValue.hashCode()));
         result = ((result* 31)+((this.containsDataUntil == null)? 0 :this.containsDataUntil.hashCode()));
+        result = ((result* 31)+((this.populationDescription == null)? 0 :this.populationDescription.hashCode()));
+        result = ((result* 31)+((this.definitionUri == null)? 0 :this.definitionUri.hashCode()));
+        result = ((result* 31)+((this.temporalityType == null)? 0 :this.temporalityType.hashCode()));
+        result = ((result* 31)+((this.variableRole == null)? 0 :this.variableRole.hashCode()));
+        result = ((result* 31)+((this.pseudonymizationTime == null)? 0 :this.pseudonymizationTime.hashCode()));
+        result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
+        result = ((result* 31)+((this.multiplicationFactor == null)? 0 :this.multiplicationFactor.hashCode()));
+        result = ((result* 31)+((this.invalidValueDescription == null)? 0 :this.invalidValueDescription.hashCode()));
+        result = ((result* 31)+((this.specialValue == null)? 0 :this.specialValue.hashCode()));
         result = ((result* 31)+((this.pseudonymization == null)? 0 :this.pseudonymization.hashCode()));
         result = ((result* 31)+((this.containsDataFrom == null)? 0 :this.containsDataFrom.hashCode()));
         result = ((result* 31)+((this.dataType == null)? 0 :this.dataType.hashCode()));
         result = ((result* 31)+((this.format == null)? 0 :this.format.hashCode()));
         result = ((result* 31)+((this.classificationUri == null)? 0 :this.classificationUri.hashCode()));
-        result = ((result* 31)+((this.populationDescription == null)? 0 :this.populationDescription.hashCode()));
-        result = ((result* 31)+((this.definitionUri == null)? 0 :this.definitionUri.hashCode()));
-        result = ((result* 31)+((this.temporalityType == null)? 0 :this.temporalityType.hashCode()));
         result = ((result* 31)+((this.measurementUnit == null)? 0 :this.measurementUnit.hashCode()));
         result = ((result* 31)+((this.customType == null)? 0 :this.customType.hashCode()));
-        result = ((result* 31)+((this.variableRole == null)? 0 :this.variableRole.hashCode()));
         result = ((result* 31)+((this.dataElementPath == null)? 0 :this.dataElementPath.hashCode()));
         result = ((result* 31)+((this.name == null)? 0 :this.name.hashCode()));
         result = ((result* 31)+((this.isPersonalData == null)? 0 :this.isPersonalData.hashCode()));
         result = ((result* 31)+((this.comment == null)? 0 :this.comment.hashCode()));
-        result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
         result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
         result = ((result* 31)+((this.shortName == null)? 0 :this.shortName.hashCode()));
         result = ((result* 31)+((this.dataSource == null)? 0 :this.dataSource.hashCode()));
-        result = ((result* 31)+((this.multiplicationFactor == null)? 0 :this.multiplicationFactor.hashCode()));
-        result = ((result* 31)+((this.invalidValueDescription == null)? 0 :this.invalidValueDescription.hashCode()));
         return result;
     }
 
@@ -963,7 +1004,7 @@ public class Variable implements Serializable
             return false;
         }
         Variable rhs = ((Variable) other);
-        return ((((((((((((((((((((((((this.specialValue == rhs.specialValue)||((this.specialValue!= null)&&this.specialValue.equals(rhs.specialValue)))&&((this.containsDataUntil == rhs.containsDataUntil)||((this.containsDataUntil!= null)&&this.containsDataUntil.equals(rhs.containsDataUntil))))&&((this.pseudonymization == rhs.pseudonymization)||((this.pseudonymization!= null)&&this.pseudonymization.equals(rhs.pseudonymization))))&&((this.containsDataFrom == rhs.containsDataFrom)||((this.containsDataFrom!= null)&&this.containsDataFrom.equals(rhs.containsDataFrom))))&&((this.dataType == rhs.dataType)||((this.dataType!= null)&&this.dataType.equals(rhs.dataType))))&&((this.format == rhs.format)||((this.format!= null)&&this.format.equals(rhs.format))))&&((this.classificationUri == rhs.classificationUri)||((this.classificationUri!= null)&&this.classificationUri.equals(rhs.classificationUri))))&&((this.populationDescription == rhs.populationDescription)||((this.populationDescription!= null)&&this.populationDescription.equals(rhs.populationDescription))))&&((this.definitionUri == rhs.definitionUri)||((this.definitionUri!= null)&&this.definitionUri.equals(rhs.definitionUri))))&&((this.temporalityType == rhs.temporalityType)||((this.temporalityType!= null)&&this.temporalityType.equals(rhs.temporalityType))))&&((this.measurementUnit == rhs.measurementUnit)||((this.measurementUnit!= null)&&this.measurementUnit.equals(rhs.measurementUnit))))&&((this.customType == rhs.customType)||((this.customType!= null)&&this.customType.equals(rhs.customType))))&&((this.variableRole == rhs.variableRole)||((this.variableRole!= null)&&this.variableRole.equals(rhs.variableRole))))&&((this.dataElementPath == rhs.dataElementPath)||((this.dataElementPath!= null)&&this.dataElementPath.equals(rhs.dataElementPath))))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.isPersonalData == rhs.isPersonalData)||((this.isPersonalData!= null)&&this.isPersonalData.equals(rhs.isPersonalData))))&&((this.comment == rhs.comment)||((this.comment!= null)&&this.comment.equals(rhs.comment))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))))&&((this.dataSource == rhs.dataSource)||((this.dataSource!= null)&&this.dataSource.equals(rhs.dataSource))))&&((this.multiplicationFactor == rhs.multiplicationFactor)||((this.multiplicationFactor!= null)&&this.multiplicationFactor.equals(rhs.multiplicationFactor))))&&((this.invalidValueDescription == rhs.invalidValueDescription)||((this.invalidValueDescription!= null)&&this.invalidValueDescription.equals(rhs.invalidValueDescription))));
+        return (((((((((((((((((((((((((this.containsDataUntil == rhs.containsDataUntil)||((this.containsDataUntil!= null)&&this.containsDataUntil.equals(rhs.containsDataUntil)))&&((this.populationDescription == rhs.populationDescription)||((this.populationDescription!= null)&&this.populationDescription.equals(rhs.populationDescription))))&&((this.definitionUri == rhs.definitionUri)||((this.definitionUri!= null)&&this.definitionUri.equals(rhs.definitionUri))))&&((this.temporalityType == rhs.temporalityType)||((this.temporalityType!= null)&&this.temporalityType.equals(rhs.temporalityType))))&&((this.variableRole == rhs.variableRole)||((this.variableRole!= null)&&this.variableRole.equals(rhs.variableRole))))&&((this.pseudonymizationTime == rhs.pseudonymizationTime)||((this.pseudonymizationTime!= null)&&this.pseudonymizationTime.equals(rhs.pseudonymizationTime))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.multiplicationFactor == rhs.multiplicationFactor)||((this.multiplicationFactor!= null)&&this.multiplicationFactor.equals(rhs.multiplicationFactor))))&&((this.invalidValueDescription == rhs.invalidValueDescription)||((this.invalidValueDescription!= null)&&this.invalidValueDescription.equals(rhs.invalidValueDescription))))&&((this.specialValue == rhs.specialValue)||((this.specialValue!= null)&&this.specialValue.equals(rhs.specialValue))))&&((this.pseudonymization == rhs.pseudonymization)||((this.pseudonymization!= null)&&this.pseudonymization.equals(rhs.pseudonymization))))&&((this.containsDataFrom == rhs.containsDataFrom)||((this.containsDataFrom!= null)&&this.containsDataFrom.equals(rhs.containsDataFrom))))&&((this.dataType == rhs.dataType)||((this.dataType!= null)&&this.dataType.equals(rhs.dataType))))&&((this.format == rhs.format)||((this.format!= null)&&this.format.equals(rhs.format))))&&((this.classificationUri == rhs.classificationUri)||((this.classificationUri!= null)&&this.classificationUri.equals(rhs.classificationUri))))&&((this.measurementUnit == rhs.measurementUnit)||((this.measurementUnit!= null)&&this.measurementUnit.equals(rhs.measurementUnit))))&&((this.customType == rhs.customType)||((this.customType!= null)&&this.customType.equals(rhs.customType))))&&((this.dataElementPath == rhs.dataElementPath)||((this.dataElementPath!= null)&&this.dataElementPath.equals(rhs.dataElementPath))))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.isPersonalData == rhs.isPersonalData)||((this.isPersonalData!= null)&&this.isPersonalData.equals(rhs.isPersonalData))))&&((this.comment == rhs.comment)||((this.comment!= null)&&this.comment.equals(rhs.comment))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))))&&((this.dataSource == rhs.dataSource)||((this.dataSource!= null)&&this.dataSource.equals(rhs.dataSource))));
     }
 
 
@@ -1026,8 +1067,8 @@ public class Variable implements Serializable
             super();
         }
 
-        public VariableBuilder(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean isPersonalData, Pseudonymization pseudonymization, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
-            super(shortName, dataElementPath, name, dataType, variableRole, definitionUri, isPersonalData, pseudonymization, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil);
+        public VariableBuilder(Date pseudonymizationTime, String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean isPersonalData, Pseudonymization pseudonymization, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
+            super(pseudonymizationTime, shortName, dataElementPath, name, dataType, variableRole, definitionUri, isPersonalData, pseudonymization, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil);
         }
 
     }
@@ -1045,10 +1086,10 @@ public class Variable implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public VariableBuilderBase(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean isPersonalData, Pseudonymization pseudonymization, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
+        public VariableBuilderBase(Date pseudonymizationTime, String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean isPersonalData, Pseudonymization pseudonymization, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(Variable.VariableBuilder.class)) {
-                this.instance = ((T) new Variable(shortName, dataElementPath, name, dataType, variableRole, definitionUri, isPersonalData, pseudonymization, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil));
+                this.instance = ((T) new Variable(pseudonymizationTime, shortName, dataElementPath, name, dataType, variableRole, definitionUri, isPersonalData, pseudonymization, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil));
             }
         }
 
@@ -1057,6 +1098,11 @@ public class Variable implements Serializable
             result = this.instance;
             this.instance = null;
             return result;
+        }
+
+        public Variable.VariableBuilderBase withPseudonymizationTime(Date pseudonymizationTime) {
+            ((Variable) this.instance).pseudonymizationTime = pseudonymizationTime;
+            return this;
         }
 
         public Variable.VariableBuilderBase withShortName(String shortName) {
