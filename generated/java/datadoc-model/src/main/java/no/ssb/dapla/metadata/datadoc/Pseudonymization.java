@@ -3,6 +3,7 @@ package no.ssb.dapla.metadata.datadoc;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import jakarta.validation.constraints.NotNull;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+    "pseudonymization_time",
     "stable_identifier_type",
     "stable_identifier_version",
     "encryption_algorithm",
@@ -34,6 +36,15 @@ import jakarta.validation.constraints.NotNull;
 public class Pseudonymization implements Serializable
 {
 
+    /**
+     * Variable pseudo time
+     * <p>
+     * Time at which the variable was pseudonymized. In ISO 8601 format.
+     * 
+     */
+    @JsonProperty("pseudonymization_time")
+    @JsonPropertyDescription("Time at which the variable was pseudonymized. In ISO 8601 format.")
+    private Date pseudonymizationTime;
     /**
      * Stable identifier type
      * <p>
@@ -87,7 +98,7 @@ public class Pseudonymization implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -2437887402463826146L;
+    private final static long serialVersionUID = -3507966329326709037L;
 
     /**
      * No args constructor for use in serialization
@@ -102,6 +113,8 @@ public class Pseudonymization implements Serializable
      *     Stable identifier type. Type of stable identifier the variable was mapped to prior to pseudonymization.
      * @param encryptionKeyReference
      *     Encryption key reference. Name of or reference to the encryption key used to pseudonymize the variable.
+     * @param pseudonymizationTime
+     *     Variable pseudo time. Time at which the variable was pseudonymized. In ISO 8601 format.
      * @param encryptionAlgorithmParameters
      *     Encryption algorithm parameters. Parameters supplied to the encryption algorithm.
      * @param stableIdentifierVersion
@@ -109,8 +122,9 @@ public class Pseudonymization implements Serializable
      * @param encryptionAlgorithm
      *     Encryption algorithm. The encryption algorithm used to pseudonymize the variable.
      */
-    public Pseudonymization(String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters) {
+    public Pseudonymization(Date pseudonymizationTime, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters) {
         super();
+        this.pseudonymizationTime = pseudonymizationTime;
         this.stableIdentifierType = stableIdentifierType;
         this.stableIdentifierVersion = stableIdentifierVersion;
         this.encryptionAlgorithm = encryptionAlgorithm;
@@ -120,6 +134,28 @@ public class Pseudonymization implements Serializable
 
     public static Pseudonymization.PseudonymizationBuilderBase builder() {
         return new Pseudonymization.PseudonymizationBuilder();
+    }
+
+    /**
+     * Variable pseudo time
+     * <p>
+     * Time at which the variable was pseudonymized. In ISO 8601 format.
+     * 
+     */
+    @JsonProperty("pseudonymization_time")
+    public Date getPseudonymizationTime() {
+        return pseudonymizationTime;
+    }
+
+    /**
+     * Variable pseudo time
+     * <p>
+     * Time at which the variable was pseudonymized. In ISO 8601 format.
+     * 
+     */
+    @JsonProperty("pseudonymization_time")
+    public void setPseudonymizationTime(Date pseudonymizationTime) {
+        this.pseudonymizationTime = pseudonymizationTime;
     }
 
     /**
@@ -250,6 +286,10 @@ public class Pseudonymization implements Serializable
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(Pseudonymization.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("pseudonymizationTime");
+        sb.append('=');
+        sb.append(((this.pseudonymizationTime == null)?"<null>":this.pseudonymizationTime));
+        sb.append(',');
         sb.append("stableIdentifierType");
         sb.append('=');
         sb.append(((this.stableIdentifierType == null)?"<null>":this.stableIdentifierType));
@@ -287,6 +327,7 @@ public class Pseudonymization implements Serializable
         int result = 1;
         result = ((result* 31)+((this.stableIdentifierType == null)? 0 :this.stableIdentifierType.hashCode()));
         result = ((result* 31)+((this.encryptionKeyReference == null)? 0 :this.encryptionKeyReference.hashCode()));
+        result = ((result* 31)+((this.pseudonymizationTime == null)? 0 :this.pseudonymizationTime.hashCode()));
         result = ((result* 31)+((this.encryptionAlgorithmParameters == null)? 0 :this.encryptionAlgorithmParameters.hashCode()));
         result = ((result* 31)+((this.stableIdentifierVersion == null)? 0 :this.stableIdentifierVersion.hashCode()));
         result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
@@ -303,7 +344,7 @@ public class Pseudonymization implements Serializable
             return false;
         }
         Pseudonymization rhs = ((Pseudonymization) other);
-        return (((((((this.stableIdentifierType == rhs.stableIdentifierType)||((this.stableIdentifierType!= null)&&this.stableIdentifierType.equals(rhs.stableIdentifierType)))&&((this.encryptionKeyReference == rhs.encryptionKeyReference)||((this.encryptionKeyReference!= null)&&this.encryptionKeyReference.equals(rhs.encryptionKeyReference))))&&((this.encryptionAlgorithmParameters == rhs.encryptionAlgorithmParameters)||((this.encryptionAlgorithmParameters!= null)&&this.encryptionAlgorithmParameters.equals(rhs.encryptionAlgorithmParameters))))&&((this.stableIdentifierVersion == rhs.stableIdentifierVersion)||((this.stableIdentifierVersion!= null)&&this.stableIdentifierVersion.equals(rhs.stableIdentifierVersion))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.encryptionAlgorithm == rhs.encryptionAlgorithm)||((this.encryptionAlgorithm!= null)&&this.encryptionAlgorithm.equals(rhs.encryptionAlgorithm))));
+        return ((((((((this.stableIdentifierType == rhs.stableIdentifierType)||((this.stableIdentifierType!= null)&&this.stableIdentifierType.equals(rhs.stableIdentifierType)))&&((this.encryptionKeyReference == rhs.encryptionKeyReference)||((this.encryptionKeyReference!= null)&&this.encryptionKeyReference.equals(rhs.encryptionKeyReference))))&&((this.pseudonymizationTime == rhs.pseudonymizationTime)||((this.pseudonymizationTime!= null)&&this.pseudonymizationTime.equals(rhs.pseudonymizationTime))))&&((this.encryptionAlgorithmParameters == rhs.encryptionAlgorithmParameters)||((this.encryptionAlgorithmParameters!= null)&&this.encryptionAlgorithmParameters.equals(rhs.encryptionAlgorithmParameters))))&&((this.stableIdentifierVersion == rhs.stableIdentifierVersion)||((this.stableIdentifierVersion!= null)&&this.stableIdentifierVersion.equals(rhs.stableIdentifierVersion))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.encryptionAlgorithm == rhs.encryptionAlgorithm)||((this.encryptionAlgorithm!= null)&&this.encryptionAlgorithm.equals(rhs.encryptionAlgorithm))));
     }
 
     public static class PseudonymizationBuilder
@@ -315,8 +356,8 @@ public class Pseudonymization implements Serializable
             super();
         }
 
-        public PseudonymizationBuilder(String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters) {
-            super(stableIdentifierType, stableIdentifierVersion, encryptionAlgorithm, encryptionKeyReference, encryptionAlgorithmParameters);
+        public PseudonymizationBuilder(Date pseudonymizationTime, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters) {
+            super(pseudonymizationTime, stableIdentifierType, stableIdentifierVersion, encryptionAlgorithm, encryptionKeyReference, encryptionAlgorithmParameters);
         }
 
     }
@@ -334,10 +375,10 @@ public class Pseudonymization implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public PseudonymizationBuilderBase(String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters) {
+        public PseudonymizationBuilderBase(Date pseudonymizationTime, String stableIdentifierType, String stableIdentifierVersion, String encryptionAlgorithm, String encryptionKeyReference, List<EncryptionAlgorithmParameter> encryptionAlgorithmParameters) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(Pseudonymization.PseudonymizationBuilder.class)) {
-                this.instance = ((T) new Pseudonymization(stableIdentifierType, stableIdentifierVersion, encryptionAlgorithm, encryptionKeyReference, encryptionAlgorithmParameters));
+                this.instance = ((T) new Pseudonymization(pseudonymizationTime, stableIdentifierType, stableIdentifierVersion, encryptionAlgorithm, encryptionKeyReference, encryptionAlgorithmParameters));
             }
         }
 
@@ -346,6 +387,11 @@ public class Pseudonymization implements Serializable
             result = this.instance;
             this.instance = null;
             return result;
+        }
+
+        public Pseudonymization.PseudonymizationBuilderBase withPseudonymizationTime(Date pseudonymizationTime) {
+            ((Pseudonymization) this.instance).pseudonymizationTime = pseudonymizationTime;
+            return this;
         }
 
         public Pseudonymization.PseudonymizationBuilderBase withStableIdentifierType(String stableIdentifierType) {
