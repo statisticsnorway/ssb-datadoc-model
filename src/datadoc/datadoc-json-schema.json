@@ -213,13 +213,8 @@
                     "description": "The data set contains data up until date/time",
                     "type": "string",
                     "format": "date"
-                },
-                "pseudonymization_time": {
-                    "title": "Dataset pseudo time",
-                    "description": "Time at which the dataset was pseudonymized. In ISO 8601 format.",
-                    "type": "string",
-                    "format": "date-time"
                 }
+
             },
             "required": [
                 "short_name",
@@ -239,7 +234,8 @@
                 "metadata_created_date",
                 "metadata_created_by",
                 "metadata_last_updated_date",
-                "metadata_last_updated_by"
+                "metadata_last_updated_by",
+                "pseudonymization_time"
             ]
         },
         "variables": {
