@@ -214,7 +214,6 @@
                     "type": "string",
                     "format": "date"
                 }
-
             },
             "required": [
                 "short_name",
