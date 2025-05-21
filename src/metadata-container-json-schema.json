@@ -6,13 +6,10 @@
     "properties": {
         "document_version": {
             "$comment": "Version of this model",
-            "const": "0.0.1"
+            "const": "1.0.0"
         },
         "datadoc": {
             "$ref": "./datadoc/datadoc-json-schema.json"
-        },
-        "pseudonymization": {
-            "$ref": "./pseudonymization/pseudonymization-json-schema.json"
         }
     }
 }
