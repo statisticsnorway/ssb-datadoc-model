@@ -10,7 +10,7 @@
         },
         "document_version": {
             "description": "Version of this model",
-            "const": "5.0.0"
+            "const": "5.0.1"
         },
         "dataset": {
             "type": "object",
@@ -241,12 +241,6 @@
             "items": {
                 "type": "object",
                 "properties": {
-                    "pseudonymization_time": {
-                      "title": "Variable pseudo time",
-                      "description": "Time at which the variable was pseudonymized. In ISO 8601 format.",
-                      "type": "string",
-                      "format": "date-time"
-                    },
                     "short_name": {
                         "type": "string",
                         "title": "Short name",
@@ -303,6 +297,12 @@
                         "type": "object",
                         "description": "A pseudonymized variable in the dataset.",
                         "properties": {
+                          "pseudonymization_time": {
+                            "title": "Variable pseudo time",
+                            "description": "Time at which the variable was pseudonymized. In ISO 8601 format.",
+                            "type": "string",
+                            "format": "date-time"
+                          },
                             "stable_identifier_type": {
                                 "type": "string",
                                 "title": "Stable identifier type",
