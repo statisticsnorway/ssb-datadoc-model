@@ -6,7 +6,7 @@
     "properties": {
         "document_version": {
             "$comment": "Version of this model",
-            "const": "1.0.1"
+            "const": "1.0.0"
         },
         "datadoc": {
             "$ref": "./datadoc/datadoc-json-schema.json"
