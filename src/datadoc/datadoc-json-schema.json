@@ -70,11 +70,6 @@
           "description": "Dataset version information in the form of descriptive text",
           "$ref": "./languageStringType.json#/languageStringType"
         },
-        "temporality_type": {
-          "title": "Temporality type",
-          "description": "Temporality type. Either for the instance variable or the data set",
-          "$ref": "./temporalityTypeType.json#/temporalityTypeType"
-        },
         "subject_field": {
           "title": "Subject field",
           "description": "Primary area of statistics in which the data set is included",
