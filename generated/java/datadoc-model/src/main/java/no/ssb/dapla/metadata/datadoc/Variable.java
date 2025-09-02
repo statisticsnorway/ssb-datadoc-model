@@ -135,19 +135,23 @@ public class Variable implements Serializable
      * Unit type
      * <p>
      * Unit Type which this variable pertains to. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/702. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter
+     * (Required)
      * 
      */
     @JsonProperty("unit_type")
     @JsonPropertyDescription("Unit Type which this variable pertains to. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/702. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter")
+    @NotNull
     private String unitType;
     /**
      * Data source
      * <p>
      * The source of the data contained in this variable. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/712.
+     * (Required)
      * 
      */
     @JsonProperty("data_source")
     @JsonPropertyDescription("The source of the data contained in this variable. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/712.")
+    @NotNull
     private String dataSource;
     /**
      * Reusableb langugage string type
@@ -165,9 +169,11 @@ public class Variable implements Serializable
     private List<Object> comment = new ArrayList<Object>();
     /**
      * Reusable temporalitytype type
+     * (Required)
      * 
      */
     @JsonProperty("temporality_type")
+    @NotNull
     private Variable.TemporalityTypeType temporalityType;
     /**
      * Measurement unit
@@ -534,6 +540,7 @@ public class Variable implements Serializable
      * Unit type
      * <p>
      * Unit Type which this variable pertains to. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/702. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter
+     * (Required)
      * 
      */
     @JsonProperty("unit_type")
@@ -545,6 +552,7 @@ public class Variable implements Serializable
      * Unit type
      * <p>
      * Unit Type which this variable pertains to. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/702. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter
+     * (Required)
      * 
      */
     @JsonProperty("unit_type")
@@ -556,6 +564,7 @@ public class Variable implements Serializable
      * Data source
      * <p>
      * The source of the data contained in this variable. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/712.
+     * (Required)
      * 
      */
     @JsonProperty("data_source")
@@ -567,6 +576,7 @@ public class Variable implements Serializable
      * Data source
      * <p>
      * The source of the data contained in this variable. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/712.
+     * (Required)
      * 
      */
     @JsonProperty("data_source")
@@ -612,6 +622,7 @@ public class Variable implements Serializable
 
     /**
      * Reusable temporalitytype type
+     * (Required)
      * 
      */
     @JsonProperty("temporality_type")
@@ -621,6 +632,7 @@ public class Variable implements Serializable
 
     /**
      * Reusable temporalitytype type
+     * (Required)
      * 
      */
     @JsonProperty("temporality_type")
