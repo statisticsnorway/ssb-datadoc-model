@@ -1,514 +1,498 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://ssb.no/schemas/dapla/metadata/datadoc",
-    "type": "object",
-    "title": "Datadoc metadata",
-    "properties": {
-        "percentage_complete": {
-            "description": "Percentage of obligatory metadata fields populated.",
-            "type": "integer"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://ssb.no/schemas/dapla/metadata/datadoc",
+  "type": "object",
+  "title": "Datadoc metadata",
+  "properties": {
+    "percentage_complete": {
+      "description": "Percentage of obligatory metadata fields populated.",
+      "type": "integer"
+    },
+    "document_version": {
+      "description": "Version of this model",
+      "const": "5.0.1"
+    },
+    "dataset": {
+      "type": "object",
+      "properties": {
+        "short_name": {
+          "title": "Short name",
+          "description": "Name of (physical) data file, data table or dataset",
+          "$comment": " Alphanumeric limited to a-z, A-Z, 0-9, - (hyphen) and _ (underscore)",
+          "type": "string"
         },
-        "document_version": {
-            "description": "Version of this model",
-            "const": "5.0.1"
+        "assessment": {
+          "title": "Assessment",
+          "description": "Value assessment (sensitivity classification) for the data set",
+          "type": "string",
+          "enum": ["SENSITIVE", "PROTECTED", "OPEN"]
         },
-        "dataset": {
+        "dataset_status": {
+          "title": "Data set status",
+          "description": "Life cycle for data set",
+          "type": "string",
+          "enum": ["DRAFT", "INTERNAL", "EXTERNAL", "DEPRECATED"]
+        },
+        "dataset_state": {
+          "title": "Data set state",
+          "description": "Steady state of data",
+          "type": "string",
+          "enum": [
+            "SOURCE_DATA",
+            "INPUT_DATA",
+            "PROCESSED_DATA",
+            "STATISTICS",
+            "OUTPUT_DATA"
+          ]
+        },
+        "name": {
+          "title": "Name",
+          "description": "Name of data set",
+          "$ref": "./languageStringType.json#/languageStringType"
+        },
+        "description": {
+          "title": "Description",
+          "description": "Free text description of the data set",
+          "$ref": "./languageStringType.json#/languageStringType"
+        },
+        "data_source": {
+          "title": "Data source",
+          "description": "Data source. Set either for the data set or instance variable.",
+          "type": "string"
+        },
+        "population_description": {
+          "title": "Description of population",
+          "description": "Description of the population covered in the data set. Includes unit type, spatial coverage and period of time.",
+          "$ref": "./languageStringType.json#/languageStringType"
+        },
+        "version": {
+          "title": "Version",
+          "description": "Version of data set",
+          "type": "string"
+        },
+        "version_description": {
+          "title": "Version description",
+          "description": "Dataset version information in the form of descriptive text",
+          "$ref": "./languageStringType.json#/languageStringType"
+        },
+        "unit_type": {
+          "title": "Unit type",
+          "description": "Unit Type for data file, table or data set. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter",
+          "type": "string"
+        },
+        "temporality_type": {
+          "title": "Temporality type",
+          "description": "Temporality type. Either for the instance variable or the data set",
+          "$ref": "./temporalityTypeType.json#/temporalityTypeType"
+        },
+        "subject_field": {
+          "title": "Subject field",
+          "description": "Primary area of statistics in which the data set is included",
+          "type": "string"
+        },
+        "keyword": {
+          "title": "Keyword(s)",
+          "description": "A list of searchable keywords that can contribute to the development of effective filtering and search services.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "spatial_coverage_description": {
+          "title": "Spatial coverage description",
+          "description": "Description of the data set's spatial coverage",
+          "$ref": "./languageStringType.json#/languageStringType"
+        },
+        "contains_personal_data": {
+          "title": "Contains personal data",
+          "description": "Is there any personal data amongst this data (data set)?",
+          "type": "boolean"
+        },
+        "use_restriction": {
+          "title": "Use restriction",
+          "description": "Data set use restriction",
+          "type": "string",
+          "enum": [
+            "DELETION_ANONYMIZATION",
+            "PROCESS_LIMITATIONS",
+            "SECONDARY_USE_RESTRICTIONS"
+          ]
+        },
+        "use_restriction_date": {
+          "title": "Use restriction date",
+          "description": "Use restriction date, eg. the date (deadline) for when data must be deleted/anonymised.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "custom_type": {
+          "title": "Custom type for dataset metadata",
+          "description": "Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array or objects).",
+          "type": "array",
+          "items": {
             "type": "object",
             "properties": {
-                "short_name": {
-                    "title": "Short name",
-                    "description": "Name of (physical) data file, data table or dataset",
-                    "$comment": " Alphanumeric limited to a-z, A-Z, 0-9, - (hyphen) and _ (underscore)",
+              "key": {
+                "title": "Key",
+                "description": "Custom type KEY",
+                "type": "string"
+              },
+              "value": {
+                "title": "Value",
+                "description": "Custom type VALUE (of type string, array or object).",
+                "oneOf": [
+                  {
                     "type": "string"
-                },
-                "assessment": {
-                    "title": "Assessment",
-                    "description": "Value assessment (sensitivity classification) for the data set",
-                    "type": "string",
-                    "enum": [
-                        "SENSITIVE",
-                        "PROTECTED",
-                        "OPEN"
-                    ]
-                },
-                "dataset_status": {
-                    "title": "Data set status",
-                    "description": "Life cycle for data set",
-                    "type": "string",
-                    "enum": [
-                        "DRAFT",
-                        "INTERNAL",
-                        "EXTERNAL",
-                        "DEPRECATED"
-                    ]
-                },
-                "dataset_state": {
-                    "title": "Data set state",
-                    "description": "Steady state of data",
-                    "type": "string",
-                    "enum": [
-                        "SOURCE_DATA",
-                        "INPUT_DATA",
-                        "PROCESSED_DATA",
-                        "STATISTICS",
-                        "OUTPUT_DATA"
-                    ]
-                },
-                "name": {
-                    "title": "Name",
-                    "description": "Name of data set",
-                    "$ref": "./languageStringType.json#/languageStringType"
-                },
-                "description": {
-                    "title": "Description",
-                    "description": "Free text description of the data set",
-                    "$ref": "./languageStringType.json#/languageStringType"
-                },
-                "data_source": {
-                    "title": "Data source",
-                    "description": "Data source. Set either for the data set or instance variable.",
-                    "type": "string"
-                },
-                "population_description": {
-                    "title": "Description of population",
-                    "description": "Description of the population covered in the data set. Includes unit type, spatial coverage and period of time.",
-                    "$ref": "./languageStringType.json#/languageStringType"
-                },
-                "version": {
-                    "title": "Version",
-                    "description": "Version of data set",
-                    "type": "string"
-                },
-                "version_description": {
-                    "title": "Version description",
-                    "description": "Dataset version information in the form of descriptive text",
-                    "$ref": "./languageStringType.json#/languageStringType"
-                },
-                "unit_type": {
-                    "title": "Unit type",
-                    "description": "Unit Type for data file, table or data set. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter",
-                    "type": "string"
-                },
-                "temporality_type": {
-                    "title": "Temporality type",
-                    "description": "Temporality type. Either for the instance variable or the data set",
-                    "$ref": "./temporalityTypeType.json#/temporalityTypeType"
-                },
-                "subject_field": {
-                    "title": "Subject field",
-                    "description": "Primary area of statistics in which the data set is included",
-                    "type": "string"
-                },
-                "keyword": {
-                    "title": "Keyword(s)",
-                    "description": "A list of searchable keywords that can contribute to the development of effective filtering and search services.",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "spatial_coverage_description": {
-                    "title": "Spatial coverage description",
-                    "description": "Description of the data set's spatial coverage",
-                    "$ref": "./languageStringType.json#/languageStringType"
-                },
-                "contains_personal_data": {
-                    "title": "Contains personal data",
-                    "description": "Is there any personal data amongst this data (data set)?",
-                    "type": "boolean"
-                },
-                "use_restriction": {
-                    "title": "Use restriction",
-                    "description": "Data set use restriction",
-                    "type": "string",
-                    "enum": [
-                        "DELETION_ANONYMIZATION",
-                        "PROCESS_LIMITATIONS",
-                        "SECONDARY_USE_RESTRICTIONS"
-                    ]
-                },
-                "use_restriction_date": {
-                    "title": "Use restriction date",
-                    "description": "Use restriction date, eg. the date (deadline) for when data must be deleted/anonymised.",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "custom_type": {
-                    "title": "Custom type for dataset metadata",
-                    "description": "Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array or objects).",
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "key": {
-                                "title": "Key",
-                                "description": "Custom type KEY",
-                                "type": "string"
-                            },
-                            "value": {
-                                "title": "Value",
-                                "description": "Custom type VALUE (of type string, array or object).",
-                                "oneOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array"
-                                    },
-                                    {
-                                        "type": "object"
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                },
-                "id": {
-                    "title": "Identifier",
-                    "description": "Unique identifier for the data set",
-                    "$comment": "UUID specified by RFC4122",
-                    "type": "string",
-                    "format": "uuid"
-                },
-                "owner": {
-                    "title": "Owner",
-                    "description": "Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83",
-                    "type": "string"
-                },
-                "file_path": {
-                    "title": "File path",
-                    "description": "The file path contains the data set's name and the path to where it is stored",
-                    "type": "string"
-                },
-                "metadata_created_date": {
-                    "title": "Metadata created date",
-                    "description": "Created date for metadata about the data set",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "metadata_created_by": {
-                    "title": "Metadata created by",
-                    "description": "Created by identifiable person.",
-                    "type": "string"
-                },
-                "metadata_last_updated_date": {
-                    "title": "Metadata last updated date",
-                    "description": "Last updated date for metadata about the dataset",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "metadata_last_updated_by": {
-                    "title": "Metadata last updated by",
-                    "description": "Last change made by identifiable person. ",
-                    "type": "string"
-                },
-                "contains_data_from": {
-                    "title": "Contains data from",
-                    "description": "The data set contains data from date/time",
-                    "type": "string",
-                    "format": "date"
-                },
-                "contains_data_until": {
-                    "title": "Contains data up until",
-                    "description": "The data set contains data up until date/time",
-                    "type": "string",
-                    "format": "date"
-                }
-            },
-            "required": [
-                "short_name",
-                "assessment",
-                "dataset_status",
-                "dataset_state",
-                "name",
-                "population_description",
-                "version",
-                "unit_type",
-                "description",
-                "subject_field",
-                "contains_personal_data",
-                "id",
-                "owner",
-                "file_path",
-                "metadata_created_date",
-                "metadata_created_by",
-                "metadata_last_updated_date",
-                "metadata_last_updated_by"
-            ]
+                  },
+                  {
+                    "type": "array"
+                  },
+                  {
+                    "type": "object"
+                  }
+                ]
+              }
+            }
+          }
         },
-        "variables": {
-            "type": "array",
-            "items": {
+        "id": {
+          "title": "Identifier",
+          "description": "Unique identifier for the data set",
+          "$comment": "UUID specified by RFC4122",
+          "type": "string",
+          "format": "uuid"
+        },
+        "owner": {
+          "title": "Owner",
+          "description": "Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83",
+          "type": "string"
+        },
+        "file_path": {
+          "title": "File path",
+          "description": "The file path contains the data set's name and the path to where it is stored",
+          "type": "string"
+        },
+        "metadata_created_date": {
+          "title": "Metadata created date",
+          "description": "Created date for metadata about the data set",
+          "type": "string",
+          "format": "date-time"
+        },
+        "metadata_created_by": {
+          "title": "Metadata created by",
+          "description": "Created by identifiable person.",
+          "type": "string"
+        },
+        "metadata_last_updated_date": {
+          "title": "Metadata last updated date",
+          "description": "Last updated date for metadata about the dataset",
+          "type": "string",
+          "format": "date-time"
+        },
+        "metadata_last_updated_by": {
+          "title": "Metadata last updated by",
+          "description": "Last change made by identifiable person. ",
+          "type": "string"
+        },
+        "contains_data_from": {
+          "title": "Contains data from",
+          "description": "The data set contains data from date/time",
+          "type": "string",
+          "format": "date"
+        },
+        "contains_data_until": {
+          "title": "Contains data up until",
+          "description": "The data set contains data up until date/time",
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "short_name",
+        "assessment",
+        "dataset_status",
+        "dataset_state",
+        "name",
+        "population_description",
+        "version",
+        "unit_type",
+        "description",
+        "subject_field",
+        "contains_personal_data",
+        "id",
+        "owner",
+        "file_path",
+        "metadata_created_date",
+        "metadata_created_by",
+        "metadata_last_updated_date",
+        "metadata_last_updated_by"
+      ]
+    },
+    "variables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "short_name": {
+            "type": "string",
+            "title": "Short name",
+            "description": "Physical name of the variable (data element) in the dataset. Should match the recommended short name."
+          },
+          "data_element_path": {
+            "title": "Data element path",
+            "description": "The path (dot notation) to the data element in a hierarchical data structure, eg. 'person.adress'. Must be given in addition to the short_name.",
+            "$comment": "For hierarchical datasets only, eg. json and xml documents.",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "description": "Variable names can be inherited from VarDef, but can also be documented/changed here",
+            "$ref": "./languageStringType.json#/languageStringType"
+          },
+          "data_type": {
+            "title": "Data type",
+            "description": "Data type",
+            "type": "string",
+            "enum": [
+              "STRING",
+              "INTEGER",
+              "DATETIME",
+              "BOOLEAN",
+              "FLOAT",
+              "ARRAY"
+            ]
+          },
+          "variable_role": {
+            "title": "Variable role",
+            "description": "Role of the instance variable in the data set",
+            "type": "string",
+            "enum": [
+              "IDENTIFIER",
+              "MEASURE",
+              "START_TIME",
+              "STOP_TIME",
+              "ATTRIBUTE"
+            ]
+          },
+          "definition_uri": {
+            "title": "Definition URI",
+            "description": "A link (URI) to the variable's definition in Vardok/VarDef",
+            "type": "string",
+            "format": "uri"
+          },
+          "is_personal_data": {
+            "title": "Is personal data",
+            "description": "Whether or not the variable is personal data.",
+            "type": "boolean"
+          },
+          "pseudonymization": {
+            "type": "object",
+            "description": "A pseudonymized variable in the dataset.",
+            "properties": {
+              "pseudonymization_time": {
+                "title": "Variable pseudo time",
+                "description": "Time at which the variable was pseudonymized. In ISO 8601 format.",
+                "type": "string",
+                "format": "date-time"
+              },
+              "stable_identifier_type": {
+                "type": "string",
+                "title": "Stable identifier type",
+                "description": "Type of stable identifier the variable was mapped to prior to pseudonymization.",
+                "$comment": "Only relevant when the variable is mapped to a stable identifier."
+              },
+              "stable_identifier_version": {
+                "type": "string",
+                "title": "Stable identifier version",
+                "description": "Version of stable identifier the variable was mapped to prior to pseudonymization.",
+                "$comment": "Only relevant when the variable is mapped to a stable identifier."
+              },
+              "encryption_algorithm": {
+                "type": "string",
+                "title": "Encryption algorithm",
+                "description": "The encryption algorithm used to pseudonymize the variable."
+              },
+              "encryption_key_reference": {
+                "type": "string",
+                "title": "Encryption key reference",
+                "description": "Name of or reference to the encryption key used to pseudonymize the variable."
+              },
+              "encryption_algorithm_parameters": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                },
+                "title": "Encryption algorithm parameters",
+                "description": "Parameters supplied to the encryption algorithm."
+              }
+            },
+            "required": ["encryption_algorithm", "encryption_key_reference"]
+          },
+          "data_source": {
+            "title": "Data source",
+            "description": "Data source. Set at data set level, but can be overwritten at variable instance level.",
+            "type": "string"
+          },
+          "population_description": {
+            "title": "Population description",
+            "description": "The population the variable describes can be specified in more detail here. Set at dataset level, but can be overwritten at instance variable level.",
+            "$ref": "./languageStringType.json#/languageStringType"
+          },
+          "comment": {
+            "title": "Comment",
+            "description": "Further clarification of the variables definition",
+            "$ref": "./languageStringType.json#/languageStringType"
+          },
+          "temporality_type": {
+            "title": "Temporality type",
+            "description": "Temporality type. Set either for variable instance or dataset.",
+            "$ref": "./temporalityTypeType.json#/temporalityTypeType"
+          },
+          "measurement_unit": {
+            "title": "Measurement unit",
+            "description": "Measurement unit",
+            "$comment": "TODO: measurement_unit implemented as string. In the future this should be implemente as enum? See https://www.ssb.no/klass/klassifikasjoner/303/koder",
+            "type": "string"
+          },
+          "multiplication_factor": {
+            "title": "Multiplication factor",
+            "description": "A multiplication factor for a value/result is a number that multiplies that value/result.",
+            "type": "integer"
+          },
+          "format": {
+            "title": "Format",
+            "description": "The format of the values ​​(physical format or regular expression) in machine-readable form for validation. This can be used as a further specification of the data type (dataType) in those cases where this is relevant.",
+            "type": "string"
+          },
+          "classification_uri": {
+            "title": "Classification or codelist URI",
+            "description": "Link (URI) to valid classification or code list",
+            "type": "string",
+            "format": "uri"
+          },
+          "special_value": {
+            "title": "Special values",
+            "type": "object",
+            "properties": {
+              "sentinel": {
+                "title": "Sentinel values",
                 "type": "object",
                 "properties": {
-                    "short_name": {
-                        "type": "string",
-                        "title": "Short name",
-                        "description": "Physical name of the variable (data element) in the dataset. Should match the recommended short name."
-                    },
-                    "data_element_path": {
-                        "title": "Data element path",
-                        "description": "The path (dot notation) to the data element in a hierarchical data structure, eg. 'person.adress'. Must be given in addition to the short_name.",
-                        "$comment": "For hierarchical datasets only, eg. json and xml documents.",
-                        "type": "string"
+                  "sentinel_value_uri": {
+                    "title": "Sentinel value URI",
+                    "description": "A link (URI) to a standardized list of sentinel values included in the variable, eg. a link to a codelist in Klass (https://www.ssb.no/en/klass/)",
+                    "$comment": "Proposals for the standardization of sentinel values ​​have been drafted, but this has not yet been processed by the Standards Committee in Statistics Norway.",
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "sentinel_value_elements": {
+                    "title": "Sentinel value elements",
+                    "description": "A selection (subset) of sentinel values in the 'sentinel_value_uri' ​​applicable to the data set.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "other_value": {
+                "title": "Other special values",
+                "description": "Other special values not represented as 'sentinel_value' in a standardized code list.",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "title": "Code",
+                      "description": "Other value code",
+                      "type": "string"
                     },
                     "name": {
-                        "title": "Name",
-                        "description": "Variable names can be inherited from VarDef, but can also be documented/changed here",
-                        "$ref": "./languageStringType.json#/languageStringType"
+                      "title": "Name",
+                      "description": "Other value name (text)",
+                      "$ref": "./languageStringType.json#/languageStringType"
                     },
-                    "data_type": {
-                        "title": "Data type",
-                        "description": "Data type",
-                        "type": "string",
-                        "enum": [
-                            "STRING",
-                            "INTEGER",
-                            "DATETIME",
-                            "BOOLEAN",
-                            "FLOAT",
-                            "ARRAY"
-                        ]
+                    "valid_from": {
+                      "title": "Valid from",
+                      "description": "Other value valid from date",
+                      "type": "string",
+                      "format": "date-time"
                     },
-                    "variable_role": {
-                        "title": "Variable role",
-                        "description": "Role of the instance variable in the data set",
-                        "type": "string",
-                        "enum": [
-                            "IDENTIFIER",
-                            "MEASURE",
-                            "START_TIME",
-                            "STOP_TIME",
-                            "ATTRIBUTE"
-                        ]
-                    },
-                    "definition_uri": {
-                        "title": "Definition URI",
-                        "description": "A link (URI) to the variable's definition in Vardok/VarDef",
-                        "type": "string",
-                        "format": "uri"
-                    },
-                    "is_personal_data": {
-                        "title": "Is personal data",
-                        "description": "Whether or not the variable is personal data.",
-                        "type": "boolean"
-                    },
-                    "pseudonymization": {
-                        "type": "object",
-                        "description": "A pseudonymized variable in the dataset.",
-                        "properties": {
-                          "pseudonymization_time": {
-                            "title": "Variable pseudo time",
-                            "description": "Time at which the variable was pseudonymized. In ISO 8601 format.",
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                            "stable_identifier_type": {
-                                "type": "string",
-                                "title": "Stable identifier type",
-                                "description": "Type of stable identifier the variable was mapped to prior to pseudonymization.",
-                                "$comment": "Only relevant when the variable is mapped to a stable identifier."
-                            },
-                            "stable_identifier_version": {
-                                "type": "string",
-                                "title": "Stable identifier version",
-                                "description": "Version of stable identifier the variable was mapped to prior to pseudonymization.",
-                                "$comment": "Only relevant when the variable is mapped to a stable identifier."
-                            },
-                            "encryption_algorithm": {
-                                "type": "string",
-                                "title": "Encryption algorithm",
-                                "description": "The encryption algorithm used to pseudonymize the variable."
-                            },
-                            "encryption_key_reference": {
-                                "type": "string",
-                                "title": "Encryption key reference",
-                                "description": "Name of or reference to the encryption key used to pseudonymize the variable."
-                            },
-                            "encryption_algorithm_parameters": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object"
-                                },
-                                "title": "Encryption algorithm parameters",
-                                "description": "Parameters supplied to the encryption algorithm."
-                            }
-                        },
-                        "required": [
-                            "encryption_algorithm",
-                            "encryption_key_reference"
-                        ]
-                    },
-                    "data_source": {
-                        "title": "Data source",
-                        "description": "Data source. Set at data set level, but can be overwritten at variable instance level.",
-                        "type": "string"
-                    },
-                    "population_description": {
-                        "title": "Population description",
-                        "description": "The population the variable describes can be specified in more detail here. Set at dataset level, but can be overwritten at instance variable level.",
-                        "$ref": "./languageStringType.json#/languageStringType"
-                    },
-                    "comment": {
-                        "title": "Comment",
-                        "description": "Further clarification of the variables definition",
-                        "$ref": "./languageStringType.json#/languageStringType"
-                    },
-                    "temporality_type": {
-                        "title": "Temporality type",
-                        "description": "Temporality type. Set either for variable instance or dataset.",
-                        "$ref": "./temporalityTypeType.json#/temporalityTypeType"
-                    },
-                    "measurement_unit": {
-                        "title": "Measurement unit",
-                        "description": "Measurement unit",
-                        "$comment": "TODO: measurement_unit implemented as string. In the future this should be implemente as enum? See https://www.ssb.no/klass/klassifikasjoner/303/koder",
-                        "type": "string"
-                    },
-                    "multiplication_factor": {
-                        "title": "Multiplication factor",
-                        "description": "A multiplication factor for a value/result is a number that multiplies that value/result.",
-                        "type": "integer"
-                    },
-                    "format": {
-                        "title": "Format",
-                        "description": "The format of the values ​​(physical format or regular expression) in machine-readable form for validation. This can be used as a further specification of the data type (dataType) in those cases where this is relevant.",
-                        "type": "string"
-                    },
-                    "classification_uri": {
-                        "title": "Classification or codelist URI",
-                        "description": "Link (URI) to valid classification or code list",
-                        "type": "string",
-                        "format": "uri"
-                    },
-                    "special_value": {
-                        "title": "Special values",
-                        "type": "object",
-                        "properties": {
-                            "sentinel": {
-                                "title": "Sentinel values",
-                                "type": "object",
-                                "properties": {
-                                    "sentinel_value_uri": {
-                                        "title": "Sentinel value URI",
-                                        "description": "A link (URI) to a standardized list of sentinel values included in the variable, eg. a link to a codelist in Klass (https://www.ssb.no/en/klass/)",
-                                        "$comment": "Proposals for the standardization of sentinel values ​​have been drafted, but this has not yet been processed by the Standards Committee in Statistics Norway.",
-                                        "type": "string",
-                                        "format": "uri"
-                                    },
-                                    "sentinel_value_elements": {
-                                        "title": "Sentinel value elements",
-                                        "description": "A selection (subset) of sentinel values in the 'sentinel_value_uri' ​​applicable to the data set.",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            },
-                            "other_value": {
-                                "title": "Other special values",
-                                "description": "Other special values not represented as 'sentinel_value' in a standardized code list.",
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "title": "Code",
-                                            "description": "Other value code",
-                                            "type": "string"
-                                        },
-                                        "name": {
-                                            "title": "Name",
-                                            "description": "Other value name (text)",
-                                            "$ref": "./languageStringType.json#/languageStringType"
-                                        },
-                                        "valid_from": {
-                                            "title": "Valid from",
-                                            "description": "Other value valid from date",
-                                            "type": "string",
-                                            "format": "date-time"
-                                        },
-                                        "valid_until": {
-                                            "title": "Valid until",
-                                            "description": "Other value until date",
-                                            "type": "string",
-                                            "format": "date-time"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "invalid_value_description": {
-                        "title": "Invalid value(s) description",
-                        "description": "Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.",
-                        "$ref": "./languageStringType.json#/languageStringType"
-                    },
-                    "custom_type": {
-                        "title": "Custom type for variable metadata",
-                        "description": "Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array or objects).",
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "key": {
-                                    "title": "Key",
-                                    "description": "Custom type KEY",
-                                    "type": "string"
-                                },
-                                "value": {
-                                    "title": "Value",
-                                    "description": "Custom type VALUE (of type string, array or object).",
-                                    "oneOf": [
-                                        {
-                                            "type": "string"
-                                        },
-                                        {
-                                            "type": "array"
-                                        },
-                                        {
-                                            "type": "object"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "id": {
-                        "title": "Identifier",
-                        "description": "Unique SSB identifier for the instance variable in the data set",
-                        "$comment": "UUID specified by RFC4122",
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    "contains_data_from": {
-                        "title": "Contains data from",
-                        "description": "The instance variable in the data set contains data from and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some variables only contain data for the most recent periods/years, e.g. if the entire data set contains data from 1970 to 2020, while some instance variables only contain data from 1998 onwards.",
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "contains_data_until": {
-                        "title": "Contains data up until",
-                        "description": "The instance variable in the data set contains data up to and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some of the instance variables in the data set are terminated (no longer updated) after a given point in time.",
-                        "type": "string",
-                        "format": "date"
+                    "valid_until": {
+                      "title": "Valid until",
+                      "description": "Other value until date",
+                      "type": "string",
+                      "format": "date-time"
                     }
-                },
-                "required": [
-                    "short_name",
-                    "name",
-                    "data_type",
-                    "variable_role",
-                    "is_personal_data",
-                    "id"
-                ]
+                  }
+                }
+              }
             }
-        }
-    },
-    "required": [
-        "document_version",
-        "dataset",
-        "variables"
-    ]
+          },
+          "invalid_value_description": {
+            "title": "Invalid value(s) description",
+            "description": "Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.",
+            "$ref": "./languageStringType.json#/languageStringType"
+          },
+          "custom_type": {
+            "title": "Custom type for variable metadata",
+            "description": "Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array or objects).",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "title": "Key",
+                  "description": "Custom type KEY",
+                  "type": "string"
+                },
+                "value": {
+                  "title": "Value",
+                  "description": "Custom type VALUE (of type string, array or object).",
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array"
+                    },
+                    {
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "id": {
+            "title": "Identifier",
+            "description": "Unique SSB identifier for the instance variable in the data set",
+            "$comment": "UUID specified by RFC4122",
+            "type": "string",
+            "format": "uuid"
+          },
+          "contains_data_from": {
+            "title": "Contains data from",
+            "description": "The instance variable in the data set contains data from and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some variables only contain data for the most recent periods/years, e.g. if the entire data set contains data from 1970 to 2020, while some instance variables only contain data from 1998 onwards.",
+            "type": "string",
+            "format": "date"
+          },
+          "contains_data_until": {
+            "title": "Contains data up until",
+            "description": "The instance variable in the data set contains data up to and including this date. This can be useful information for data sets that contain many instance variables in addition to data for many periods/years. In many cases, it will then be the case that some of the instance variables in the data set are terminated (no longer updated) after a given point in time.",
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "short_name",
+          "name",
+          "data_type",
+          "variable_role",
+          "is_personal_data",
+          "id"
+        ]
+      }
+    }
+  },
+  "required": ["document_version", "dataset", "variables"]
 }
