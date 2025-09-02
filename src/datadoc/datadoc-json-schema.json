@@ -472,6 +472,9 @@
           "data_type",
           "variable_role",
           "is_personal_data",
+          "unit_type",
+          "data_source",
+          "temporality_type",
           "id"
         ]
       }
