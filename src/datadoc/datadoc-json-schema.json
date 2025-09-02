@@ -75,11 +75,6 @@
           "description": "Dataset version information in the form of descriptive text",
           "$ref": "./languageStringType.json#/languageStringType"
         },
-        "unit_type": {
-          "title": "Unit type",
-          "description": "Unit Type for data file, table or data set. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter",
-          "type": "string"
-        },
         "temporality_type": {
           "title": "Temporality type",
           "description": "Temporality type. Either for the instance variable or the data set",
@@ -209,7 +204,6 @@
         "name",
         "population_description",
         "version",
-        "unit_type",
         "description",
         "subject_field",
         "id",
