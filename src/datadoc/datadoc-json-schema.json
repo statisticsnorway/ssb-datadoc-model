@@ -305,6 +305,11 @@
             },
             "required": ["encryption_algorithm", "encryption_key_reference"]
           },
+          "unit_type": {
+            "title": "Unit type",
+            "description": "Unit Type which this variable pertains to. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/702. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter",
+            "type": "string"
+          },
           "data_source": {
             "title": "Data source",
             "description": "Data source. Set at data set level, but can be overwritten at variable instance level.",
