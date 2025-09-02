@@ -32,6 +32,7 @@ import jakarta.validation.constraints.NotNull;
     "definition_uri",
     "is_personal_data",
     "pseudonymization",
+    "unit_type",
     "data_source",
     "population_description",
     "comment",
@@ -131,13 +132,22 @@ public class Variable implements Serializable
     @Valid
     private Pseudonymization pseudonymization;
     /**
+     * Unit type
+     * <p>
+     * Unit Type which this variable pertains to. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/702. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter
+     * 
+     */
+    @JsonProperty("unit_type")
+    @JsonPropertyDescription("Unit Type which this variable pertains to. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/702. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter")
+    private String unitType;
+    /**
      * Data source
      * <p>
-     * Data source. Set at data set level, but can be overwritten at variable instance level.
+     * The source of the data contained in this variable. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/712.
      * 
      */
     @JsonProperty("data_source")
-    @JsonPropertyDescription("Data source. Set at data set level, but can be overwritten at variable instance level.")
+    @JsonPropertyDescription("The source of the data contained in this variable. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/712.")
     private String dataSource;
     /**
      * Reusableb langugage string type
@@ -158,7 +168,7 @@ public class Variable implements Serializable
      * 
      */
     @JsonProperty("temporality_type")
-    private no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType;
+    private Variable.TemporalityTypeType temporalityType;
     /**
      * Measurement unit
      * <p>
@@ -253,7 +263,7 @@ public class Variable implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -4177767715395844408L;
+    private final static long serialVersionUID = -8729988193442125550L;
 
     /**
      * No args constructor for use in serialization
@@ -283,9 +293,11 @@ public class Variable implements Serializable
      * @param definitionUri
      *     Definition URI. A link (URI) to the variable's definition in Vardok/VarDef.
      * @param temporalityType
-     *     Temporality type. Temporality type. Set either for variable instance or dataset.
+     *     Temporality type. Temporality type of this variable.
      * @param measurementUnit
      *     Measurement unit. Measurement unit.
+     * @param unitType
+     *     Unit type. Unit Type which this variable pertains to. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/702. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter.
      * @param customType
      *     Custom type for variable metadata. Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array or objects).
      * @param variableRole
@@ -303,13 +315,13 @@ public class Variable implements Serializable
      * @param shortName
      *     Short name. Physical name of the variable (data element) in the dataset. Should match the recommended short name.
      * @param dataSource
-     *     Data source. Data source. Set at data set level, but can be overwritten at variable instance level.
+     *     Data source. The source of the data contained in this variable. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/712.
      * @param multiplicationFactor
      *     Multiplication factor. A multiplication factor for a value/result is a number that multiplies that value/result.
      * @param invalidValueDescription
      *     Invalid value(s) description. Invalid value(s) description used in addition (or as an alternative) to standard sentinel values.
      */
-    public Variable(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean isPersonalData, Pseudonymization pseudonymization, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
+    public Variable(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean isPersonalData, Pseudonymization pseudonymization, String unitType, String dataSource, List<Object> populationDescription, List<Object> comment, Variable.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
         super();
         this.shortName = shortName;
         this.dataElementPath = dataElementPath;
@@ -319,6 +331,7 @@ public class Variable implements Serializable
         this.definitionUri = definitionUri;
         this.isPersonalData = isPersonalData;
         this.pseudonymization = pseudonymization;
+        this.unitType = unitType;
         this.dataSource = dataSource;
         this.populationDescription = populationDescription;
         this.comment = comment;
@@ -518,9 +531,31 @@ public class Variable implements Serializable
     }
 
     /**
+     * Unit type
+     * <p>
+     * Unit Type which this variable pertains to. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/702. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter
+     * 
+     */
+    @JsonProperty("unit_type")
+    public String getUnitType() {
+        return unitType;
+    }
+
+    /**
+     * Unit type
+     * <p>
+     * Unit Type which this variable pertains to. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/702. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter
+     * 
+     */
+    @JsonProperty("unit_type")
+    public void setUnitType(String unitType) {
+        this.unitType = unitType;
+    }
+
+    /**
      * Data source
      * <p>
-     * Data source. Set at data set level, but can be overwritten at variable instance level.
+     * The source of the data contained in this variable. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/712.
      * 
      */
     @JsonProperty("data_source")
@@ -531,7 +566,7 @@ public class Variable implements Serializable
     /**
      * Data source
      * <p>
-     * Data source. Set at data set level, but can be overwritten at variable instance level.
+     * The source of the data contained in this variable. Values shall be codes from https://www.ssb.no/klass/klassifikasjoner/712.
      * 
      */
     @JsonProperty("data_source")
@@ -580,7 +615,7 @@ public class Variable implements Serializable
      * 
      */
     @JsonProperty("temporality_type")
-    public no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType getTemporalityType() {
+    public Variable.TemporalityTypeType getTemporalityType() {
         return temporalityType;
     }
 
@@ -589,7 +624,7 @@ public class Variable implements Serializable
      * 
      */
     @JsonProperty("temporality_type")
-    public void setTemporalityType(no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType) {
+    public void setTemporalityType(Variable.TemporalityTypeType temporalityType) {
         this.temporalityType = temporalityType;
     }
 
@@ -857,6 +892,10 @@ public class Variable implements Serializable
         sb.append('=');
         sb.append(((this.pseudonymization == null)?"<null>":this.pseudonymization));
         sb.append(',');
+        sb.append("unitType");
+        sb.append('=');
+        sb.append(((this.unitType == null)?"<null>":this.unitType));
+        sb.append(',');
         sb.append("dataSource");
         sb.append('=');
         sb.append(((this.dataSource == null)?"<null>":this.dataSource));
@@ -928,29 +967,30 @@ public class Variable implements Serializable
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.specialValue == null)? 0 :this.specialValue.hashCode()));
         result = ((result* 31)+((this.containsDataUntil == null)? 0 :this.containsDataUntil.hashCode()));
+        result = ((result* 31)+((this.populationDescription == null)? 0 :this.populationDescription.hashCode()));
+        result = ((result* 31)+((this.definitionUri == null)? 0 :this.definitionUri.hashCode()));
+        result = ((result* 31)+((this.temporalityType == null)? 0 :this.temporalityType.hashCode()));
+        result = ((result* 31)+((this.unitType == null)? 0 :this.unitType.hashCode()));
+        result = ((result* 31)+((this.variableRole == null)? 0 :this.variableRole.hashCode()));
+        result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
+        result = ((result* 31)+((this.multiplicationFactor == null)? 0 :this.multiplicationFactor.hashCode()));
+        result = ((result* 31)+((this.invalidValueDescription == null)? 0 :this.invalidValueDescription.hashCode()));
+        result = ((result* 31)+((this.specialValue == null)? 0 :this.specialValue.hashCode()));
         result = ((result* 31)+((this.pseudonymization == null)? 0 :this.pseudonymization.hashCode()));
         result = ((result* 31)+((this.containsDataFrom == null)? 0 :this.containsDataFrom.hashCode()));
         result = ((result* 31)+((this.dataType == null)? 0 :this.dataType.hashCode()));
         result = ((result* 31)+((this.format == null)? 0 :this.format.hashCode()));
         result = ((result* 31)+((this.classificationUri == null)? 0 :this.classificationUri.hashCode()));
-        result = ((result* 31)+((this.populationDescription == null)? 0 :this.populationDescription.hashCode()));
-        result = ((result* 31)+((this.definitionUri == null)? 0 :this.definitionUri.hashCode()));
-        result = ((result* 31)+((this.temporalityType == null)? 0 :this.temporalityType.hashCode()));
         result = ((result* 31)+((this.measurementUnit == null)? 0 :this.measurementUnit.hashCode()));
         result = ((result* 31)+((this.customType == null)? 0 :this.customType.hashCode()));
-        result = ((result* 31)+((this.variableRole == null)? 0 :this.variableRole.hashCode()));
         result = ((result* 31)+((this.dataElementPath == null)? 0 :this.dataElementPath.hashCode()));
         result = ((result* 31)+((this.name == null)? 0 :this.name.hashCode()));
         result = ((result* 31)+((this.isPersonalData == null)? 0 :this.isPersonalData.hashCode()));
         result = ((result* 31)+((this.comment == null)? 0 :this.comment.hashCode()));
-        result = ((result* 31)+((this.id == null)? 0 :this.id.hashCode()));
         result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
         result = ((result* 31)+((this.shortName == null)? 0 :this.shortName.hashCode()));
         result = ((result* 31)+((this.dataSource == null)? 0 :this.dataSource.hashCode()));
-        result = ((result* 31)+((this.multiplicationFactor == null)? 0 :this.multiplicationFactor.hashCode()));
-        result = ((result* 31)+((this.invalidValueDescription == null)? 0 :this.invalidValueDescription.hashCode()));
         return result;
     }
 
@@ -963,7 +1003,7 @@ public class Variable implements Serializable
             return false;
         }
         Variable rhs = ((Variable) other);
-        return ((((((((((((((((((((((((this.specialValue == rhs.specialValue)||((this.specialValue!= null)&&this.specialValue.equals(rhs.specialValue)))&&((this.containsDataUntil == rhs.containsDataUntil)||((this.containsDataUntil!= null)&&this.containsDataUntil.equals(rhs.containsDataUntil))))&&((this.pseudonymization == rhs.pseudonymization)||((this.pseudonymization!= null)&&this.pseudonymization.equals(rhs.pseudonymization))))&&((this.containsDataFrom == rhs.containsDataFrom)||((this.containsDataFrom!= null)&&this.containsDataFrom.equals(rhs.containsDataFrom))))&&((this.dataType == rhs.dataType)||((this.dataType!= null)&&this.dataType.equals(rhs.dataType))))&&((this.format == rhs.format)||((this.format!= null)&&this.format.equals(rhs.format))))&&((this.classificationUri == rhs.classificationUri)||((this.classificationUri!= null)&&this.classificationUri.equals(rhs.classificationUri))))&&((this.populationDescription == rhs.populationDescription)||((this.populationDescription!= null)&&this.populationDescription.equals(rhs.populationDescription))))&&((this.definitionUri == rhs.definitionUri)||((this.definitionUri!= null)&&this.definitionUri.equals(rhs.definitionUri))))&&((this.temporalityType == rhs.temporalityType)||((this.temporalityType!= null)&&this.temporalityType.equals(rhs.temporalityType))))&&((this.measurementUnit == rhs.measurementUnit)||((this.measurementUnit!= null)&&this.measurementUnit.equals(rhs.measurementUnit))))&&((this.customType == rhs.customType)||((this.customType!= null)&&this.customType.equals(rhs.customType))))&&((this.variableRole == rhs.variableRole)||((this.variableRole!= null)&&this.variableRole.equals(rhs.variableRole))))&&((this.dataElementPath == rhs.dataElementPath)||((this.dataElementPath!= null)&&this.dataElementPath.equals(rhs.dataElementPath))))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.isPersonalData == rhs.isPersonalData)||((this.isPersonalData!= null)&&this.isPersonalData.equals(rhs.isPersonalData))))&&((this.comment == rhs.comment)||((this.comment!= null)&&this.comment.equals(rhs.comment))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))))&&((this.dataSource == rhs.dataSource)||((this.dataSource!= null)&&this.dataSource.equals(rhs.dataSource))))&&((this.multiplicationFactor == rhs.multiplicationFactor)||((this.multiplicationFactor!= null)&&this.multiplicationFactor.equals(rhs.multiplicationFactor))))&&((this.invalidValueDescription == rhs.invalidValueDescription)||((this.invalidValueDescription!= null)&&this.invalidValueDescription.equals(rhs.invalidValueDescription))));
+        return (((((((((((((((((((((((((this.containsDataUntil == rhs.containsDataUntil)||((this.containsDataUntil!= null)&&this.containsDataUntil.equals(rhs.containsDataUntil)))&&((this.populationDescription == rhs.populationDescription)||((this.populationDescription!= null)&&this.populationDescription.equals(rhs.populationDescription))))&&((this.definitionUri == rhs.definitionUri)||((this.definitionUri!= null)&&this.definitionUri.equals(rhs.definitionUri))))&&((this.temporalityType == rhs.temporalityType)||((this.temporalityType!= null)&&this.temporalityType.equals(rhs.temporalityType))))&&((this.unitType == rhs.unitType)||((this.unitType!= null)&&this.unitType.equals(rhs.unitType))))&&((this.variableRole == rhs.variableRole)||((this.variableRole!= null)&&this.variableRole.equals(rhs.variableRole))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.multiplicationFactor == rhs.multiplicationFactor)||((this.multiplicationFactor!= null)&&this.multiplicationFactor.equals(rhs.multiplicationFactor))))&&((this.invalidValueDescription == rhs.invalidValueDescription)||((this.invalidValueDescription!= null)&&this.invalidValueDescription.equals(rhs.invalidValueDescription))))&&((this.specialValue == rhs.specialValue)||((this.specialValue!= null)&&this.specialValue.equals(rhs.specialValue))))&&((this.pseudonymization == rhs.pseudonymization)||((this.pseudonymization!= null)&&this.pseudonymization.equals(rhs.pseudonymization))))&&((this.containsDataFrom == rhs.containsDataFrom)||((this.containsDataFrom!= null)&&this.containsDataFrom.equals(rhs.containsDataFrom))))&&((this.dataType == rhs.dataType)||((this.dataType!= null)&&this.dataType.equals(rhs.dataType))))&&((this.format == rhs.format)||((this.format!= null)&&this.format.equals(rhs.format))))&&((this.classificationUri == rhs.classificationUri)||((this.classificationUri!= null)&&this.classificationUri.equals(rhs.classificationUri))))&&((this.measurementUnit == rhs.measurementUnit)||((this.measurementUnit!= null)&&this.measurementUnit.equals(rhs.measurementUnit))))&&((this.customType == rhs.customType)||((this.customType!= null)&&this.customType.equals(rhs.customType))))&&((this.dataElementPath == rhs.dataElementPath)||((this.dataElementPath!= null)&&this.dataElementPath.equals(rhs.dataElementPath))))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.isPersonalData == rhs.isPersonalData)||((this.isPersonalData!= null)&&this.isPersonalData.equals(rhs.isPersonalData))))&&((this.comment == rhs.comment)||((this.comment!= null)&&this.comment.equals(rhs.comment))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))))&&((this.dataSource == rhs.dataSource)||((this.dataSource!= null)&&this.dataSource.equals(rhs.dataSource))));
     }
 
 
@@ -1017,6 +1057,53 @@ public class Variable implements Serializable
 
     }
 
+
+    /**
+     * Reusable temporalitytype type
+     * 
+     */
+    @Generated("jsonschema2pojo")
+    public enum TemporalityTypeType {
+
+        FIXED("FIXED"),
+        STATUS("STATUS"),
+        ACCUMULATED("ACCUMULATED"),
+        EVENT("EVENT");
+        private final String value;
+        private final static Map<String, Variable.TemporalityTypeType> CONSTANTS = new HashMap<String, Variable.TemporalityTypeType>();
+
+        static {
+            for (Variable.TemporalityTypeType c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        TemporalityTypeType(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+
+        @JsonValue
+        public String value() {
+            return this.value;
+        }
+
+        @JsonCreator
+        public static Variable.TemporalityTypeType fromValue(String value) {
+            Variable.TemporalityTypeType constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException(value);
+            } else {
+                return constant;
+            }
+        }
+
+    }
+
     public static class VariableBuilder
         extends Variable.VariableBuilderBase<Variable>
     {
@@ -1026,8 +1113,8 @@ public class Variable implements Serializable
             super();
         }
 
-        public VariableBuilder(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean isPersonalData, Pseudonymization pseudonymization, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
-            super(shortName, dataElementPath, name, dataType, variableRole, definitionUri, isPersonalData, pseudonymization, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil);
+        public VariableBuilder(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean isPersonalData, Pseudonymization pseudonymization, String unitType, String dataSource, List<Object> populationDescription, List<Object> comment, Variable.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
+            super(shortName, dataElementPath, name, dataType, variableRole, definitionUri, isPersonalData, pseudonymization, unitType, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil);
         }
 
     }
@@ -1045,10 +1132,10 @@ public class Variable implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public VariableBuilderBase(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean isPersonalData, Pseudonymization pseudonymization, String dataSource, List<Object> populationDescription, List<Object> comment, no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
+        public VariableBuilderBase(String shortName, String dataElementPath, List<Object> name, Variable.DataType dataType, Variable.VariableRole variableRole, URI definitionUri, Boolean isPersonalData, Pseudonymization pseudonymization, String unitType, String dataSource, List<Object> populationDescription, List<Object> comment, Variable.TemporalityTypeType temporalityType, String measurementUnit, Integer multiplicationFactor, String format, URI classificationUri, SpecialValues specialValue, List<Object> invalidValueDescription, List<CustomType__1> customType, UUID id, String containsDataFrom, String containsDataUntil) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(Variable.VariableBuilder.class)) {
-                this.instance = ((T) new Variable(shortName, dataElementPath, name, dataType, variableRole, definitionUri, isPersonalData, pseudonymization, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil));
+                this.instance = ((T) new Variable(shortName, dataElementPath, name, dataType, variableRole, definitionUri, isPersonalData, pseudonymization, unitType, dataSource, populationDescription, comment, temporalityType, measurementUnit, multiplicationFactor, format, classificationUri, specialValue, invalidValueDescription, customType, id, containsDataFrom, containsDataUntil));
             }
         }
 
@@ -1099,6 +1186,11 @@ public class Variable implements Serializable
             return this;
         }
 
+        public Variable.VariableBuilderBase withUnitType(String unitType) {
+            ((Variable) this.instance).unitType = unitType;
+            return this;
+        }
+
         public Variable.VariableBuilderBase withDataSource(String dataSource) {
             ((Variable) this.instance).dataSource = dataSource;
             return this;
@@ -1114,7 +1206,7 @@ public class Variable implements Serializable
             return this;
         }
 
-        public Variable.VariableBuilderBase withTemporalityType(no.ssb.dapla.metadata.datadoc.Dataset.TemporalityTypeType temporalityType) {
+        public Variable.VariableBuilderBase withTemporalityType(Variable.TemporalityTypeType temporalityType) {
             ((Variable) this.instance).temporalityType = temporalityType;
             return this;
         }

@@ -30,16 +30,12 @@ import jakarta.validation.constraints.NotNull;
     "dataset_state",
     "name",
     "description",
-    "data_source",
     "population_description",
     "version",
     "version_description",
-    "unit_type",
-    "temporality_type",
     "subject_field",
     "keyword",
     "spatial_coverage_description",
-    "contains_personal_data",
     "use_restriction",
     "use_restriction_date",
     "custom_type",
@@ -120,15 +116,6 @@ public class Dataset implements Serializable
     @NotNull
     private List<Object> description = new ArrayList<Object>();
     /**
-     * Data source
-     * <p>
-     * Data source. Set either for the data set or instance variable.
-     * 
-     */
-    @JsonProperty("data_source")
-    @JsonPropertyDescription("Data source. Set either for the data set or instance variable.")
-    private String dataSource;
-    /**
      * Reusableb langugage string type
      * (Required)
      * 
@@ -155,23 +142,6 @@ public class Dataset implements Serializable
     @JsonProperty("version_description")
     @Valid
     private List<Object> versionDescription = new ArrayList<Object>();
-    /**
-     * Unit type
-     * <p>
-     * Unit Type for data file, table or data set. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter
-     * (Required)
-     * 
-     */
-    @JsonProperty("unit_type")
-    @JsonPropertyDescription("Unit Type for data file, table or data set. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter")
-    @NotNull
-    private String unitType;
-    /**
-     * Reusable temporalitytype type
-     * 
-     */
-    @JsonProperty("temporality_type")
-    private Dataset.TemporalityTypeType temporalityType;
     /**
      * Subject field
      * <p>
@@ -200,17 +170,6 @@ public class Dataset implements Serializable
     @JsonProperty("spatial_coverage_description")
     @Valid
     private List<Object> spatialCoverageDescription = new ArrayList<Object>();
-    /**
-     * Contains personal data
-     * <p>
-     * Is there any personal data amongst this data (data set)?
-     * (Required)
-     * 
-     */
-    @JsonProperty("contains_personal_data")
-    @JsonPropertyDescription("Is there any personal data amongst this data (data set)?")
-    @NotNull
-    private Boolean containsPersonalData;
     /**
      * Use restriction
      * <p>
@@ -337,7 +296,7 @@ public class Dataset implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -226168508644193475L;
+    private final static long serialVersionUID = 5921825615679682644L;
 
     /**
      * No args constructor for use in serialization
@@ -350,62 +309,54 @@ public class Dataset implements Serializable
      * 
      * @param versionDescription
      *     Version description. Dataset version information in the form of descriptive text.
+     * @param owner
+     *     Owner. Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83.
      * @param containsDataUntil
      *     Contains data up until. The data set contains data up until date/time.
      * @param datasetState
      *     Data set state. Steady state of data.
+     * @param containsDataFrom
+     *     Contains data from. The data set contains data from date/time.
      * @param datasetStatus
      *     Data set status. Life cycle for data set.
+     * @param filePath
+     *     File path. The file path contains the data set's name and the path to where it is stored.
+     * @param useRestriction
+     *     Use restriction. Data set use restriction.
      * @param description
      *     Description. Free text description of the data set.
      * @param populationDescription
      *     Description of population. Description of the population covered in the data set. Includes unit type, spatial coverage and period of time.
      * @param metadataLastUpdatedBy
      *     Metadata last updated by. Last change made by identifiable person. .
-     * @param temporalityType
-     *     Temporality type. Temporality type. Either for the instance variable or the data set.
-     * @param subjectField
-     *     Subject field. Primary area of statistics in which the data set is included.
-     * @param unitType
-     *     Unit type. Unit Type for data file, table or data set. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter.
-     * @param assessment
-     *     Assessment. Value assessment (sensitivity classification) for the data set.
-     * @param spatialCoverageDescription
-     *     Spatial coverage description. Description of the data set's spatial coverage.
-     * @param metadataCreatedBy
-     *     Metadata created by. Created by identifiable person.
-     * @param id
-     *     Identifier. Unique identifier for the data set.
-     * @param keyword
-     *     Keyword(s). A list of searchable keywords that can contribute to the development of effective filtering and search services.
-     * @param owner
-     *     Owner. Owner of the data set (responsible division in Statistics Norway). Values defined by https://www.ssb.no/en/klass/klassifikasjoner/83.
-     * @param containsDataFrom
-     *     Contains data from. The data set contains data from date/time.
-     * @param filePath
-     *     File path. The file path contains the data set's name and the path to where it is stored.
-     * @param useRestriction
-     *     Use restriction. Data set use restriction.
-     * @param containsPersonalData
-     *     Contains personal data. Is there any personal data amongst this data (data set)?.
      * @param metadataLastUpdatedDate
      *     Metadata last updated date. Last updated date for metadata about the dataset.
      * @param version
      *     Version. Version of data set.
+     * @param subjectField
+     *     Subject field. Primary area of statistics in which the data set is included.
+     * @param assessment
+     *     Assessment. Value assessment (sensitivity classification) for the data set.
      * @param customType
      *     Custom type for dataset metadata. Extend the DataDoc model by adding custom metadata elements as key-value-pairs (string, array or objects).
+     * @param spatialCoverageDescription
+     *     Spatial coverage description. Description of the data set's spatial coverage.
      * @param metadataCreatedDate
      *     Metadata created date. Created date for metadata about the data set.
+     * @param metadataCreatedBy
+     *     Metadata created by. Created by identifiable person.
      * @param name
      *     Name. Name of data set.
      * @param useRestrictionDate
      *     Use restriction date. Use restriction date, eg. the date (deadline) for when data must be deleted/anonymised.
+     * @param id
+     *     Identifier. Unique identifier for the data set.
      * @param shortName
      *     Short name. Name of (physical) data file, data table or dataset.
-     * @param dataSource
-     *     Data source. Data source. Set either for the data set or instance variable.
+     * @param keyword
+     *     Keyword(s). A list of searchable keywords that can contribute to the development of effective filtering and search services.
      */
-    public Dataset(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, String dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, String owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
+    public Dataset(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, List<Object> populationDescription, String version, List<Object> versionDescription, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, String owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
         super();
         this.shortName = shortName;
         this.assessment = assessment;
@@ -413,16 +364,12 @@ public class Dataset implements Serializable
         this.datasetState = datasetState;
         this.name = name;
         this.description = description;
-        this.dataSource = dataSource;
         this.populationDescription = populationDescription;
         this.version = version;
         this.versionDescription = versionDescription;
-        this.unitType = unitType;
-        this.temporalityType = temporalityType;
         this.subjectField = subjectField;
         this.keyword = keyword;
         this.spatialCoverageDescription = spatialCoverageDescription;
-        this.containsPersonalData = containsPersonalData;
         this.useRestriction = useRestriction;
         this.useRestrictionDate = useRestrictionDate;
         this.customType = customType;
@@ -578,28 +525,6 @@ public class Dataset implements Serializable
     }
 
     /**
-     * Data source
-     * <p>
-     * Data source. Set either for the data set or instance variable.
-     * 
-     */
-    @JsonProperty("data_source")
-    public String getDataSource() {
-        return dataSource;
-    }
-
-    /**
-     * Data source
-     * <p>
-     * Data source. Set either for the data set or instance variable.
-     * 
-     */
-    @JsonProperty("data_source")
-    public void setDataSource(String dataSource) {
-        this.dataSource = dataSource;
-    }
-
-    /**
      * Reusableb langugage string type
      * (Required)
      * 
@@ -659,48 +584,6 @@ public class Dataset implements Serializable
     @JsonProperty("version_description")
     public void setVersionDescription(List<Object> versionDescription) {
         this.versionDescription = versionDescription;
-    }
-
-    /**
-     * Unit type
-     * <p>
-     * Unit Type for data file, table or data set. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter
-     * (Required)
-     * 
-     */
-    @JsonProperty("unit_type")
-    public String getUnitType() {
-        return unitType;
-    }
-
-    /**
-     * Unit type
-     * <p>
-     * Unit Type for data file, table or data set. See Definitions of Unit Types https://www.ssb.no/en/metadata/definisjoner-av-statistiske-enheter
-     * (Required)
-     * 
-     */
-    @JsonProperty("unit_type")
-    public void setUnitType(String unitType) {
-        this.unitType = unitType;
-    }
-
-    /**
-     * Reusable temporalitytype type
-     * 
-     */
-    @JsonProperty("temporality_type")
-    public Dataset.TemporalityTypeType getTemporalityType() {
-        return temporalityType;
-    }
-
-    /**
-     * Reusable temporalitytype type
-     * 
-     */
-    @JsonProperty("temporality_type")
-    public void setTemporalityType(Dataset.TemporalityTypeType temporalityType) {
-        this.temporalityType = temporalityType;
     }
 
     /**
@@ -765,30 +648,6 @@ public class Dataset implements Serializable
     @JsonProperty("spatial_coverage_description")
     public void setSpatialCoverageDescription(List<Object> spatialCoverageDescription) {
         this.spatialCoverageDescription = spatialCoverageDescription;
-    }
-
-    /**
-     * Contains personal data
-     * <p>
-     * Is there any personal data amongst this data (data set)?
-     * (Required)
-     * 
-     */
-    @JsonProperty("contains_personal_data")
-    public Boolean getContainsPersonalData() {
-        return containsPersonalData;
-    }
-
-    /**
-     * Contains personal data
-     * <p>
-     * Is there any personal data amongst this data (data set)?
-     * (Required)
-     * 
-     */
-    @JsonProperty("contains_personal_data")
-    public void setContainsPersonalData(Boolean containsPersonalData) {
-        this.containsPersonalData = containsPersonalData;
     }
 
     /**
@@ -1107,10 +966,6 @@ public class Dataset implements Serializable
         sb.append('=');
         sb.append(((this.description == null)?"<null>":this.description));
         sb.append(',');
-        sb.append("dataSource");
-        sb.append('=');
-        sb.append(((this.dataSource == null)?"<null>":this.dataSource));
-        sb.append(',');
         sb.append("populationDescription");
         sb.append('=');
         sb.append(((this.populationDescription == null)?"<null>":this.populationDescription));
@@ -1123,14 +978,6 @@ public class Dataset implements Serializable
         sb.append('=');
         sb.append(((this.versionDescription == null)?"<null>":this.versionDescription));
         sb.append(',');
-        sb.append("unitType");
-        sb.append('=');
-        sb.append(((this.unitType == null)?"<null>":this.unitType));
-        sb.append(',');
-        sb.append("temporalityType");
-        sb.append('=');
-        sb.append(((this.temporalityType == null)?"<null>":this.temporalityType));
-        sb.append(',');
         sb.append("subjectField");
         sb.append('=');
         sb.append(((this.subjectField == null)?"<null>":this.subjectField));
@@ -1142,10 +989,6 @@ public class Dataset implements Serializable
         sb.append("spatialCoverageDescription");
         sb.append('=');
         sb.append(((this.spatialCoverageDescription == null)?"<null>":this.spatialCoverageDescription));
-        sb.append(',');
-        sb.append("containsPersonalData");
-        sb.append('=');
-        sb.append(((this.containsPersonalData == null)?"<null>":this.containsPersonalData));
         sb.append(',');
         sb.append("useRestriction");
         sb.append('=');
@@ -1217,9 +1060,7 @@ public class Dataset implements Serializable
         result = ((result* 31)+((this.description == null)? 0 :this.description.hashCode()));
         result = ((result* 31)+((this.populationDescription == null)? 0 :this.populationDescription.hashCode()));
         result = ((result* 31)+((this.metadataLastUpdatedBy == null)? 0 :this.metadataLastUpdatedBy.hashCode()));
-        result = ((result* 31)+((this.temporalityType == null)? 0 :this.temporalityType.hashCode()));
         result = ((result* 31)+((this.subjectField == null)? 0 :this.subjectField.hashCode()));
-        result = ((result* 31)+((this.unitType == null)? 0 :this.unitType.hashCode()));
         result = ((result* 31)+((this.assessment == null)? 0 :this.assessment.hashCode()));
         result = ((result* 31)+((this.spatialCoverageDescription == null)? 0 :this.spatialCoverageDescription.hashCode()));
         result = ((result* 31)+((this.metadataCreatedBy == null)? 0 :this.metadataCreatedBy.hashCode()));
@@ -1229,7 +1070,6 @@ public class Dataset implements Serializable
         result = ((result* 31)+((this.containsDataFrom == null)? 0 :this.containsDataFrom.hashCode()));
         result = ((result* 31)+((this.filePath == null)? 0 :this.filePath.hashCode()));
         result = ((result* 31)+((this.useRestriction == null)? 0 :this.useRestriction.hashCode()));
-        result = ((result* 31)+((this.containsPersonalData == null)? 0 :this.containsPersonalData.hashCode()));
         result = ((result* 31)+((this.metadataLastUpdatedDate == null)? 0 :this.metadataLastUpdatedDate.hashCode()));
         result = ((result* 31)+((this.version == null)? 0 :this.version.hashCode()));
         result = ((result* 31)+((this.customType == null)? 0 :this.customType.hashCode()));
@@ -1238,7 +1078,6 @@ public class Dataset implements Serializable
         result = ((result* 31)+((this.useRestrictionDate == null)? 0 :this.useRestrictionDate.hashCode()));
         result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
         result = ((result* 31)+((this.shortName == null)? 0 :this.shortName.hashCode()));
-        result = ((result* 31)+((this.dataSource == null)? 0 :this.dataSource.hashCode()));
         return result;
     }
 
@@ -1251,7 +1090,7 @@ public class Dataset implements Serializable
             return false;
         }
         Dataset rhs = ((Dataset) other);
-        return ((((((((((((((((((((((((((((((this.versionDescription == rhs.versionDescription)||((this.versionDescription!= null)&&this.versionDescription.equals(rhs.versionDescription)))&&((this.containsDataUntil == rhs.containsDataUntil)||((this.containsDataUntil!= null)&&this.containsDataUntil.equals(rhs.containsDataUntil))))&&((this.datasetState == rhs.datasetState)||((this.datasetState!= null)&&this.datasetState.equals(rhs.datasetState))))&&((this.datasetStatus == rhs.datasetStatus)||((this.datasetStatus!= null)&&this.datasetStatus.equals(rhs.datasetStatus))))&&((this.description == rhs.description)||((this.description!= null)&&this.description.equals(rhs.description))))&&((this.populationDescription == rhs.populationDescription)||((this.populationDescription!= null)&&this.populationDescription.equals(rhs.populationDescription))))&&((this.metadataLastUpdatedBy == rhs.metadataLastUpdatedBy)||((this.metadataLastUpdatedBy!= null)&&this.metadataLastUpdatedBy.equals(rhs.metadataLastUpdatedBy))))&&((this.temporalityType == rhs.temporalityType)||((this.temporalityType!= null)&&this.temporalityType.equals(rhs.temporalityType))))&&((this.subjectField == rhs.subjectField)||((this.subjectField!= null)&&this.subjectField.equals(rhs.subjectField))))&&((this.unitType == rhs.unitType)||((this.unitType!= null)&&this.unitType.equals(rhs.unitType))))&&((this.assessment == rhs.assessment)||((this.assessment!= null)&&this.assessment.equals(rhs.assessment))))&&((this.spatialCoverageDescription == rhs.spatialCoverageDescription)||((this.spatialCoverageDescription!= null)&&this.spatialCoverageDescription.equals(rhs.spatialCoverageDescription))))&&((this.metadataCreatedBy == rhs.metadataCreatedBy)||((this.metadataCreatedBy!= null)&&this.metadataCreatedBy.equals(rhs.metadataCreatedBy))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.keyword == rhs.keyword)||((this.keyword!= null)&&this.keyword.equals(rhs.keyword))))&&((this.owner == rhs.owner)||((this.owner!= null)&&this.owner.equals(rhs.owner))))&&((this.containsDataFrom == rhs.containsDataFrom)||((this.containsDataFrom!= null)&&this.containsDataFrom.equals(rhs.containsDataFrom))))&&((this.filePath == rhs.filePath)||((this.filePath!= null)&&this.filePath.equals(rhs.filePath))))&&((this.useRestriction == rhs.useRestriction)||((this.useRestriction!= null)&&this.useRestriction.equals(rhs.useRestriction))))&&((this.containsPersonalData == rhs.containsPersonalData)||((this.containsPersonalData!= null)&&this.containsPersonalData.equals(rhs.containsPersonalData))))&&((this.metadataLastUpdatedDate == rhs.metadataLastUpdatedDate)||((this.metadataLastUpdatedDate!= null)&&this.metadataLastUpdatedDate.equals(rhs.metadataLastUpdatedDate))))&&((this.version == rhs.version)||((this.version!= null)&&this.version.equals(rhs.version))))&&((this.customType == rhs.customType)||((this.customType!= null)&&this.customType.equals(rhs.customType))))&&((this.metadataCreatedDate == rhs.metadataCreatedDate)||((this.metadataCreatedDate!= null)&&this.metadataCreatedDate.equals(rhs.metadataCreatedDate))))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.useRestrictionDate == rhs.useRestrictionDate)||((this.useRestrictionDate!= null)&&this.useRestrictionDate.equals(rhs.useRestrictionDate))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))))&&((this.dataSource == rhs.dataSource)||((this.dataSource!= null)&&this.dataSource.equals(rhs.dataSource))));
+        return ((((((((((((((((((((((((((this.versionDescription == rhs.versionDescription)||((this.versionDescription!= null)&&this.versionDescription.equals(rhs.versionDescription)))&&((this.containsDataUntil == rhs.containsDataUntil)||((this.containsDataUntil!= null)&&this.containsDataUntil.equals(rhs.containsDataUntil))))&&((this.datasetState == rhs.datasetState)||((this.datasetState!= null)&&this.datasetState.equals(rhs.datasetState))))&&((this.datasetStatus == rhs.datasetStatus)||((this.datasetStatus!= null)&&this.datasetStatus.equals(rhs.datasetStatus))))&&((this.description == rhs.description)||((this.description!= null)&&this.description.equals(rhs.description))))&&((this.populationDescription == rhs.populationDescription)||((this.populationDescription!= null)&&this.populationDescription.equals(rhs.populationDescription))))&&((this.metadataLastUpdatedBy == rhs.metadataLastUpdatedBy)||((this.metadataLastUpdatedBy!= null)&&this.metadataLastUpdatedBy.equals(rhs.metadataLastUpdatedBy))))&&((this.subjectField == rhs.subjectField)||((this.subjectField!= null)&&this.subjectField.equals(rhs.subjectField))))&&((this.assessment == rhs.assessment)||((this.assessment!= null)&&this.assessment.equals(rhs.assessment))))&&((this.spatialCoverageDescription == rhs.spatialCoverageDescription)||((this.spatialCoverageDescription!= null)&&this.spatialCoverageDescription.equals(rhs.spatialCoverageDescription))))&&((this.metadataCreatedBy == rhs.metadataCreatedBy)||((this.metadataCreatedBy!= null)&&this.metadataCreatedBy.equals(rhs.metadataCreatedBy))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.keyword == rhs.keyword)||((this.keyword!= null)&&this.keyword.equals(rhs.keyword))))&&((this.owner == rhs.owner)||((this.owner!= null)&&this.owner.equals(rhs.owner))))&&((this.containsDataFrom == rhs.containsDataFrom)||((this.containsDataFrom!= null)&&this.containsDataFrom.equals(rhs.containsDataFrom))))&&((this.filePath == rhs.filePath)||((this.filePath!= null)&&this.filePath.equals(rhs.filePath))))&&((this.useRestriction == rhs.useRestriction)||((this.useRestriction!= null)&&this.useRestriction.equals(rhs.useRestriction))))&&((this.metadataLastUpdatedDate == rhs.metadataLastUpdatedDate)||((this.metadataLastUpdatedDate!= null)&&this.metadataLastUpdatedDate.equals(rhs.metadataLastUpdatedDate))))&&((this.version == rhs.version)||((this.version!= null)&&this.version.equals(rhs.version))))&&((this.customType == rhs.customType)||((this.customType!= null)&&this.customType.equals(rhs.customType))))&&((this.metadataCreatedDate == rhs.metadataCreatedDate)||((this.metadataCreatedDate!= null)&&this.metadataCreatedDate.equals(rhs.metadataCreatedDate))))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.useRestrictionDate == rhs.useRestrictionDate)||((this.useRestrictionDate!= null)&&this.useRestrictionDate.equals(rhs.useRestrictionDate))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))));
     }
 
 
@@ -1311,8 +1150,8 @@ public class Dataset implements Serializable
             super();
         }
 
-        public DatasetBuilder(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, String dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, String owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
-            super(shortName, assessment, datasetStatus, datasetState, name, description, dataSource, populationDescription, version, versionDescription, unitType, temporalityType, subjectField, keyword, spatialCoverageDescription, containsPersonalData, useRestriction, useRestrictionDate, customType, id, owner, filePath, metadataCreatedDate, metadataCreatedBy, metadataLastUpdatedDate, metadataLastUpdatedBy, containsDataFrom, containsDataUntil);
+        public DatasetBuilder(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, List<Object> populationDescription, String version, List<Object> versionDescription, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, String owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
+            super(shortName, assessment, datasetStatus, datasetState, name, description, populationDescription, version, versionDescription, subjectField, keyword, spatialCoverageDescription, useRestriction, useRestrictionDate, customType, id, owner, filePath, metadataCreatedDate, metadataCreatedBy, metadataLastUpdatedDate, metadataLastUpdatedBy, containsDataFrom, containsDataUntil);
         }
 
     }
@@ -1330,10 +1169,10 @@ public class Dataset implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public DatasetBuilderBase(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, String dataSource, List<Object> populationDescription, String version, List<Object> versionDescription, String unitType, Dataset.TemporalityTypeType temporalityType, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Boolean containsPersonalData, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, String owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
+        public DatasetBuilderBase(String shortName, Dataset.Assessment assessment, Dataset.DataSetStatus datasetStatus, Dataset.DataSetState datasetState, List<Object> name, List<Object> description, List<Object> populationDescription, String version, List<Object> versionDescription, String subjectField, List<String> keyword, List<Object> spatialCoverageDescription, Dataset.UseRestriction useRestriction, Date useRestrictionDate, List<CustomType> customType, UUID id, String owner, String filePath, Date metadataCreatedDate, String metadataCreatedBy, Date metadataLastUpdatedDate, String metadataLastUpdatedBy, String containsDataFrom, String containsDataUntil) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(Dataset.DatasetBuilder.class)) {
-                this.instance = ((T) new Dataset(shortName, assessment, datasetStatus, datasetState, name, description, dataSource, populationDescription, version, versionDescription, unitType, temporalityType, subjectField, keyword, spatialCoverageDescription, containsPersonalData, useRestriction, useRestrictionDate, customType, id, owner, filePath, metadataCreatedDate, metadataCreatedBy, metadataLastUpdatedDate, metadataLastUpdatedBy, containsDataFrom, containsDataUntil));
+                this.instance = ((T) new Dataset(shortName, assessment, datasetStatus, datasetState, name, description, populationDescription, version, versionDescription, subjectField, keyword, spatialCoverageDescription, useRestriction, useRestrictionDate, customType, id, owner, filePath, metadataCreatedDate, metadataCreatedBy, metadataLastUpdatedDate, metadataLastUpdatedBy, containsDataFrom, containsDataUntil));
             }
         }
 
@@ -1374,11 +1213,6 @@ public class Dataset implements Serializable
             return this;
         }
 
-        public Dataset.DatasetBuilderBase withDataSource(String dataSource) {
-            ((Dataset) this.instance).dataSource = dataSource;
-            return this;
-        }
-
         public Dataset.DatasetBuilderBase withPopulationDescription(List<Object> populationDescription) {
             ((Dataset) this.instance).populationDescription = populationDescription;
             return this;
@@ -1394,16 +1228,6 @@ public class Dataset implements Serializable
             return this;
         }
 
-        public Dataset.DatasetBuilderBase withUnitType(String unitType) {
-            ((Dataset) this.instance).unitType = unitType;
-            return this;
-        }
-
-        public Dataset.DatasetBuilderBase withTemporalityType(Dataset.TemporalityTypeType temporalityType) {
-            ((Dataset) this.instance).temporalityType = temporalityType;
-            return this;
-        }
-
         public Dataset.DatasetBuilderBase withSubjectField(String subjectField) {
             ((Dataset) this.instance).subjectField = subjectField;
             return this;
@@ -1416,11 +1240,6 @@ public class Dataset implements Serializable
 
         public Dataset.DatasetBuilderBase withSpatialCoverageDescription(List<Object> spatialCoverageDescription) {
             ((Dataset) this.instance).spatialCoverageDescription = spatialCoverageDescription;
-            return this;
-        }
-
-        public Dataset.DatasetBuilderBase withContainsPersonalData(Boolean containsPersonalData) {
-            ((Dataset) this.instance).containsPersonalData = containsPersonalData;
             return this;
         }
 
@@ -1581,53 +1400,6 @@ public class Dataset implements Serializable
         @JsonCreator
         public static Dataset.DataSetStatus fromValue(String value) {
             Dataset.DataSetStatus constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException(value);
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
-
-    /**
-     * Reusable temporalitytype type
-     * 
-     */
-    @Generated("jsonschema2pojo")
-    public enum TemporalityTypeType {
-
-        FIXED("FIXED"),
-        STATUS("STATUS"),
-        ACCUMULATED("ACCUMULATED"),
-        EVENT("EVENT");
-        private final String value;
-        private final static Map<String, Dataset.TemporalityTypeType> CONSTANTS = new HashMap<String, Dataset.TemporalityTypeType>();
-
-        static {
-            for (Dataset.TemporalityTypeType c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        TemporalityTypeType(String value) {
-            this.value = value;
-        }
-
-        @Override
-        public String toString() {
-            return this.value;
-        }
-
-        @JsonValue
-        public String value() {
-            return this.value;
-        }
-
-        @JsonCreator
-        public static Dataset.TemporalityTypeType fromValue(String value) {
-            Dataset.TemporalityTypeType constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {
