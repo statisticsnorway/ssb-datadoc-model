@@ -327,7 +327,7 @@
           },
           "temporality_type": {
             "title": "Temporality type",
-            "description": "Temporality type. Set either for variable instance or dataset.",
+            "description": "Temporality type of this variable.",
             "$ref": "./temporalityTypeType.json#/temporalityTypeType"
           },
           "measurement_unit": {
