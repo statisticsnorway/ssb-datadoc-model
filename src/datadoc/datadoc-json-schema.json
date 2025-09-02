@@ -103,11 +103,6 @@
           "description": "Description of the data set's spatial coverage",
           "$ref": "./languageStringType.json#/languageStringType"
         },
-        "contains_personal_data": {
-          "title": "Contains personal data",
-          "description": "Is there any personal data amongst this data (data set)?",
-          "type": "boolean"
-        },
         "use_restriction": {
           "title": "Use restriction",
           "description": "Data set use restriction",
@@ -217,7 +212,6 @@
         "unit_type",
         "description",
         "subject_field",
-        "contains_personal_data",
         "id",
         "owner",
         "file_path",
