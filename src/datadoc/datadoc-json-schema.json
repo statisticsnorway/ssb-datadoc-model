@@ -55,11 +55,6 @@
           "description": "Free text description of the data set",
           "$ref": "./languageStringType.json#/languageStringType"
         },
-        "data_source": {
-          "title": "Data source",
-          "description": "Data source. Set either for the data set or instance variable.",
-          "type": "string"
-        },
         "population_description": {
           "title": "Description of population",
           "description": "Description of the population covered in the data set. Includes unit type, spatial coverage and period of time.",
