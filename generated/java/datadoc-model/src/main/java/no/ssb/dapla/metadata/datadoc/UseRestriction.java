@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -30,10 +31,12 @@ public class UseRestriction implements Serializable
      * Use restriction type
      * <p>
      * Use restriction type
+     * (Required)
      * 
      */
     @JsonProperty("use_restriction_type")
     @JsonPropertyDescription("Use restriction type")
+    @NotNull
     private UseRestriction.UseRestrictionType useRestrictionType;
     /**
      * Use restriction date
@@ -77,6 +80,7 @@ public class UseRestriction implements Serializable
      * Use restriction type
      * <p>
      * Use restriction type
+     * (Required)
      * 
      */
     @JsonProperty("use_restriction_type")
@@ -88,6 +92,7 @@ public class UseRestriction implements Serializable
      * Use restriction type
      * <p>
      * Use restriction type
+     * (Required)
      * 
      */
     @JsonProperty("use_restriction_type")
