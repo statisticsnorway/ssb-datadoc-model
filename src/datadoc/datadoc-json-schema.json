@@ -96,13 +96,13 @@
                 "type": "object",
                 "properties": {
                     "use_restriction_type": {
-                        "title": "Use restriction type",
-                        "description": "Use restriction type",
-                        "enum": [
-                            "DELETION_ANONYMIZATION",
-                            "PROCESS_LIMITATIONS",
-                            "SECONDARY_USE_RESTRICTIONS"
-                        ]
+                      "title": "Use restriction type",
+                      "description": "Use restriction type",
+                      "enum": [
+                          "DELETION_ANONYMIZATION",
+                          "PROCESS_LIMITATIONS",
+                          "SECONDARY_USE_RESTRICTIONS"
+                      ]
                     },
                     "use_restriction_date": {
                         "title": "Use restriction date",
@@ -110,7 +110,8 @@
                         "type": "string",
                         "format": "date"
                     }
-                }
+                },
+                "required": ["use_restriction_type"]
             }
         },
         "custom_type": {
