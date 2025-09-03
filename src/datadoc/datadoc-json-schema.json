@@ -95,7 +95,7 @@
             "items": {
                 "type": "object",
                 "properties": {
-                    "use_restriction": {
+                    "use_restriction_type": {
                         "title": "Use restriction type",
                         "description": "Use restriction type",
                         "enum": [
