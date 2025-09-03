@@ -10,7 +10,7 @@
     },
     "document_version": {
       "description": "Version of this model",
-      "const": "6.0.0"
+      "const": "6.0.1"
     },
     "dataset": {
       "type": "object",
@@ -89,20 +89,29 @@
           "$ref": "./languageStringType.json#/languageStringType"
         },
         "use_restriction": {
-          "title": "Use restriction",
-          "description": "Data set use restriction",
-          "type": "string",
-          "enum": [
-            "DELETION_ANONYMIZATION",
-            "PROCESS_LIMITATIONS",
-            "SECONDARY_USE_RESTRICTIONS"
-          ]
-        },
-        "use_restriction_date": {
-          "title": "Use restriction date",
-          "description": "Use restriction date, eg. the date (deadline) for when data must be deleted/anonymised.",
-          "type": "string",
-          "format": "date-time"
+            "title": "Use restriction",
+            "description": "Use restriction",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "use_restriction": {
+                        "title": "Use restriction type",
+                        "description": "Use restriction type",
+                        "enum": [
+                            "DELETION_ANONYMIZATION",
+                            "PROCESS_LIMITATIONS",
+                            "SECONDARY_USE_RESTRICTIONS"
+                        ]
+                    },
+                    "use_restriction_date": {
+                        "title": "Use restriction date",
+                        "description": "Use restriction date, eg. the date (deadline) for when data must be deleted/anonymised.",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            }
         },
         "custom_type": {
           "title": "Custom type for dataset metadata",
