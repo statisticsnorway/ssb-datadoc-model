@@ -90,7 +90,7 @@
         },
         "use_restrictions": {
             "title": "Use restriction",
-            "description": "Use restriction",
+            "description": "Any usage restrictions and usage restriction dates for the dataset, for example a deadline (date) for when the dataset should be deleted/anonymized.",
             "type": "array",
             "items": {
                 "type": "object",
