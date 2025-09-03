@@ -172,11 +172,11 @@ public class Dataset implements Serializable
     /**
      * Use restriction
      * <p>
-     * Use restriction
+     * Any usage restrictions and usage restriction dates for the dataset, for example a deadline (date) for when the dataset should be deleted/anonymized.
      * 
      */
     @JsonProperty("use_restrictions")
-    @JsonPropertyDescription("Use restriction")
+    @JsonPropertyDescription("Any usage restrictions and usage restriction dates for the dataset, for example a deadline (date) for when the dataset should be deleted/anonymized.")
     @Valid
     private List<UseRestriction> useRestrictions = new ArrayList<UseRestriction>();
     /**
@@ -337,7 +337,7 @@ public class Dataset implements Serializable
      * @param name
      *     Name. Name of data set.
      * @param useRestrictions
-     *     Use restriction. Use restriction.
+     *     Use restriction. Any usage restrictions and usage restriction dates for the dataset, for example a deadline (date) for when the dataset should be deleted/anonymized.
      * @param id
      *     Identifier. Unique identifier for the data set.
      * @param shortName
@@ -641,7 +641,7 @@ public class Dataset implements Serializable
     /**
      * Use restriction
      * <p>
-     * Use restriction
+     * Any usage restrictions and usage restriction dates for the dataset, for example a deadline (date) for when the dataset should be deleted/anonymized.
      * 
      */
     @JsonProperty("use_restrictions")
@@ -652,7 +652,7 @@ public class Dataset implements Serializable
     /**
      * Use restriction
      * <p>
-     * Use restriction
+     * Any usage restrictions and usage restriction dates for the dataset, for example a deadline (date) for when the dataset should be deleted/anonymized.
      * 
      */
     @JsonProperty("use_restrictions")

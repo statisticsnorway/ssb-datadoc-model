@@ -2,7 +2,6 @@
 package no.ssb.dapla.metadata.datadoc;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -44,11 +43,11 @@ public class UseRestriction implements Serializable
      */
     @JsonProperty("use_restriction_date")
     @JsonPropertyDescription("Use restriction date, eg. the date (deadline) for when data must be deleted/anonymised.")
-    private Date useRestrictionDate;
+    private String useRestrictionDate;
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -5042768301310056697L;
+    private final static long serialVersionUID = -6727527747502538009L;
 
     /**
      * No args constructor for use in serialization
@@ -64,7 +63,7 @@ public class UseRestriction implements Serializable
      * @param useRestrictionDate
      *     Use restriction date. Use restriction date, eg. the date (deadline) for when data must be deleted/anonymised.
      */
-    public UseRestriction(UseRestriction.UseRestrictionType useRestrictionType, Date useRestrictionDate) {
+    public UseRestriction(UseRestriction.UseRestrictionType useRestrictionType, String useRestrictionDate) {
         super();
         this.useRestrictionType = useRestrictionType;
         this.useRestrictionDate = useRestrictionDate;
@@ -103,7 +102,7 @@ public class UseRestriction implements Serializable
      * 
      */
     @JsonProperty("use_restriction_date")
-    public Date getUseRestrictionDate() {
+    public String getUseRestrictionDate() {
         return useRestrictionDate;
     }
 
@@ -114,7 +113,7 @@ public class UseRestriction implements Serializable
      * 
      */
     @JsonProperty("use_restriction_date")
-    public void setUseRestrictionDate(Date useRestrictionDate) {
+    public void setUseRestrictionDate(String useRestrictionDate) {
         this.useRestrictionDate = useRestrictionDate;
     }
 
@@ -182,7 +181,7 @@ public class UseRestriction implements Serializable
             super();
         }
 
-        public UseRestrictionBuilder(UseRestriction.UseRestrictionType useRestrictionType, Date useRestrictionDate) {
+        public UseRestrictionBuilder(UseRestriction.UseRestrictionType useRestrictionType, String useRestrictionDate) {
             super(useRestrictionType, useRestrictionDate);
         }
 
@@ -201,7 +200,7 @@ public class UseRestriction implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public UseRestrictionBuilderBase(UseRestriction.UseRestrictionType useRestrictionType, Date useRestrictionDate) {
+        public UseRestrictionBuilderBase(UseRestriction.UseRestrictionType useRestrictionType, String useRestrictionDate) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(UseRestriction.UseRestrictionBuilder.class)) {
                 this.instance = ((T) new UseRestriction(useRestrictionType, useRestrictionDate));
@@ -220,7 +219,7 @@ public class UseRestriction implements Serializable
             return this;
         }
 
-        public UseRestriction.UseRestrictionBuilderBase withUseRestrictionDate(Date useRestrictionDate) {
+        public UseRestriction.UseRestrictionBuilderBase withUseRestrictionDate(String useRestrictionDate) {
             ((UseRestriction) this.instance).useRestrictionDate = useRestrictionDate;
             return this;
         }
