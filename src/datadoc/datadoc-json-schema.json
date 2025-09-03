@@ -88,7 +88,7 @@
           "description": "Description of the data set's spatial coverage",
           "$ref": "./languageStringType.json#/languageStringType"
         },
-        "use_restriction": {
+        "use_restrictions": {
             "title": "Use restriction",
             "description": "Use restriction",
             "type": "array",
