@@ -10,7 +10,7 @@
     },
     "document_version": {
       "description": "Version of this model",
-      "const": "6.0.0"
+      "const": "6.1.0"
     },
     "dataset": {
       "type": "object",
@@ -88,21 +88,31 @@
           "description": "Description of the data set's spatial coverage",
           "$ref": "./languageStringType.json#/languageStringType"
         },
-        "use_restriction": {
-          "title": "Use restriction",
-          "description": "Data set use restriction",
-          "type": "string",
-          "enum": [
-            "DELETION_ANONYMIZATION",
-            "PROCESS_LIMITATIONS",
-            "SECONDARY_USE_RESTRICTIONS"
-          ]
-        },
-        "use_restriction_date": {
-          "title": "Use restriction date",
-          "description": "Use restriction date, eg. the date (deadline) for when data must be deleted/anonymised.",
-          "type": "string",
-          "format": "date-time"
+        "use_restrictions": {
+            "title": "Use restriction",
+            "description": "Any usage restrictions and usage restriction dates for the dataset, for example a deadline (date) for when the dataset should be deleted/anonymized.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "use_restriction_type": {
+                      "title": "Use restriction type",
+                      "description": "Use restriction type",
+                      "enum": [
+                          "DELETION_ANONYMIZATION",
+                          "PROCESS_LIMITATIONS",
+                          "SECONDARY_USE_RESTRICTIONS"
+                      ]
+                    },
+                    "use_restriction_date": {
+                        "title": "Use restriction date",
+                        "description": "Use restriction date, eg. the date (deadline) for when data must be deleted/anonymised.",
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "required": ["use_restriction_type"]
+            }
         },
         "custom_type": {
           "title": "Custom type for dataset metadata",
