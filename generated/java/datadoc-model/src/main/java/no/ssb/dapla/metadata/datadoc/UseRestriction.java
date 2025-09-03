@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "use_restriction",
+    "use_restriction_type",
     "use_restriction_date"
 })
 @Generated("jsonschema2pojo")
@@ -33,9 +33,9 @@ public class UseRestriction implements Serializable
      * Use restriction type
      * 
      */
-    @JsonProperty("use_restriction")
+    @JsonProperty("use_restriction_type")
     @JsonPropertyDescription("Use restriction type")
-    private UseRestriction.UseRestrictionType useRestriction;
+    private UseRestriction.UseRestrictionType useRestrictionType;
     /**
      * Use restriction date
      * <p>
@@ -48,7 +48,7 @@ public class UseRestriction implements Serializable
     @JsonIgnore
     @Valid
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
-    private final static long serialVersionUID = -1677280696424516964L;
+    private final static long serialVersionUID = -5042768301310056697L;
 
     /**
      * No args constructor for use in serialization
@@ -59,14 +59,14 @@ public class UseRestriction implements Serializable
 
     /**
      * 
-     * @param useRestriction
+     * @param useRestrictionType
      *     Use restriction type. Use restriction type.
      * @param useRestrictionDate
      *     Use restriction date. Use restriction date, eg. the date (deadline) for when data must be deleted/anonymised.
      */
-    public UseRestriction(UseRestriction.UseRestrictionType useRestriction, Date useRestrictionDate) {
+    public UseRestriction(UseRestriction.UseRestrictionType useRestrictionType, Date useRestrictionDate) {
         super();
-        this.useRestriction = useRestriction;
+        this.useRestrictionType = useRestrictionType;
         this.useRestrictionDate = useRestrictionDate;
     }
 
@@ -80,9 +80,9 @@ public class UseRestriction implements Serializable
      * Use restriction type
      * 
      */
-    @JsonProperty("use_restriction")
-    public UseRestriction.UseRestrictionType getUseRestriction() {
-        return useRestriction;
+    @JsonProperty("use_restriction_type")
+    public UseRestriction.UseRestrictionType getUseRestrictionType() {
+        return useRestrictionType;
     }
 
     /**
@@ -91,9 +91,9 @@ public class UseRestriction implements Serializable
      * Use restriction type
      * 
      */
-    @JsonProperty("use_restriction")
-    public void setUseRestriction(UseRestriction.UseRestrictionType useRestriction) {
-        this.useRestriction = useRestriction;
+    @JsonProperty("use_restriction_type")
+    public void setUseRestrictionType(UseRestriction.UseRestrictionType useRestrictionType) {
+        this.useRestrictionType = useRestrictionType;
     }
 
     /**
@@ -132,9 +132,9 @@ public class UseRestriction implements Serializable
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(UseRestriction.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("useRestriction");
+        sb.append("useRestrictionType");
         sb.append('=');
-        sb.append(((this.useRestriction == null)?"<null>":this.useRestriction));
+        sb.append(((this.useRestrictionType == null)?"<null>":this.useRestrictionType));
         sb.append(',');
         sb.append("useRestrictionDate");
         sb.append('=');
@@ -155,7 +155,7 @@ public class UseRestriction implements Serializable
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.useRestriction == null)? 0 :this.useRestriction.hashCode()));
+        result = ((result* 31)+((this.useRestrictionType == null)? 0 :this.useRestrictionType.hashCode()));
         result = ((result* 31)+((this.useRestrictionDate == null)? 0 :this.useRestrictionDate.hashCode()));
         result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
         return result;
@@ -170,7 +170,7 @@ public class UseRestriction implements Serializable
             return false;
         }
         UseRestriction rhs = ((UseRestriction) other);
-        return ((((this.useRestriction == rhs.useRestriction)||((this.useRestriction!= null)&&this.useRestriction.equals(rhs.useRestriction)))&&((this.useRestrictionDate == rhs.useRestrictionDate)||((this.useRestrictionDate!= null)&&this.useRestrictionDate.equals(rhs.useRestrictionDate))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))));
+        return ((((this.useRestrictionType == rhs.useRestrictionType)||((this.useRestrictionType!= null)&&this.useRestrictionType.equals(rhs.useRestrictionType)))&&((this.useRestrictionDate == rhs.useRestrictionDate)||((this.useRestrictionDate!= null)&&this.useRestrictionDate.equals(rhs.useRestrictionDate))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))));
     }
 
     public static class UseRestrictionBuilder
@@ -182,8 +182,8 @@ public class UseRestriction implements Serializable
             super();
         }
 
-        public UseRestrictionBuilder(UseRestriction.UseRestrictionType useRestriction, Date useRestrictionDate) {
-            super(useRestriction, useRestrictionDate);
+        public UseRestrictionBuilder(UseRestriction.UseRestrictionType useRestrictionType, Date useRestrictionDate) {
+            super(useRestrictionType, useRestrictionDate);
         }
 
     }
@@ -201,10 +201,10 @@ public class UseRestriction implements Serializable
         }
 
         @SuppressWarnings("unchecked")
-        public UseRestrictionBuilderBase(UseRestriction.UseRestrictionType useRestriction, Date useRestrictionDate) {
+        public UseRestrictionBuilderBase(UseRestriction.UseRestrictionType useRestrictionType, Date useRestrictionDate) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(UseRestriction.UseRestrictionBuilder.class)) {
-                this.instance = ((T) new UseRestriction(useRestriction, useRestrictionDate));
+                this.instance = ((T) new UseRestriction(useRestrictionType, useRestrictionDate));
             }
         }
 
@@ -215,8 +215,8 @@ public class UseRestriction implements Serializable
             return result;
         }
 
-        public UseRestriction.UseRestrictionBuilderBase withUseRestriction(UseRestriction.UseRestrictionType useRestriction) {
-            ((UseRestriction) this.instance).useRestriction = useRestriction;
+        public UseRestriction.UseRestrictionBuilderBase withUseRestrictionType(UseRestriction.UseRestrictionType useRestrictionType) {
+            ((UseRestriction) this.instance).useRestrictionType = useRestrictionType;
             return this;
         }
 
