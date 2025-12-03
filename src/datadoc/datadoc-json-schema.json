@@ -10,7 +10,7 @@
     },
     "document_version": {
       "description": "Version of this model",
-      "const": "6.1.1"
+      "const": "6.1.2"
     },
     "dataset": {
       "type": "object",
@@ -293,7 +293,6 @@
                 "title": "Stable identifier version",
                 "description": "Version of stable identifier the variable was mapped to prior to pseudonymization.",
                 "$comment": "Only relevant when the variable is mapped to a stable identifier.",
-                "format": "date"
               },
               "encryption_algorithm": {
                 "type": "string",
