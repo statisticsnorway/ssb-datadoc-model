@@ -292,7 +292,8 @@
                 "type": "string",
                 "title": "Stable identifier version",
                 "description": "Version of stable identifier the variable was mapped to prior to pseudonymization.",
-                "$comment": "Only relevant when the variable is mapped to a stable identifier."
+                "$comment": "Only relevant when the variable is mapped to a stable identifier.",
+                "format": "date"
               },
               "encryption_algorithm": {
                 "type": "string",
