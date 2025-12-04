@@ -11,6 +11,18 @@ This package contains pydantic models defining the fields and data types used in
 - Support versioning of the metadata format
 - Enforce consistency across multiple tools
 
-## Release
+## Release process
 
-To release this package, create a branch and run `uv version --bump [patch | minor | major]` depending on your change. Once the branch is merged, a GitHub Actions workflow handles the rest.
+Update the version using `uv version --bump`. This project follows [semantic versioning](https://semver.org/):
+
+```bash
+uv version --bump patch   # bug fixes
+uv version --bump minor   # new features
+uv version --bump major   # breaking changes
+```
+
+Create a new branch for the release.
+
+Commit with message like `Bump version x.x.x -> y.y.y`.
+
+Open and merge a PR.
