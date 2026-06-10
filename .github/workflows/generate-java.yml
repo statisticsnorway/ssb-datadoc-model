@@ -25,14 +25,14 @@ jobs:
     steps:
       - name: Generate token
         id: generate_token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1.12.0
         with:
           app-id: ${{ secrets.DAPLA_BOT_APP_ID }}
           private-key: ${{ secrets.DAPLA_BOT_PRIVATE_KEY }}
 
       # Checkout using the token. This will persist the token for use in later steps.
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
         with:
           fetch-depth: 0
           token: ${{ steps.generate_token.outputs.token }}
@@ -43,7 +43,7 @@ jobs:
           git config user.email "143391972+dapla-bot[bot]@users.noreply.github.com"
 
       - name: Setup Maven authentication to GitHub packages
-        uses: s4u/maven-settings-action@v2.8.0
+        uses: s4u/maven-settings-action@60912582505985be4cc55d2b890eb32767f8de5f # v2.8.0
         id: maven_settings
         with:
           servers: '[{"id": "github","configuration": {"httpHeaders": {"property": {"name": "Authorization","value": "Bearer ${{ secrets.GITHUB_TOKEN }}"}}}}]'
