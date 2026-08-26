@@ -1033,7 +1033,12 @@ public class Variable implements Serializable
         DATETIME("DATETIME"),
         BOOLEAN("BOOLEAN"),
         FLOAT("FLOAT"),
-        ARRAY("ARRAY");
+        ARRAY("ARRAY"),
+        ARRAY_STRING("ARRAY[STRING]"),
+        ARRAY_INTEGER("ARRAY[INTEGER]"),
+        ARRAY_DATETIME("ARRAY[DATETIME]"),
+        ARRAY_BOOLEAN("ARRAY[BOOLEAN]"),
+        ARRAY_FLOAT("ARRAY[FLOAT]");
         private final String value;
         private final static Map<String, Variable.DataType> CONSTANTS = new HashMap<String, Variable.DataType>();
 
