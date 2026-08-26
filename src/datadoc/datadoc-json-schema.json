@@ -10,7 +10,7 @@
     },
     "document_version": {
       "description": "Version of this model",
-      "const": "6.1.2"
+      "const": "6.2.0"
     },
     "dataset": {
       "type": "object",
@@ -246,7 +246,12 @@
               "DATETIME",
               "BOOLEAN",
               "FLOAT",
-              "ARRAY"
+              "ARRAY",
+              "ARRAY[STRING]",
+              "ARRAY[INTEGER]",
+              "ARRAY[DATETIME]",
+              "ARRAY[BOOLEAN]",
+              "ARRAY[FLOAT]"
             ]
           },
           "variable_role": {
