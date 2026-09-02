@@ -43,11 +43,11 @@ jobs:
 
       - name: Generate All-optional Python models
         run: >
-          uv run --no-project --with datamodel-code-generator -- ./bin/generate_python.sh --output=generated/python/datadoc_model/datadoc_model/all_optional/model.py --force-optional
+          uv run --no-project --with datamodel-code-generator==0.33.0 -- ./bin/generate_python.sh --output=generated/python/datadoc_model/datadoc_model/all_optional/model.py --force-optional
 
       - name: Generate Required Python models
         run: >
-          uv run --no-project --with datamodel-code-generator -- ./bin/generate_python.sh --output=generated/python/datadoc_model/datadoc_model/required/model.py
+          uv run --no-project --with datamodel-code-generator==0.33.0 -- ./bin/generate_python.sh --output=generated/python/datadoc_model/datadoc_model/required/model.py
 
       - name: Check for modified files
         id: git-check
