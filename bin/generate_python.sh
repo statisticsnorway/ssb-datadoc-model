@@ -25,5 +25,6 @@ datamodel-codegen \
     --use-standard-collections \
     --use-double-quotes \
     --target-python-version 3.10 \
+    --enable-version-header \
     --output "$OUTPUT" \
     ${FORCE_OPTIONAL:+"--force-optional"}

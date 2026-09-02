@@ -24,13 +24,13 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: release-drafter/release-drafter@v6
+      - uses: release-drafter/release-drafter@09c613e259eb8d4e7c81c2cb00618eb5fc4575a7 # v5.25.0
         name: Generate Python Release Notes
         with:
           config-name: release-drafter-python.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: release-drafter/release-drafter@v6
+      - uses: release-drafter/release-drafter@09c613e259eb8d4e7c81c2cb00618eb5fc4575a7 # v5.25.0
         name: Generate Java Release Notes
         with:
           config-name: release-drafter-java.yml
