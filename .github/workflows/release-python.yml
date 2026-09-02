@@ -72,7 +72,7 @@ jobs:
       # This package isn't currently published on TestPyPI
       # - name: Publish package on TestPyPI
       #   if: (!steps.check-version.outputs.tag)
-      #   uses: pypa/gh-action-pypi-publish@v1.12.4
+      #   uses: pypa/gh-action-pypi-publish@v1.13.0
       #   with:
       #     packages-dir: generated/python/datadoc_model/dist
       #     repository-url: https://test.pypi.org/legacy/
